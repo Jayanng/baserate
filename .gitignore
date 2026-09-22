@@ -1,0 +1,25 @@
+# secrets and local state
+.env
+.env.*
+*.local.json
+fixtures/*.local.json
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# node
+node_modules/
+dist/
+.next/
+
+# editor and OS
+.DS_Store
+*.swp
+.idea/
+.vscode/
+
+# logs
+*.log
