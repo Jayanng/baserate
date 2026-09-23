@@ -583,5 +583,5 @@ details[open] .faqPlus {
   .hoodSection { padding: 36px 24px 40px; }
   .dock { flex-direction: column; align-items: flex-start; padding: 26px 24px; }
   .dockCta { margin-left: 0; }
-  .shell { margin: 12px; }
+  .shell { margin: 0; }
 }
