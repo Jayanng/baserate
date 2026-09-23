@@ -362,7 +362,7 @@ export default function DossierPage() {
 
         {/* 6. Evidence Table */}
         {dossier && !dossier.refusal && (
-          <EvidenceTable items={allEvidence} />
+          <EvidenceTable items={allEvidence} trade={dossier.parsed} />
         )}
       </main>
     </AppFrame>
