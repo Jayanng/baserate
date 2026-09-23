@@ -43,8 +43,8 @@ const ACTIVITY_ITEMS: ActivityItem[] = [
   },
   {
     icon: 'grade',
-    text: 'Monday forecast grade due at cash-market reopen',
-    time: 'in 2 days',
+    text: 'Replay forecast evaluation demonstrated at cash-market reopen',
+    time: 'replayed',
   },
   {
     icon: 'adjust',
@@ -97,7 +97,7 @@ export default function OverviewPage() {
           </div>
           <div className={styles.statusPill} role="status">
             <span className={styles.statusDotLive} aria-hidden="true" />
-            <span>Desk is live · grading Monday</span>
+            <span>Replay mode · 12 graded weekends</span>
           </div>
         </header>
 
@@ -256,7 +256,7 @@ export default function OverviewPage() {
               pending={calibration.pending}
             />
             <p className={styles.recordFootnote}>
-              Cryptographic forecast ledger graded against real market outcomes.
+              Cryptographic forecast ledger graded against real market outcomes in replay mode.
               Misses stay visible.
             </p>
           </div>
@@ -265,7 +265,7 @@ export default function OverviewPage() {
           <div className={styles.feedCard}>
             <div className={styles.cardHeaderAction}>
               <h2 className={styles.cardTitle}>Desk activity</h2>
-              <span className={styles.cardEyebrow}>Live feed</span>
+              <span className={styles.cardEyebrow}>Desk feed</span>
             </div>
             <ActivityFeed items={ACTIVITY_ITEMS} />
             <Link href="/dossier" className={styles.linkRow}>

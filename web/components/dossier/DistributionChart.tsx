@@ -1,10 +1,14 @@
-import type { OutcomeDistribution, RegimeTag } from '@/src/domain/types';
+import type { OutcomeDistribution, RegimeTag, ParsedTrade } from '@/src/domain/types';
+import { buildMatchExplanation, type MatchExplanation } from './match-explanation';
 import styles from './DossierPage.module.css';
 
 interface DistributionChartProps {
   distribution: OutcomeDistribution | null;
   regime?: RegimeTag;
   sampleSize?: number;
+  explanation?: MatchExplanation | null;
+  matchExplanation?: MatchExplanation | null;
+  parsed?: ParsedTrade | null;
 }
 
 function getFillClass(label: string): string {
@@ -20,6 +24,9 @@ export default function DistributionChart({
   distribution,
   regime,
   sampleSize,
+  explanation,
+  matchExplanation,
+  parsed,
 }: DistributionChartProps) {
   if (!distribution) {
     return (
@@ -42,6 +49,13 @@ export default function DistributionChart({
       ? 'insufficient evidence'
       : `${regime.replace('_', '-')} · elevated vol`
     : null;
+
+  const activeExplanation =
+    explanation ??
+    matchExplanation ??
+    (parsed
+      ? buildMatchExplanation(parsed, regime ?? 'insufficient_evidence', sampleCount)
+      : null);
 
   return (
     <div className={styles.distributionSection}>
@@ -89,6 +103,74 @@ export default function DistributionChart({
           </b>
         </span>
       </div>
+
+      {activeExplanation && (
+        <details className={styles.distHow} data-testid="why-these-weekends">
+          <summary className={styles.metricHowSummary}>
+            <span>Why these weekends</span>
+            <svg
+              className={styles.metricHowIcon}
+              viewBox="0 0 12 12"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M6 2v8M2 6h8"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+            </svg>
+          </summary>
+          <div className={styles.metricHowBody}>
+            <div className={styles.metricHowRow}>
+              <span className={styles.metricHowKey}>asset:</span>{' '}
+              <span className={styles.metricHowVal}>{activeExplanation.asset}</span>
+            </div>
+            <div className={styles.metricHowRow}>
+              <span className={styles.metricHowKey}>direction:</span>{' '}
+              <span className={styles.metricHowVal}>{activeExplanation.direction}</span>
+            </div>
+            <div className={styles.metricHowRow}>
+              <span className={styles.metricHowKey}>leverage:</span>{' '}
+              <span className={styles.metricHowVal}>{activeExplanation.leverage}x</span>
+            </div>
+            <div className={styles.metricHowRow}>
+              <span className={styles.metricHowKey}>holding window:</span>{' '}
+              <span className={styles.metricHowVal}>{activeExplanation.holdingWindow}</span>
+            </div>
+            <div className={styles.metricHowRow}>
+              <span className={styles.metricHowKey}>entry timing:</span>{' '}
+              <span className={styles.metricHowVal}>{activeExplanation.entryTiming}</span>
+            </div>
+            <div className={styles.metricHowRow}>
+              <span className={styles.metricHowKey}>regime:</span>{' '}
+              <span className={styles.metricHowVal}>
+                {String(activeExplanation.regime).replace(/_/g, '-')}
+              </span>
+            </div>
+            <div className={styles.metricHowRow}>
+              <span className={styles.metricHowKey}>sample size:</span>{' '}
+              <span className={styles.metricHowVal}>
+                {activeExplanation.sampleSize.toLocaleString()} episodes
+              </span>
+            </div>
+            <div className={styles.metricHowRow}>
+              <span className={styles.metricHowKey}>history:</span>{' '}
+              <span className={styles.metricHowVal}>
+                {activeExplanation.historySourceDateRange}
+              </span>
+            </div>
+            <div className={styles.metricHowDivider} />
+            <div className={styles.metricHowRow}>
+              <span className={styles.metricHowKey}>policy:</span>{' '}
+              <span className={styles.metricHowVal}>
+                {activeExplanation.matchingPolicy}
+              </span>
+            </div>
+          </div>
+        </details>
+      )}
 
       <details className={styles.distHow}>
         <summary className={styles.metricHowSummary}>

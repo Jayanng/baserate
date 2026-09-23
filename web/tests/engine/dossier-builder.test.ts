@@ -81,6 +81,11 @@ describe('dossier-builder', () => {
     const labels = new Set(dossier.provenance.map((p) => p.label));
     expect(labels.has('observed')).toBe(true);
     expect(labels.has('computed')).toBe(true);
+
+    // Interpretation is computed
+    expect(dossier.interpretation).toBeDefined();
+    expect(dossier.interpretation?.isComplete).toBe(true);
+    expect(dossier.interpretation?.code).toBe('HISTORY_WITHIN_LIQUIDATION');
   });
 
   it('missing funding rate still builds with null funding carry and no refusal', () => {

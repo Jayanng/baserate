@@ -28,6 +28,10 @@ import {
   asReplayAsset,
   type ReplayAsset,
 } from '@/components/dossier/fixtures';
+import {
+  buildMatchExplanation,
+  deriveDateRangeFromGaps,
+} from '@/components/dossier/match-explanation';
 import styles from '@/components/dossier/DossierPage.module.css';
 
 const DEFAULT_TRADE_INTENT =
@@ -200,7 +204,7 @@ export default function DossierPage() {
   const bundle = getFixtureBundle(activeAsset);
 
   let recomputedLiq: number | null = null;
-  if (dossier && activeLeverage > 1) {
+  if (dossier && activeLeverage > 1 && activeLeverage <= 25) {
     try {
       recomputedLiq = Number(
         computeLiquidationDistance(
@@ -256,6 +260,20 @@ export default function DossierPage() {
             : null,
         worstGapPct: dossier.risks.worstGapPct,
       }
+    : null;
+
+  const matchExplanation = dossier
+    ? buildMatchExplanation(
+        {
+          ...dossier.parsed,
+          leverage: activeLeverage,
+          sizeUsdt: activeSize,
+        },
+        dossier.regime,
+        dossier.distribution?.sampleSize ?? bundle.stats.totalEpisodes,
+        bundle.source,
+        deriveDateRangeFromGaps(bundle.gaps)
+      )
     : null;
 
   const allEvidence = dossier
@@ -348,10 +366,14 @@ export default function DossierPage() {
               totalEpisodes={bundle.stats.totalEpisodes}
               direction={dossier.parsed.direction}
               leverage={activeLeverage}
+              gaps={bundle.gaps}
+              distribution={dossier.distribution}
             />
             <DistributionChart
               distribution={dossier.distribution}
               regime={dossier.regime}
+              explanation={matchExplanation}
+              matchExplanation={matchExplanation}
             />
           </div>
         )}
@@ -364,6 +386,12 @@ export default function DossierPage() {
             onRecompute={handleCounterfactualRecompute}
             liquidationDistancePct={recomputedLiq}
             worstGapPct={dossier.risks.worstGapPct?.value ?? null}
+            originalSizeUsdt={dossier.parsed.sizeUsdt}
+            originalLeverage={dossier.parsed.leverage}
+            originalLiquidationDistancePct={
+              dossier.risks.liquidationDistancePct?.value ?? null
+            }
+            direction={dossier.parsed.direction}
           />
         )}
 

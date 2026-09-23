@@ -1,4 +1,12 @@
-import type { DossierRisks, EvidenceLabel } from '@/src/domain/types';
+import type {
+  DossierRisks,
+  EvidenceLabel,
+  OutcomeDistribution,
+  RiskInterpretation,
+  WeekendGapObservation,
+} from '@/src/domain/types';
+import { interpretRisk } from '@/src/engine/risk-interpretation';
+import RiskInterpretationCard from './RiskInterpretationCard';
 import {
   liquidationExplain,
   fundingExplain,
@@ -15,6 +23,9 @@ interface RiskMetricsProps {
   direction?: 'long' | 'short';
   leverage?: number;
   holdingHours?: number;
+  gaps?: WeekendGapObservation[];
+  distribution?: OutcomeDistribution | null;
+  interpretation?: RiskInterpretation;
 }
 
 function getEvidenceTagClass(label: EvidenceLabel | string): string {
@@ -82,6 +93,9 @@ export default function RiskMetrics({
   direction,
   leverage,
   holdingHours,
+  gaps,
+  distribution,
+  interpretation,
 }: RiskMetricsProps) {
   const liqNote = risks.liquidationDistancePct?.evidence?.note ?? '';
   const dirMatch = liqNote.match(/\b(long|short)\b/i);
@@ -89,6 +103,17 @@ export default function RiskMetrics({
   const activeDirection =
     direction ?? (dirMatch ? (dirMatch[1].toLowerCase() as 'long' | 'short') : 'long');
   const activeLeverage = leverage ?? (levMatch ? Number(levMatch[1]) : 3);
+
+  const activeInterpretation =
+    interpretation ??
+    interpretRisk({
+      liquidationDistancePct: risks.liquidationDistancePct?.value ?? null,
+      worstGapPct: risks.worstGapPct?.value ?? null,
+      fundingCarryPct: risks.fundingCarryPct?.value ?? null,
+      sampleSize: totalEpisodes ?? distribution?.sampleSize ?? null,
+      direction: activeDirection,
+      gaps,
+    });
 
   const liqExplanation =
     spotPrice !== undefined && risks.liquidationDistancePct !== null
@@ -116,6 +141,7 @@ export default function RiskMetrics({
   return (
     <div className={styles.riskCard}>
       <h3 className={styles.cardTitle}>Bitget-native risk</h3>
+      <RiskInterpretationCard interpretation={activeInterpretation} />
       <div className={styles.riskStack}>
         {/* Tile 1: Liquidation distance */}
         <div className={styles.metricTile}>

@@ -25,6 +25,7 @@ import {
   computeWorstGap,
 } from './risk-engine';
 import { computeDistribution } from './base-rate';
+import { interpretRisk } from './risk-interpretation';
 
 export const DEFAULT_WEEKEND_HOLDING_HOURS = 60; // Friday close to Monday reopen
 
@@ -189,6 +190,24 @@ export function buildDossier(params: {
     provenance.push(distEvidence);
   }
 
+  // 6. Deterministic risk interpretation (Task 6.1)
+  const interpretation = interpretRisk({
+    liquidationDistancePct: liquidationDistancePct?.value ?? null,
+    worstGapPct: worstGapPct?.value ?? null,
+    fundingCarryPct: fundingCarryPct?.value ?? null,
+    sampleSize: distribution?.sampleSize ?? (gaps ? gaps.length : null),
+    direction: parsed.direction,
+    refusal,
+    gaps,
+  });
+  const interpEvidence = makeEvidence(
+    'computed',
+    'engine_risk_interpretation',
+    utcNowIso(),
+    `Deterministic risk interpretation: ${interpretation.code}`
+  );
+  provenance.push(interpEvidence);
+
   const risks: DossierRisks = {
     liquidationDistancePct,
     fundingCarryPct,
@@ -202,5 +221,6 @@ export function buildDossier(params: {
     distribution,
     refusal,
     provenance,
+    interpretation,
   };
 }

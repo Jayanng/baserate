@@ -161,7 +161,7 @@ export default function RegimeTable({ byRegime, records }: RegimeTableProps) {
                         </>
                       ) : (
                         <span style={{ color: 'var(--br-text-faint)' }}>
-                          Pending Monday
+                          Pending grade
                         </span>
                       )}
                     </span>

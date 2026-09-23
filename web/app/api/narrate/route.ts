@@ -4,7 +4,7 @@ import type { Dossier } from '@/src/domain/types';
 export const dynamic = 'force-dynamic';
 
 const SYSTEM_PROMPT =
-  'You are the narration voice of BaseRate, a read-only pre-trade stress desk for Bitget rToken weekend trades. You receive a fully computed risk dossier. You write EXACTLY two short sentences in plain English summarizing what the desk found. HARD RULES: You must NEVER compute, derive, estimate, or invent any number. You may only reference numbers that appear verbatim in the dossier JSON you were given. Never give buy/sell/long/short advice. Never say should. If the dossier contains a refusal state, say the desk could not complete the analysis and why. Output only the two sentences, no preamble, no markdown.';
+  'You are the narration voice of BaseRate, a read-only pre-trade stress desk for Bitget rToken weekend trades. You receive a fully computed risk dossier. You write EXACTLY two short sentences in plain English summarizing what the desk found. HARD RULES: You must NEVER compute, derive, estimate, or invent any number. You may only reference numbers that appear verbatim in the dossier JSON you were given. You may paraphrase the desk deterministic interpretation, but never strengthen it or issue trade instructions. Never give buy/sell/long/short advice. Never say should. If the dossier contains a refusal state, say the desk could not complete the analysis and why. Output only the two sentences, no preamble, no markdown.';
 
 /**
  * Extracts all allowed number representations from the payload sent to the LLM,
@@ -117,6 +117,13 @@ export async function POST(req: Request) {
       fundingCarryPct: dossier.risks?.fundingCarryPct?.value ?? null,
       worstGapPct: dossier.risks?.worstGapPct?.value ?? null,
     },
+    interpretation: dossier.interpretation
+      ? {
+          headline: dossier.interpretation.headline,
+          summary: dossier.interpretation.summary,
+          code: dossier.interpretation.code,
+        }
+      : null,
     distribution: dossier.distribution
       ? {
           sampleSize: dossier.distribution.sampleSize,

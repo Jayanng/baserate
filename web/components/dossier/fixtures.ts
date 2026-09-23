@@ -1,5 +1,6 @@
 import type { WeekendGapObservation, EvidenceItem, OutcomeDistribution } from '@/src/domain/types';
 import {
+  getReplayData,
   getReplayGaps,
   getReplayDistribution,
   getReplayStats,
@@ -169,6 +170,7 @@ export function asReplayAsset(rawAsset: string): ReplayAsset {
 
 export interface DossierFixtureBundle {
   asset: ReplayAsset;
+  source: string;
   spotPrice: number;
   fundingRate: number;
   candles: Array<{ close: number; tsMs: number }>;
@@ -197,6 +199,7 @@ export function FIXTURE_CANDLES_FOR(asset: ReplayAsset): Array<{ close: number; 
 export function getFixtureBundle(asset: ReplayAsset): DossierFixtureBundle {
   return {
     asset,
+    source: getReplayData(asset).source,
     spotPrice: FIXTURE_SPOT_PRICES[asset] ?? FIXTURE_SPOT_PRICE,
     fundingRate: FIXTURE_FUNDING_RATES[asset] ?? FIXTURE_FUNDING_RATE,
     candles: getFixtureCandles(asset),

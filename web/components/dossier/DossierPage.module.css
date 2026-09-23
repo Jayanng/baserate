@@ -317,6 +317,68 @@
   justify-content: space-between;
 }
 
+/* --------------------------------------------------------------------------
+   5.1. Deterministic Risk Interpretation Card (Task 6.2)
+   -------------------------------------------------------------------------- */
+
+.interpretationCard {
+  background: var(--br-surface-paper);
+  border-radius: var(--br-radius-inner);
+  padding: var(--br-space-4);
+  border: 1px solid var(--br-border-hairline);
+  border-left: 3px solid var(--br-lavender);
+  display: flex;
+  flex-direction: column;
+  gap: var(--br-space-2);
+  margin-bottom: var(--br-space-4);
+}
+
+.interpretationCardBreached {
+  border-left-color: var(--br-coral-bright);
+}
+
+.interpretationCardWithin {
+  border-left-color: var(--br-lavender);
+}
+
+.interpretationCardIncomplete {
+  border-left-color: var(--br-peach);
+}
+
+.interpretationHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--br-space-2);
+}
+
+.interpretationBadgeTitle {
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--br-letter-spacing-caps);
+  color: var(--br-primary);
+  font-weight: var(--br-font-weight-extrabold);
+}
+
+.interpretationHeadline {
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-md);
+  font-weight: var(--br-font-weight-bold);
+  color: var(--br-text-ink);
+  margin: 0;
+  line-height: var(--br-line-height-tight);
+}
+
+.interpretationSummary {
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-sm);
+  color: var(--br-text-ink);
+  margin: 0;
+  line-height: var(--br-line-height-base);
+  font-weight: var(--br-font-weight-medium);
+}
+
 .metricTile {
   background: var(--br-surface-paper);
   border-radius: var(--br-radius-inner);
@@ -517,6 +579,10 @@ details[open] .metricHowSummary svg {
   display: block;
 }
 
+.distHow + .distHow {
+  margin-top: var(--br-space-2);
+}
+
 /* --------------------------------------------------------------------------
    6. Distribution Section
    -------------------------------------------------------------------------- */
@@ -626,6 +692,63 @@ details[open] .metricHowSummary svg {
   box-shadow: var(--br-shadow-card);
 }
 
+.cfHeaderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--br-space-5);
+  flex-wrap: wrap;
+  gap: var(--br-space-3);
+}
+
+.cfHeaderRow .cardTitle {
+  margin-bottom: 0;
+}
+
+.presetActions {
+  display: flex;
+  align-items: center;
+  gap: var(--br-space-2);
+}
+
+.presetButton {
+  background: var(--br-surface-paper);
+  color: var(--br-primary);
+  border: 1px solid var(--br-primary-border);
+  border-radius: var(--br-radius-pill);
+  padding: var(--br-space-2) var(--br-space-4);
+  font-size: var(--br-font-size-sm);
+  font-weight: var(--br-font-weight-bold);
+  font-family: var(--br-font-sans);
+  cursor: pointer;
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--br-space-1);
+  transition: background-color var(--br-transition-fast), border-color var(--br-transition-fast), color var(--br-transition-fast), box-shadow var(--br-transition-fast);
+}
+
+.presetButton:hover {
+  background: var(--br-primary-soft);
+  border-color: var(--br-primary);
+}
+
+.presetButton:focus-visible {
+  outline: none;
+  border-color: var(--br-border-focus);
+  box-shadow: var(--br-shadow-focus);
+}
+
+.presetButtonActive {
+  background: var(--br-primary);
+  color: var(--br-text-inverse);
+  border-color: var(--br-primary);
+}
+
+.presetButtonActive:hover {
+  background: var(--br-primary-hover);
+}
+
 .sliderGroup {
   display: flex;
   align-items: center;
@@ -724,6 +847,126 @@ details[open] .metricHowSummary svg {
   color: var(--br-coral-bright);
   font-family: var(--br-font-mono);
   font-variant-numeric: tabular-nums;
+}
+
+.cfDeltaPanel {
+  background: var(--br-surface-paper);
+  border-radius: var(--br-radius-inner);
+  padding: var(--br-space-4) var(--br-space-6);
+  border: 1px solid var(--br-border-subtle);
+  margin-top: var(--br-space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--br-space-3);
+}
+
+.cfDeltaHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--br-space-2);
+}
+
+.cfDeltaTitle {
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--br-letter-spacing-caps);
+  color: var(--br-primary);
+  font-weight: var(--br-font-weight-extrabold);
+}
+
+.cfDeltaBadge {
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-2xs);
+  font-weight: var(--br-font-weight-bold);
+  letter-spacing: var(--br-letter-spacing-wide);
+  text-transform: uppercase;
+  padding: var(--br-space-1) var(--br-space-2);
+  border-radius: var(--br-radius-xs);
+  background: var(--br-lime-soft);
+  color: var(--br-lime-ink);
+}
+
+.cfDeltaBadgeMuted {
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-2xs);
+  font-weight: var(--br-font-weight-bold);
+  letter-spacing: var(--br-letter-spacing-wide);
+  text-transform: uppercase;
+  padding: var(--br-space-1) var(--br-space-2);
+  border-radius: var(--br-radius-xs);
+  background: var(--br-surface-subtle);
+  color: var(--br-text-muted);
+}
+
+.cfDeltaGrid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: center;
+  gap: var(--br-space-3);
+  padding: var(--br-space-2) 0;
+  border-top: 1px solid var(--br-border-hairline);
+  border-bottom: 1px solid var(--br-border-hairline);
+}
+
+.cfDeltaCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--br-space-1);
+}
+
+.cfDeltaLabel {
+  font-size: var(--br-font-size-xs);
+  color: var(--br-text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--br-letter-spacing-wide);
+  font-weight: var(--br-font-weight-semibold);
+  font-family: var(--br-font-sans);
+}
+
+.cfDeltaValues {
+  display: flex;
+  align-items: baseline;
+  gap: var(--br-space-2);
+}
+
+.cfDeltaPrimary {
+  font-size: var(--br-font-size-lg);
+  font-weight: var(--br-font-weight-extrabold);
+  font-family: var(--br-font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--br-text-ink);
+}
+
+.cfDeltaSecondary {
+  font-size: var(--br-font-size-sm);
+  font-weight: var(--br-font-weight-semibold);
+  font-family: var(--br-font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--br-coral-bright);
+}
+
+.cfDeltaDivider {
+  color: var(--br-text-faint);
+  font-size: var(--br-font-size-md);
+  font-family: var(--br-font-mono);
+}
+
+.cfDeltaHighlight {
+  color: var(--br-primary);
+  font-size: var(--br-font-size-lg);
+  font-weight: var(--br-font-weight-extrabold);
+  font-family: var(--br-font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.cfInterpretation {
+  font-size: var(--br-font-size-sm);
+  color: var(--br-text-ink);
+  font-family: var(--br-font-sans);
+  line-height: var(--br-line-height-base);
+  font-weight: var(--br-font-weight-medium);
 }
 
 /* --------------------------------------------------------------------------
@@ -882,6 +1125,30 @@ details[open] .metricHowSummary svg {
 
   .sliderInput {
     width: 100%;
+  }
+
+  .cfHeaderRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--br-space-3);
+  }
+
+  .presetActions {
+    width: 100%;
+  }
+
+  .presetButton {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .cfDeltaGrid {
+    grid-template-columns: 1fr;
+    gap: var(--br-space-3);
+  }
+
+  .cfDeltaDivider {
+    display: none;
   }
 
   .evidenceHeaderRow,

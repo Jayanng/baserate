@@ -124,6 +124,33 @@ export interface DossierRisks {
   worstGapPct: EvidenceNumber | null;
 }
 
+export type RiskInterpretationCode =
+  | 'INCOMPLETE_EVIDENCE'
+  | 'HISTORY_BREACHED_LIQUIDATION'
+  | 'HISTORY_WITHIN_LIQUIDATION';
+
+export type RiskInterpretationState =
+  | 'incomplete'
+  | 'breached'
+  | 'within_buffer';
+
+export interface RiskInterpretation {
+  headline: string;
+  summary: string;
+  code: RiskInterpretationCode;
+  state: RiskInterpretationState;
+  isComplete: boolean;
+  supportingFacts: string[];
+  inputs: {
+    liquidationDistancePct: number | null;
+    worstGapPct: number | null;
+    gapThroughLiquidationRate: number | null;
+    fundingCarryPct: number | null;
+    sampleSize: number | null;
+  };
+  provenanceLabel: EvidenceLabel;
+}
+
 export interface Dossier {
   parsed: ParsedTrade;
   risks: DossierRisks;
@@ -131,6 +158,7 @@ export interface Dossier {
   distribution: OutcomeDistribution | null;
   refusal: RefusalState | null;
   provenance: EvidenceItem[];
+  interpretation?: RiskInterpretation | null;
 }
 
 export type ForecastStatus = 'hit' | 'miss' | 'pending';

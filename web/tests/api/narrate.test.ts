@@ -349,5 +349,90 @@ describe('POST /api/narrate', () => {
       expect(validateNarrationNumbers('Sample size was 231 and gap was -16.2%.', allowed)).toBe(true);
       expect(validateNarrationNumbers('Unexpected drop of 27% occurred.', allowed)).toBe(false);
     });
+
+    it('collects numbers from interpretation object in payload', () => {
+      const payload = {
+        interpretation: {
+          headline: 'Historical sample includes liquidation breaches',
+          summary: 'The historical sample includes outcomes through the proposed liquidation distance.',
+          code: 'HISTORY_BREACHED_LIQUIDATION',
+        },
+        risks: { liquidationDistancePct: -9.5, worstGapPct: -18.45 },
+      };
+
+      const allowed = extractAllowedNumbers(payload);
+      expect(allowed.has('-9.5')).toBe(true);
+      expect(allowed.has('-18.45')).toBe(true);
+      expect(allowed.has('9.5')).toBe(true);
+      expect(allowed.has('18.45')).toBe(true);
+    });
+  });
+
+  describe('dossier with deterministic interpretation integration', () => {
+    it('forwards interpretation to LLM payload and accepts paraphrased narration', async () => {
+      process.env.GMI_API_KEY = 'gmi_test_secret_key';
+
+      let capturedPayload: unknown = null;
+      vi.spyOn(globalThis, 'fetch').mockImplementationOnce(async (_url, init) => {
+        if (typeof init?.body === 'string') {
+          capturedPayload = JSON.parse(init.body);
+        }
+        return new Response(
+          JSON.stringify({
+            choices: [
+              {
+                message: {
+                  content:
+                    'Observed historical gaps did not reach the liquidation line at 33.3333%, but tail risk remains material across 231 episodes.',
+                },
+              },
+            ],
+          }),
+          { status: 200, headers: { 'Content-Type': 'application/json' } }
+        );
+      });
+
+      const dossierWithInterp: Dossier = {
+        ...mockDossier,
+        interpretation: {
+          headline: 'Observed history did not reach liquidation line',
+          summary:
+            'Observed history did not reach the current liquidation line, but the tail remains material.',
+          code: 'HISTORY_WITHIN_LIQUIDATION',
+          state: 'within_buffer',
+          isComplete: true,
+          supportingFacts: [
+            'Liquidation distance is -33.3% from entry price.',
+            'Worst observed historical weekend gap was -16.2%.',
+            'Sample size: 231 observed Friday-to-Monday episodes.',
+          ],
+          inputs: {
+            liquidationDistancePct: 33.3333,
+            worstGapPct: -16.2,
+            gapThroughLiquidationRate: 0,
+            fundingCarryPct: 0.001314,
+            sampleSize: 231,
+          },
+          provenanceLabel: 'computed',
+        },
+      };
+
+      const req = new Request('http://localhost:3000/api/narrate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ dossier: dossierWithInterp }),
+      });
+
+      const res = await POST(req);
+      expect(res.status).toBe(200);
+      const data = await res.json();
+      expect(data.ok).toBe(true);
+      expect(data.narration).toContain('Observed historical gaps did not reach the liquidation line');
+
+      const messages = (capturedPayload as { messages: Array<{ role: string; content: string }> }).messages;
+      const userMessage = JSON.parse(messages.find((m) => m.role === 'user')?.content || '{}');
+      expect(userMessage.interpretation).toBeDefined();
+      expect(userMessage.interpretation.code).toBe('HISTORY_WITHIN_LIQUIDATION');
+    });
   });
 });

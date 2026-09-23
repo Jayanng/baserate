@@ -73,8 +73,12 @@ const FAQ_ITEMS = [
     a: 'No. BaseRate is read-only research software. It shows computed risk numbers and historical base rates. You make every decision. It never places orders and holds no keys.',
   },
   {
+    q: 'What does the public demo claim and what are its boundaries?',
+    a: 'The public demo uses pinned replay fixtures so every judge sees the same deterministic result. Live Bitget and Yahoo links expose current public evidence. The scorekeeper loop is demonstrated with replay forecasts; this demo does not claim autonomous persistence or live Monday scheduling for each visitor\'s custom session.',
+  },
+  {
     q: 'Where does the history come from?',
-    a: 'Real NVDA daily closes from Yahoo Finance, back to 1999 - 1,227 Friday-to-Monday episodes. Every number on this site is derived from that dataset or computed live by a deterministic engine, and the fixtures are committed so you can check them.',
+    a: 'Real NVDA daily closes from Yahoo Finance, back to 1999 - 1,227 Friday-to-Monday episodes. Every number on this site is derived from that dataset or computed by a deterministic engine, and the fixtures are committed so you can check them.',
   },
   {
     q: 'What does the AI actually do?',
@@ -82,7 +86,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Why does the scorecard say replay mode?',
-    a: 'The demo grades its forecasts against 12 historical weekend replays reconstructed from the same dataset, so you can see the full loop without waiting for Monday. Live grades work identically once real weekends pass.',
+    a: 'The demo grades its forecasts against 12 historical weekend replays reconstructed from the same dataset, so you can see the full loop without waiting for Monday. The deployed public demo demonstrates the forecast, grading, ledger, and calibration loop through deterministic replay; it does not claim autonomous persistence or live Monday scheduling for new visitor sessions.',
   },
   {
     q: 'What happens when data is missing?',
@@ -171,9 +175,9 @@ export default function LandingPage() {
             starts.
           </h1>
           <p className={styles.heroSub}>
-            BaseRate shows what happened every time the market looked like this,
-            what a frozen Friday collateral line can withstand, and whether the
-            desk was right on Monday.
+            BaseRate shows what happened across comparable historical weekends,
+            what a frozen Friday collateral line can withstand, and how past
+            forecasts scored in replay calibration.
           </p>
           <div className={styles.ctaRow}>
             <Link href="/dossier" className={styles.ctaPrimary}>Explore a sample dossier ↗</Link>
@@ -201,7 +205,7 @@ export default function LandingPage() {
           <div className={styles.visualMain}>
             <div className={styles.mainHeader}>
               <span className={styles.mainEyebrow}>WEEKEND DOSSIER · RNVDA</span>
-              <span className={styles.liveBadge}><span className={styles.liveDot} /> Live tape</span>
+              <span className={styles.liveBadge}><span className={styles.liveDot} /> Weekend tape</span>
             </div>
             <div className={styles.mainTitle}>Long rNVDA · 3x · 5,000 USDT</div>
             <div className={styles.mainCaption}>Friday close — Monday reopen · cash market closed</div>
@@ -209,7 +213,7 @@ export default function LandingPage() {
               <HeroChart />
             </div>
             <div className={styles.legendRow}>
-              <span className={styles.legendItem}><span className={styles.legendDot} style={{ background: 'var(--br-primary)' }} /> live rNVDA tape</span>
+              <span className={styles.legendItem}><span className={styles.legendDot} style={{ background: 'var(--br-primary)' }} /> rNVDA weekend tape</span>
               <span className={styles.legendItem}><span className={styles.legendDot} style={{ background: 'var(--br-lime)' }} /> frozen collateral mark</span>
               <span className={styles.legendItem}>cash reopen</span>
             </div>
@@ -231,7 +235,7 @@ export default function LandingPage() {
 
           {/* Tilted dark Monday grade badge */}
           <div className={styles.gradeBadge}>
-            <div className={styles.gradeTag}>MONDAY GRADE</div>
+            <div className={styles.gradeTag}>REPLAY GRADE</div>
             <div className={styles.gradeValue}>Inside band</div>
             <div className={styles.gradeFooter}>Actual {actualStr} · issued {bandStr}</div>
           </div>
@@ -335,10 +339,10 @@ export default function LandingPage() {
       <section className={styles.mid} id="how">
         <div className={styles.midCopy}>
           <div className={styles.midEyebrow}>A DIFFERENT KIND OF TRADING DESK</div>
-          <h2 className={styles.midTitle}>Every forecast gets a Monday.</h2>
+          <h2 className={styles.midTitle}>Every forecast gets scored.</h2>
           <p className={styles.midBody}>
-            BaseRate does not ask you to trust an AI. It makes a claim, records
-            it, checks it against reality, and widens its bands where it was wrong.
+            BaseRate does not ask you to trust an AI. It records its claims,
+            verifies them against real reopen outcomes in replay mode, and widens its bands where it was wrong.
           </p>
         </div>
         <div className={styles.stepGrid}>
@@ -346,8 +350,8 @@ export default function LandingPage() {
             <div className={styles.stepNumber}>01</div>
             <div className={styles.stepTitle}>Stress the trade</div>
             <div className={styles.stepBody}>
-              Liquidation distance, funding carry, and thin-book slippage,
-              computed from live Bitget data before you commit.
+              Liquidation distance and funding carry, computed deterministically
+              against frozen Friday collateral, with live public evidence links.
             </div>
           </div>
           <div className={`${styles.stepCard} ${styles.stepLavender}`}>
@@ -362,8 +366,8 @@ export default function LandingPage() {
             <div className={styles.stepNumber}>03</div>
             <div className={styles.stepTitle}>Keep the score</div>
             <div className={styles.stepBody}>
-              Every dossier is a registered forecast. On Monday the desk grades
-              itself and widens its bands where it was wrong.
+              Forecast registration, Monday reopen grading, and band adjustment
+              are demonstrated through an immutable 12-weekend replay ledger.
             </div>
           </div>
         </div>
@@ -391,13 +395,13 @@ export default function LandingPage() {
           <div className={`${styles.personaCard} ${styles.stepPeach}`}>
             <div className={styles.personaTitle}>The funding watcher</div>
             <div className={styles.personaBody}>
-              60 closed hours of funding carry, estimated from the live stock-perp rate, labeled honestly as an estimate.
+              60 closed hours of funding carry, estimated from stock-perp funding rates, labeled honestly as an estimate.
             </div>
           </div>
           <div className={`${styles.personaCard} ${styles.stepLime}`}>
             <div className={styles.personaTitle}>The show-me trader</div>
             <div className={styles.personaBody}>
-              Every claim the desk made last week is graded on Monday. Misses stay on the ledger. Nothing is hidden.
+              Replay forecasts are graded against real Monday market outcomes. Misses stay on the ledger. Nothing is hidden.
             </div>
           </div>
         </div>

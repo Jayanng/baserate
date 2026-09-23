@@ -45,7 +45,7 @@ export default function ScorecardPage() {
           <div className={styles.headerTextGroup}>
             <h1 className={styles.pageTitle}>Scorecard</h1>
             <p className={styles.pageSubtitle}>
-              Every dossier is a registered forecast. Every Monday, the desk grades itself.
+              The forecast, grading, ledger, and calibration loop demonstrated through deterministic replay.
             </p>
           </div>
           {/* Exactly one replay pill in header area */}
@@ -202,7 +202,7 @@ export default function ScorecardPage() {
             <span className={styles.cardEyebrow}>Forecast ledger</span>
             <h2 className={styles.sectionTitle}>Cryptographic Forecast Registry</h2>
             <p className={styles.sectionSubtitle}>
-              Immutable hash-chained log of all registered forecasts and their graded outcomes.
+              Immutable hash-chained log of 12 historical replay forecasts and their graded outcomes.
             </p>
           </div>
           <LedgerTable entries={ledgerEntries} forecasts={records} />
