@@ -23,3 +23,6 @@ dist/
 
 # logs
 *.log
+
+# in-house private material (never publish)
+/internal/
