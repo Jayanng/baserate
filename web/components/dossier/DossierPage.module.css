@@ -112,6 +112,13 @@
   color: var(--br-text-muted);
 }
 
+.recomputeNote {
+  color: var(--br-text-muted);
+  font-size: var(--br-font-size-body);
+  font-family: var(--br-font-sans);
+  padding: var(--br-space-3) 0;
+}
+
 .confirmBanner {
   display: flex;
   align-items: center;
@@ -120,6 +127,19 @@
   border-radius: var(--br-radius-inner);
   padding: var(--br-space-4) var(--br-space-6);
   border: 1px solid var(--br-lime-border);
+}
+
+.confirmBanner.confirmFlash {
+  animation: confirmPulse 600ms ease-in-out 2;
+}
+
+@keyframes confirmPulse {
+  0%, 100% {
+    background: var(--br-lime-soft);
+  }
+  50% {
+    background: var(--br-primary-subtle);
+  }
 }
 
 .confirmIcon {
@@ -262,6 +282,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--br-space-6);
+  scroll-margin-top: var(--br-space-12);
 }
 
 .cardTitle {

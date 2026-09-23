@@ -1,12 +1,13 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import AppFrame from '@/components/shell/AppFrame';
 import TradeIntake from '@/components/dossier/TradeIntake';
 import RiskMetrics from '@/components/dossier/RiskMetrics';
 import DistributionChart from '@/components/dossier/DistributionChart';
 import CounterfactualControls from '@/components/dossier/CounterfactualControls';
 import EvidenceTable from '@/components/dossier/EvidenceTable';
+import { isSameTrade } from '@/components/dossier/press-feedback';
 import { parseTradeIntent } from '@/src/domain/trade-parser';
 import {
   buildDossier,
@@ -59,6 +60,20 @@ export default function DossierPage() {
   const [leverageOverride, setLeverageOverride] = useState<number>(
     initialTrade?.leverage ?? 3
   );
+  const [flashConfirm, setFlashConfirm] = useState(false);
+  const flashTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const rafIdRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (flashTimeoutRef.current) {
+        clearTimeout(flashTimeoutRef.current);
+      }
+      if (rafIdRef.current !== null && typeof window !== 'undefined') {
+        window.cancelAnimationFrame(rafIdRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     if (!dossier) {
@@ -102,23 +117,68 @@ export default function DossierPage() {
   }, [dossier]);
 
   const handleTradeParsed = (parsed: ParsedTrade) => {
+    if (dossier && isSameTrade(parsed, dossier.parsed)) {
+      if (flashTimeoutRef.current) {
+        clearTimeout(flashTimeoutRef.current);
+      }
+      setFlashConfirm(true);
+      flashTimeoutRef.current = setTimeout(() => {
+        setFlashConfirm(false);
+      }, 1200);
+    } else {
+      if (flashTimeoutRef.current) {
+        clearTimeout(flashTimeoutRef.current);
+      }
+      setFlashConfirm(false);
+    }
+
     setLoading(true);
     setSizeOverride(parsed.sizeUsdt);
     setLeverageOverride(parsed.leverage);
 
     const asset = asReplayAsset(parsed.asset);
     setCurrentAsset(asset);
-    const bundle = getFixtureBundle(asset);
 
-    const newDossier = buildDossier({
-      parsed,
-      spotPrice: bundle.spotPrice,
-      fundingRate: bundle.fundingRate,
-      gaps: bundle.gaps,
-      nativeCandles: bundle.candles,
-    });
-    setDossier(newDossier);
-    setLoading(false);
+    const executeRecompute = () => {
+      const bundle = getFixtureBundle(asset);
+      const newDossier = buildDossier({
+        parsed,
+        spotPrice: bundle.spotPrice,
+        fundingRate: bundle.fundingRate,
+        gaps: bundle.gaps,
+        nativeCandles: bundle.candles,
+      });
+      setDossier(newDossier);
+      setLoading(false);
+
+      if (
+        typeof window !== 'undefined' &&
+        typeof window.matchMedia === 'function' &&
+        window.matchMedia('(max-width: 767px)').matches
+      ) {
+        document.getElementById('dossier-results')?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }
+    };
+
+    if (
+      typeof window !== 'undefined' &&
+      typeof window.requestAnimationFrame === 'function'
+    ) {
+      if (rafIdRef.current !== null) {
+        window.cancelAnimationFrame(rafIdRef.current);
+      }
+      rafIdRef.current = window.requestAnimationFrame(() => {
+        rafIdRef.current = window.requestAnimationFrame(() => {
+          rafIdRef.current = null;
+          executeRecompute();
+        });
+      });
+    } else {
+      executeRecompute();
+    }
   };
 
   const handleTradeError = (_error: RefusalState) => {
@@ -212,6 +272,12 @@ export default function DossierPage() {
           onParseError={handleTradeError}
         />
 
+        {loading && (
+          <div className={styles.recomputeNote} role="status">
+            Recomputing stress dossier…
+          </div>
+        )}
+
         {/* 2. Prominent Dossier Refusal State (if any) */}
         {dossier?.refusal && (
           <div className={styles.refusalBanner} role="alert">
@@ -222,7 +288,12 @@ export default function DossierPage() {
 
         {/* 3. Parsed Confirmation */}
         {dossier && !dossier.refusal && (
-          <div className={styles.confirmBanner} role="status">
+          <div
+            className={`${styles.confirmBanner} ${
+              flashConfirm ? styles.confirmFlash : ''
+            }`.trim()}
+            role="status"
+          >
             <svg
               className={styles.confirmIcon}
               viewBox="0 0 24 24"
@@ -269,7 +340,7 @@ export default function DossierPage() {
 
         {/* 4. Bento Grid: RiskMetrics left, DistributionChart right */}
         {dossier && !dossier.refusal && displayedRisks && (
-          <div className={styles.bentoGrid}>
+          <div id="dossier-results" className={styles.bentoGrid}>
             <RiskMetrics risks={displayedRisks} />
             <DistributionChart
               distribution={dossier.distribution}
