@@ -4,6 +4,7 @@ import styles from './DossierPage.module.css';
 interface DistributionChartProps {
   distribution: OutcomeDistribution | null;
   regime?: RegimeTag;
+  sampleSize?: number;
 }
 
 function getFillClass(label: string): string {
@@ -18,6 +19,7 @@ function getFillClass(label: string): string {
 export default function DistributionChart({
   distribution,
   regime,
+  sampleSize,
 }: DistributionChartProps) {
   if (!distribution) {
     return (
@@ -33,6 +35,8 @@ export default function DistributionChart({
     );
   }
 
+  const sampleCount = sampleSize ?? distribution.sampleSize;
+
   const formattedRegime = regime
     ? regime === 'insufficient_evidence'
       ? 'insufficient evidence'
@@ -42,7 +46,7 @@ export default function DistributionChart({
   return (
     <div className={styles.distributionSection}>
       <h3 className={styles.cardTitle}>
-        Historical base rate · {distribution.sampleSize} comparable weekends
+        Historical base rate · {sampleCount} comparable weekends
       </h3>
 
       <div>
@@ -85,6 +89,39 @@ export default function DistributionChart({
           </b>
         </span>
       </div>
+
+      <details className={styles.distHow}>
+        <summary className={styles.metricHowSummary}>
+          <span>How these buckets are built</span>
+          <svg
+            className={styles.metricHowIcon}
+            viewBox="0 0 12 12"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M6 2v8M2 6h8"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            />
+          </svg>
+        </summary>
+        <div className={styles.metricHowBody}>
+          <div className={styles.metricHowRow}>
+            <span className={styles.metricHowKey}>buckets:</span>{' '}
+            <span className={styles.metricHowVal}>
+              {'<= -15% gap thru liquidation / -15% to -5% down >5% / -5% to -1% down 1-5% / -1% to +1% flat / > +1% closed up'}
+            </span>
+          </div>
+          <div className={styles.metricHowRow}>
+            <span className={styles.metricHowKey}>sample:</span>{' '}
+            <span className={styles.metricHowVal}>
+              {`${sampleCount} episodes, regime-matched from dataset`}
+            </span>
+          </div>
+        </div>
+      </details>
     </div>
   );
 }

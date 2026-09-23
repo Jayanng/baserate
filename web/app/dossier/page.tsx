@@ -341,7 +341,14 @@ export default function DossierPage() {
         {/* 4. Bento Grid: RiskMetrics left, DistributionChart right */}
         {dossier && !dossier.refusal && displayedRisks && (
           <div id="dossier-results" className={styles.bentoGrid}>
-            <RiskMetrics risks={displayedRisks} />
+            <RiskMetrics
+              risks={displayedRisks}
+              spotPrice={bundle.spotPrice}
+              fundingRate={bundle.fundingRate}
+              totalEpisodes={bundle.stats.totalEpisodes}
+              direction={dossier.parsed.direction}
+              leverage={activeLeverage}
+            />
             <DistributionChart
               distribution={dossier.distribution}
               regime={dossier.regime}

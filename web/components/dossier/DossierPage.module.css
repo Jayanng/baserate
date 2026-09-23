@@ -405,6 +405,119 @@
 }
 
 /* --------------------------------------------------------------------------
+   5.5. Verification Explain (How this was computed)
+   -------------------------------------------------------------------------- */
+
+.metricHow {
+  margin-top: var(--br-space-2);
+  font-size: var(--br-font-size-xs);
+  display: block;
+}
+
+.metricHowSummary {
+  cursor: pointer;
+  color: var(--br-text-faint);
+  text-transform: uppercase;
+  letter-spacing: var(--br-letter-spacing-wide);
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--br-space-1);
+  font-family: var(--br-font-sans);
+  font-weight: var(--br-font-weight-bold);
+  font-size: var(--br-font-size-2xs);
+  user-select: none;
+  transition: color var(--br-transition-fast);
+}
+
+.metricHowSummary::-webkit-details-marker {
+  display: none;
+}
+
+.metricHowSummary::marker {
+  display: none;
+}
+
+.metricHowSummary:hover {
+  color: var(--br-primary);
+}
+
+.metricHowIcon {
+  width: 10px;
+  height: 10px;
+  stroke: currentColor;
+  flex-shrink: 0;
+  transition: transform var(--br-transition-base), color var(--br-transition-fast);
+}
+
+.metricHow[open] .metricHowIcon,
+.distHow[open] .metricHowIcon,
+details[open] .metricHowSummary svg {
+  transform: rotate(45deg);
+  color: var(--br-primary);
+}
+
+.metricHowBody {
+  margin-top: var(--br-space-2);
+  padding: var(--br-space-3);
+  background: var(--br-surface-well);
+  border-radius: var(--br-radius-inner);
+  font-size: var(--br-font-size-xs);
+  font-variant-numeric: tabular-nums;
+  font-family: var(--br-font-mono);
+  display: flex;
+  flex-direction: column;
+  gap: var(--br-space-1);
+  border: 1px solid var(--br-border-hairline);
+}
+
+.metricHowRow {
+  display: flex;
+  align-items: baseline;
+  gap: var(--br-space-2);
+  line-height: var(--br-line-height-base);
+}
+
+.metricHowKey {
+  color: var(--br-text-muted);
+  text-transform: lowercase;
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-2xs);
+  letter-spacing: var(--br-letter-spacing-wide);
+  flex-shrink: 0;
+}
+
+.metricHowVal {
+  color: var(--br-text-ink);
+  font-family: var(--br-font-mono);
+  font-variant-numeric: tabular-nums;
+  word-break: break-word;
+}
+
+.metricHowDivider {
+  height: 1px;
+  background: var(--br-border-hairline);
+  margin: var(--br-space-1) 0;
+}
+
+.metricHowResultRow {
+  font-weight: var(--br-font-weight-semibold);
+}
+
+.metricHowResultVal {
+  color: var(--br-text-ink);
+  font-family: var(--br-font-mono);
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--br-font-weight-semibold);
+}
+
+.distHow {
+  margin-top: var(--br-space-4);
+  font-size: var(--br-font-size-xs);
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
    6. Distribution Section
    -------------------------------------------------------------------------- */
 

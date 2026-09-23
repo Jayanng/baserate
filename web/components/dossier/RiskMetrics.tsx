@@ -1,8 +1,20 @@
 import type { DossierRisks, EvidenceLabel } from '@/src/domain/types';
+import {
+  liquidationExplain,
+  fundingExplain,
+  worstGapExplain,
+  type VerificationExplanation,
+} from './verification';
 import styles from './DossierPage.module.css';
 
 interface RiskMetricsProps {
   risks: DossierRisks;
+  spotPrice?: number;
+  fundingRate?: number;
+  totalEpisodes?: number;
+  direction?: 'long' | 'short';
+  leverage?: number;
+  holdingHours?: number;
 }
 
 function getEvidenceTagClass(label: EvidenceLabel | string): string {
@@ -22,7 +34,85 @@ function getEvidenceTagClass(label: EvidenceLabel | string): string {
   }
 }
 
-export default function RiskMetrics({ risks }: RiskMetricsProps) {
+function MetricHowDetails({ explanation }: { explanation: VerificationExplanation }) {
+  return (
+    <details className={styles.metricHow}>
+      <summary className={styles.metricHowSummary}>
+        <span>HOW</span>
+        <svg
+          className={styles.metricHowIcon}
+          viewBox="0 0 12 12"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M6 2v8M2 6h8"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          />
+        </svg>
+      </summary>
+      <div className={styles.metricHowBody}>
+        {explanation.inputs.map((inp) => (
+          <div key={inp.label} className={styles.metricHowRow}>
+            <span className={styles.metricHowKey}>{inp.label}:</span>{' '}
+            <span className={styles.metricHowVal}>{inp.value}</span>
+          </div>
+        ))}
+        <div className={styles.metricHowRow}>
+          <span className={styles.metricHowKey}>formula:</span>{' '}
+          <span className={styles.metricHowVal}>{explanation.formula}</span>
+        </div>
+        <div className={styles.metricHowDivider} />
+        <div className={`${styles.metricHowRow} ${styles.metricHowResultRow}`}>
+          <span className={styles.metricHowKey}>result:</span>{' '}
+          <span className={styles.metricHowResultVal}>{explanation.result}</span>
+        </div>
+      </div>
+    </details>
+  );
+}
+
+export default function RiskMetrics({
+  risks,
+  spotPrice,
+  fundingRate,
+  totalEpisodes,
+  direction,
+  leverage,
+  holdingHours,
+}: RiskMetricsProps) {
+  const liqNote = risks.liquidationDistancePct?.evidence?.note ?? '';
+  const dirMatch = liqNote.match(/\b(long|short)\b/i);
+  const levMatch = liqNote.match(/(\d+(?:\.\d+)?)x/i);
+  const activeDirection =
+    direction ?? (dirMatch ? (dirMatch[1].toLowerCase() as 'long' | 'short') : 'long');
+  const activeLeverage = leverage ?? (levMatch ? Number(levMatch[1]) : 3);
+
+  const liqExplanation =
+    spotPrice !== undefined && risks.liquidationDistancePct !== null
+      ? liquidationExplain(spotPrice, activeLeverage, activeDirection)
+      : null;
+
+  const fundingExplanation =
+    fundingRate !== undefined && risks.fundingCarryPct !== null
+      ? fundingExplain(fundingRate, holdingHours ?? 60)
+      : null;
+
+  const episodesCount = totalEpisodes ?? 1227;
+  const worstDate = '2020-03-13';
+  const datasetDesc = `${episodesCount.toLocaleString()} Fri->Mon gaps, NVDA daily closes 1999-2026`;
+  const worstGapExplanation =
+    totalEpisodes !== undefined && risks.worstGapPct !== null
+      ? worstGapExplain(
+          worstDate,
+          episodesCount,
+          datasetDesc,
+          risks.worstGapPct.value
+        )
+      : null;
+
   return (
     <div className={styles.riskCard}>
       <h3 className={styles.cardTitle}>Bitget-native risk</h3>
@@ -43,6 +133,7 @@ export default function RiskMetrics({ risks }: RiskMetricsProps) {
               >
                 {risks.liquidationDistancePct.evidence.label}
               </span>
+              {liqExplanation && <MetricHowDetails explanation={liqExplanation} />}
             </>
           ) : (
             <span className={styles.pillUnavailable}>UNAVAILABLE</span>
@@ -65,6 +156,9 @@ export default function RiskMetrics({ risks }: RiskMetricsProps) {
               >
                 {risks.fundingCarryPct.evidence.label}
               </span>
+              {fundingExplanation && (
+                <MetricHowDetails explanation={fundingExplanation} />
+              )}
             </>
           ) : (
             <span className={styles.pillUnavailable}>UNAVAILABLE</span>
@@ -87,6 +181,9 @@ export default function RiskMetrics({ risks }: RiskMetricsProps) {
               >
                 {risks.worstGapPct.evidence.label}
               </span>
+              {worstGapExplanation && (
+                <MetricHowDetails explanation={worstGapExplanation} />
+              )}
             </>
           ) : (
             <span className={styles.pillUnavailable}>UNAVAILABLE</span>
