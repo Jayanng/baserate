@@ -33,10 +33,13 @@ import {
   deriveDateRangeFromGaps,
 } from '@/components/dossier/match-explanation';
 import LiveMarketSnapshotStrip from '@/components/dossier/LiveMarketSnapshotStrip';
+import WeekendDepthCheckCard from '@/components/dossier/WeekendDepthCheckCard';
 import {
   fetchLiveMarketSnapshot,
+  fetchLiveDepthStress,
   isReplayAllowlistAsset,
   type LiveMarketSnapshot,
+  type DepthStressResult,
 } from '@/src/data/live-market-snapshot';
 import { ASSET_MAP } from '@/src/domain/trade-parser';
 import type { EvidenceItem } from '@/src/domain/types';
@@ -64,6 +67,7 @@ export default function DossierPage() {
   const [currentAsset, setCurrentAsset] = useState<ReplayAsset>(initialAsset);
   const [dossier, setDossier] = useState<Dossier | null>(initialDossier);
   const [snapshot, setSnapshot] = useState<LiveMarketSnapshot | null>(null);
+  const [depthStress, setDepthStress] = useState<DepthStressResult | null>(null);
   const [loading, setLoading] = useState(false);
   const [narration, setNarration] = useState<string | null>(null);
   const [narrationLoading, setNarrationLoading] = useState<boolean>(false);
@@ -73,6 +77,8 @@ export default function DossierPage() {
   const [leverageOverride, setLeverageOverride] = useState<number>(
     initialTrade?.leverage ?? 3
   );
+  const activeLeverage = leverageOverride;
+  const activeSize = sizeOverride;
   const [flashConfirm, setFlashConfirm] = useState(false);
   const flashTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const rafIdRef = useRef<number | null>(null);
@@ -137,6 +143,80 @@ export default function DossierPage() {
     currentAsset,
     dossier?.parsed.rTokenSymbol,
     dossier?.parsed.perpSymbol,
+  ]);
+
+  useEffect(() => {
+    let active = true;
+
+    if (!snapshot) {
+      setDepthStress(null);
+      return;
+    }
+
+    const side = dossier?.parsed.direction === 'short' ? 'sell' : 'buy';
+
+    if (snapshot.state !== 'live' || snapshot.spotPrice === null) {
+      setDepthStress({
+        state: 'unavailable',
+        observedAtUtc: null,
+        side,
+        requestedNotionalUsdt: activeSize,
+        coveredNotionalUsdt: null,
+        levelsConsumed: null,
+        estimatedVwapPct: null,
+        slippagePct: null,
+        reason: snapshot.reason ?? 'Live market snapshot unavailable',
+      });
+      return;
+    }
+
+    const rawAsset = dossier?.parsed.asset ?? currentAsset;
+    const mapping = ASSET_MAP[rawAsset.toLowerCase()];
+    const rTokenSymbol =
+      dossier?.parsed.rTokenSymbol ??
+      mapping?.rTokenSymbol ??
+      `${rawAsset.toUpperCase()}USDT`;
+
+    fetchLiveDepthStress({
+      rTokenSymbol,
+      side,
+      requestedNotionalUsdt: activeSize,
+      referencePrice: snapshot.spotPrice,
+    })
+      .then((res) => {
+        if (active) {
+          setDepthStress(res);
+        }
+      })
+      .catch((err) => {
+        if (active) {
+          setDepthStress({
+            state: 'unavailable',
+            observedAtUtc: null,
+            side,
+            requestedNotionalUsdt: activeSize,
+            coveredNotionalUsdt: null,
+            levelsConsumed: null,
+            estimatedVwapPct: null,
+            slippagePct: null,
+            reason:
+              err instanceof Error
+                ? err.message
+                : 'Live depth stress fetch failed',
+          });
+        }
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [
+    snapshot,
+    dossier?.parsed.asset,
+    currentAsset,
+    dossier?.parsed.rTokenSymbol,
+    dossier?.parsed.direction,
+    activeSize,
   ]);
 
   useEffect(() => {
@@ -214,6 +294,7 @@ export default function DossierPage() {
     const asset = asReplayAsset(parsed.asset);
     setCurrentAsset(asset);
     setSnapshot(null);
+    setDepthStress(null);
 
     const executeRecompute = () => {
       const bundle = getFixtureBundle(asset);
@@ -270,8 +351,6 @@ export default function DossierPage() {
   };
 
   // Recompute liquidation distance and funding carry locally based on overrides
-  const activeLeverage = leverageOverride;
-  const activeSize = sizeOverride;
   const activeAsset = dossier ? asReplayAsset(dossier.parsed.asset) : currentAsset;
   const bundle = getFixtureBundle(activeAsset);
 
@@ -364,9 +443,34 @@ export default function DossierPage() {
         }
     : null;
 
+  const depthEvidence: EvidenceItem | null = depthStress
+    ? depthStress.state === 'ok'
+      ? {
+          label: 'observed',
+          source: 'bitget_orderbook',
+          timestampUtc: depthStress.observedAtUtc,
+          note: `Bitget public order book depth: estimated slippage ${
+            depthStress.slippagePct !== null
+              ? depthStress.slippagePct.toFixed(2) + '%'
+              : '0.00%'
+          } across ${
+            depthStress.levelsConsumed ?? 0
+          } levels for ${depthStress.requestedNotionalUsdt.toLocaleString()} USDT notional`,
+        }
+      : {
+          label: 'estimated',
+          source: 'bitget_orderbook',
+          timestampUtc: null,
+          note: `Bitget public order book depth unavailable (${
+            depthStress.reason ?? 'unavailable'
+          }); pinned replay values in use below.`,
+        }
+    : null;
+
   const allEvidence: EvidenceItem[] = dossier
     ? [
         ...(snapshotEvidence ? [snapshotEvidence] : []),
+        ...(depthEvidence ? [depthEvidence] : []),
         ...dossier.provenance,
         ...bundle.evidence,
       ]
@@ -451,6 +555,11 @@ export default function DossierPage() {
         {/* 3.6. Live Evidence Strip */}
         {dossier && !dossier.refusal && (
           <LiveMarketSnapshotStrip snapshot={snapshot} />
+        )}
+
+        {/* 3.7. Weekend Depth Check Card (Phase 4) */}
+        {dossier && !dossier.refusal && (
+          <WeekendDepthCheckCard result={depthStress} />
         )}
 
         {/* 4. Bento Grid: RiskMetrics left, DistributionChart right */}

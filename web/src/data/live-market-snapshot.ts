@@ -10,7 +10,20 @@
  * - Bounded by timeout (default 4000ms)
  */
 
-import { fetchSpotTicker, fetchCurrentFunding } from './bitget-client';
+import {
+  fetchSpotTicker,
+  fetchCurrentFunding,
+  fetchSpotOrderBook,
+  type BitgetOrderBook,
+} from './bitget-client';
+import {
+  computeDepthStress,
+  type DepthLevel,
+  type DepthStressResult,
+} from '../engine/depth-stress';
+
+export type { DepthLevel, DepthStressResult };
+export { computeDepthStress };
 
 export type LiveSnapshotState = 'live' | 'unavailable';
 
@@ -185,3 +198,262 @@ export async function fetchLiveMarketSnapshot(
     };
   }
 }
+
+interface CachedDepthBook {
+  book: BitgetOrderBook;
+  timestamp: number;
+}
+
+const depthBookCache = new Map<string, CachedDepthBook>();
+
+/**
+ * Resets the in-memory order-book cache.
+ */
+export function clearDepthCache(): void {
+  depthBookCache.clear();
+}
+
+export interface FetchLiveDepthStressParams {
+  rTokenSymbol: string;
+  side: 'buy' | 'sell';
+  requestedNotionalUsdt: number;
+  referencePrice: number;
+  timeoutMs?: number;
+}
+
+/**
+ * Fetches live Bitget spot order-book depth and computes depth stress.
+ *
+ * Rules:
+ * - Allowlist guard: skips unsupported assets, returns state 'unavailable'
+ * - 4s bounded timeout pattern with AbortController
+ * - Never throws: catches all network, parsing, and timeout errors
+ * - Normalizes and validates DepthLevel arrays with numeric validation
+ * - Returns pure DepthStressResult
+ */
+export async function fetchLiveDepthStress(
+  paramsOrSymbol: FetchLiveDepthStressParams | string,
+  maybeSide?: 'buy' | 'sell',
+  maybeRequestedNotionalUsdt?: number,
+  maybeReferencePrice?: number,
+  maybeTimeoutMs?: number
+): Promise<DepthStressResult> {
+  let rTokenSymbol: string;
+  let side: 'buy' | 'sell';
+  let requestedNotionalUsdt: number;
+  let referencePrice: number;
+  let timeoutMs: number;
+
+  if (typeof paramsOrSymbol === 'object' && paramsOrSymbol !== null) {
+    rTokenSymbol = paramsOrSymbol.rTokenSymbol;
+    side = paramsOrSymbol.side;
+    requestedNotionalUsdt = paramsOrSymbol.requestedNotionalUsdt;
+    referencePrice = paramsOrSymbol.referencePrice;
+    timeoutMs = paramsOrSymbol.timeoutMs ?? 4000;
+  } else {
+    rTokenSymbol = paramsOrSymbol;
+    side = maybeSide ?? 'buy';
+    requestedNotionalUsdt = maybeRequestedNotionalUsdt ?? 0;
+    referencePrice = maybeReferencePrice ?? 0;
+    timeoutMs = maybeTimeoutMs ?? 4000;
+  }
+
+  // 1. Allowlist guard
+  if (!isReplayAllowlistedSymbol(rTokenSymbol)) {
+    return {
+      state: 'unavailable',
+      observedAtUtc: null,
+      side,
+      requestedNotionalUsdt,
+      coveredNotionalUsdt: null,
+      levelsConsumed: null,
+      estimatedVwapPct: null,
+      slippagePct: null,
+      reason: 'asset not in replay allowlist',
+    };
+  }
+
+  // 2. Validate basic inputs before making network calls
+  if (side !== 'buy' && side !== 'sell') {
+    return {
+      state: 'unavailable',
+      observedAtUtc: null,
+      side: 'buy',
+      requestedNotionalUsdt,
+      coveredNotionalUsdt: null,
+      levelsConsumed: null,
+      estimatedVwapPct: null,
+      slippagePct: null,
+      reason: 'Invalid side: must be buy or sell',
+    };
+  }
+
+  if (
+    typeof requestedNotionalUsdt !== 'number' ||
+    !Number.isFinite(requestedNotionalUsdt) ||
+    requestedNotionalUsdt <= 0
+  ) {
+    return {
+      state: 'unavailable',
+      observedAtUtc: null,
+      side,
+      requestedNotionalUsdt:
+        typeof requestedNotionalUsdt === 'number' && Number.isFinite(requestedNotionalUsdt)
+          ? requestedNotionalUsdt
+          : 0,
+      coveredNotionalUsdt: null,
+      levelsConsumed: null,
+      estimatedVwapPct: null,
+      slippagePct: null,
+      reason: 'Requested notional must be a positive finite number',
+    };
+  }
+
+  if (
+    typeof referencePrice !== 'number' ||
+    !Number.isFinite(referencePrice) ||
+    referencePrice <= 0
+  ) {
+    return {
+      state: 'unavailable',
+      observedAtUtc: null,
+      side,
+      requestedNotionalUsdt,
+      coveredNotionalUsdt: null,
+      levelsConsumed: null,
+      estimatedVwapPct: null,
+      slippagePct: null,
+      reason: 'Reference price must be a positive finite number',
+    };
+  }
+
+  // 3. Check in-memory cache (TTL 3000ms)
+  const cached = depthBookCache.get(rTokenSymbol.toUpperCase());
+  let rawBook: BitgetOrderBook;
+
+  if (cached && Date.now() - cached.timestamp < 3000) {
+    rawBook = cached.book;
+  } else {
+    const controller = new AbortController();
+    let timerId: ReturnType<typeof setTimeout> | undefined;
+
+    const timeoutPromise = new Promise<never>((_, reject) => {
+      timerId = setTimeout(() => {
+        controller.abort(
+          new DOMException(
+            `Bitget request timed out after ${timeoutMs}ms`,
+            'AbortError'
+          )
+        );
+        reject(
+          new DOMException(
+            `Bitget request timed out after ${timeoutMs}ms`,
+            'AbortError'
+          )
+        );
+      }, timeoutMs);
+    });
+
+    try {
+      rawBook = await Promise.race([
+        fetchSpotOrderBook(rTokenSymbol, 50),
+        timeoutPromise,
+      ]);
+      if (timerId !== undefined) {
+        clearTimeout(timerId);
+      }
+      depthBookCache.set(rTokenSymbol.toUpperCase(), {
+        book: rawBook,
+        timestamp: Date.now(),
+      });
+    } catch (err: unknown) {
+      if (timerId !== undefined) {
+        clearTimeout(timerId);
+      }
+      const reason =
+        err instanceof Error ? err.message : 'Unknown depth stress fetch error';
+      return {
+        state: 'unavailable',
+        observedAtUtc: null,
+        side,
+        requestedNotionalUsdt,
+        coveredNotionalUsdt: null,
+        levelsConsumed: null,
+        estimatedVwapPct: null,
+        slippagePct: null,
+        reason,
+      };
+    }
+  }
+
+  // 4. Validate order book data structure
+  if (!rawBook || !Array.isArray(rawBook.asks) || !Array.isArray(rawBook.bids)) {
+    return {
+      state: 'unavailable',
+      observedAtUtc: null,
+      side,
+      requestedNotionalUsdt,
+      coveredNotionalUsdt: null,
+      levelsConsumed: null,
+      estimatedVwapPct: null,
+      slippagePct: null,
+      reason: 'Invalid orderbook data returned',
+    };
+  }
+
+  const observedAtUtc =
+    rawBook.ts && Number.isFinite(rawBook.ts)
+      ? new Date(rawBook.ts).toISOString()
+      : new Date().toISOString();
+
+  const rawLevels = side === 'buy' ? rawBook.asks : rawBook.bids;
+  if (rawLevels.length === 0) {
+    return {
+      state: 'unavailable',
+      observedAtUtc,
+      side,
+      requestedNotionalUsdt,
+      coveredNotionalUsdt: null,
+      levelsConsumed: null,
+      estimatedVwapPct: null,
+      slippagePct: null,
+      reason: `Order book ${side === 'buy' ? 'asks' : 'bids'} are empty`,
+    };
+  }
+
+  // Normalize and validate numeric levels
+  const normalizedLevels: DepthLevel[] = [];
+  for (const lvl of rawLevels) {
+    if (
+      !lvl ||
+      typeof lvl.price !== 'number' ||
+      typeof lvl.size !== 'number' ||
+      !Number.isFinite(lvl.price) ||
+      !Number.isFinite(lvl.size) ||
+      lvl.price <= 0 ||
+      lvl.size <= 0
+    ) {
+      return {
+        state: 'unavailable',
+        observedAtUtc,
+        side,
+        requestedNotionalUsdt,
+        coveredNotionalUsdt: null,
+        levelsConsumed: null,
+        estimatedVwapPct: null,
+        slippagePct: null,
+        reason: 'Invalid or non-positive level price/size in order book',
+      };
+    }
+    normalizedLevels.push({ price: lvl.price, size: lvl.size });
+  }
+
+  return computeDepthStress({
+    levels: normalizedLevels,
+    side,
+    requestedNotionalUsdt,
+    referencePrice,
+    observedAtUtc,
+  });
+}
+

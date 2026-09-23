@@ -352,6 +352,139 @@
 }
 
 /* --------------------------------------------------------------------------
+   3.7. Weekend Depth Check Card (Phase 4)
+   -------------------------------------------------------------------------- */
+
+.depthCard {
+  background: var(--br-surface-card);
+  border-radius: var(--br-radius-card);
+  padding: var(--br-space-5) var(--br-space-6);
+  border: 1px solid var(--br-border-hairline);
+  box-shadow: var(--br-shadow-card-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: var(--br-space-4);
+  font-family: var(--br-font-sans);
+}
+
+.depthHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--br-space-4);
+  flex-wrap: wrap;
+}
+
+.depthHeaderLeft {
+  display: flex;
+  flex-direction: column;
+  gap: var(--br-space-1);
+}
+
+.depthTitle {
+  font-size: var(--br-font-size-md);
+  font-weight: var(--br-font-weight-extrabold);
+  color: var(--br-text-ink);
+  letter-spacing: var(--br-letter-spacing-wide);
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.depthSubtitle {
+  font-size: var(--br-font-size-xs);
+  color: var(--br-text-muted);
+  margin: 0;
+}
+
+.depthBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--br-space-1);
+  font-size: var(--br-font-size-2xs);
+  font-weight: var(--br-font-weight-bold);
+  letter-spacing: var(--br-letter-spacing-wide);
+  text-transform: uppercase;
+  padding: var(--br-space-1) var(--br-space-2);
+  border-radius: var(--br-radius-xs);
+  font-family: var(--br-font-sans);
+}
+
+.depthBadgeLive {
+  background: var(--br-lime-soft);
+  color: var(--br-lime-ink);
+}
+
+.depthBadgeInsufficient {
+  background: var(--br-coral-soft);
+  color: var(--br-coral-ink);
+}
+
+.depthBadgeUnavailable {
+  background: var(--br-peach-soft);
+  color: var(--br-peach-ink);
+}
+
+.depthDot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--br-radius-round);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.depthDotLive {
+  background: var(--br-lime);
+}
+
+.depthDotInsufficient {
+  background: var(--br-coral);
+}
+
+.depthDotUnavailable {
+  background: var(--br-peach);
+}
+
+.depthGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--br-space-3);
+}
+
+.depthMetricTile {
+  background: var(--br-surface-paper);
+  border: 1px solid var(--br-border-hairline);
+  border-radius: var(--br-radius-inner);
+  padding: var(--br-space-3) var(--br-space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--br-space-1);
+}
+
+.depthMetricLabel {
+  font-size: var(--br-font-size-2xs);
+  text-transform: uppercase;
+  letter-spacing: var(--br-letter-spacing-wide);
+  color: var(--br-text-muted);
+  font-weight: var(--br-font-weight-bold);
+}
+
+.depthMetricValue {
+  font-size: var(--br-font-size-lg);
+  font-weight: var(--br-font-weight-bold);
+  color: var(--br-text-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.depthReasonNotice {
+  font-size: var(--br-font-size-xs);
+  color: var(--br-peach-ink);
+  background: var(--br-peach-soft);
+  padding: var(--br-space-2) var(--br-space-3);
+  border-radius: var(--br-radius-xs);
+  border: 1px solid var(--br-peach-border);
+}
+
+/* --------------------------------------------------------------------------
    4. Bento Grid (Risk Metrics + Base Rate Distribution)
    -------------------------------------------------------------------------- */
 
