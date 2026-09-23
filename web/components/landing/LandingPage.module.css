@@ -552,7 +552,14 @@ details[open] .faqPlus {
   .gradeBadge { left: 8px; bottom: 8px; }
   .shapeCard { right: 8px; bottom: -20px; }
 }
+/* Full-bleed on small screens: no floating inset, no visible canvas gutters */
 @media (max-width: 768px) {
+  .shell {
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    max-width: 100vw;
+  }
   .hoodGrid {
     grid-template-columns: 1fr;
     gap: var(--br-space-5);
