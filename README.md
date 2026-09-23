@@ -4,7 +4,7 @@
 
 > Stop guessing. Get the base rate for your trade.
 
-BaseRate is a pre-trade stress desk for rTokens, Bitget's tokenized US stocks that trade 24 hours a day, 7 days a week. A trader describes a trade in plain English. BaseRate retrieves historical weekend episodes for the trade's regime, shows the observed outcome distribution, computes what the trade does to weekend collateral against a frozen Friday index, and lets the trader reshape the trade counterfactually. The desk demonstrates forecast accountability through deterministic replay: past dossiers are evaluated against what actually happened at cash reopen, and calibration scores are published in an immutable ledger.
+BaseRate is a read-only pre-trade stress desk for leveraged rToken weekend positions. It combines asset-specific historical weekend base rates with Bitget-native frozen-collateral and funding math, then exposes the inputs, formulas, source status, and replay calibration behind every conclusion. The human decides.
 
 Dossier, not signal. Computed, not vibes. And a desk that keeps score on itself.
 
@@ -27,7 +27,7 @@ Dossier, not signal. Computed, not vibes. And a desk that keeps score on itself.
 The sub-theme asks for tools that retrieve historically similar scenarios and stress test a decision before it is made. BaseRate addresses that brief through three connected capabilities:
 
 - It retrieves historically similar scenarios from decades of native-market history and returns the complete outcome distribution.
-- It stress tests the exact trade the user is considering, including Bitget's weekend collateral mechanics.
+- It stress tests the exact trade the user is considering, including Bitget's weekend collateral mechanics and order-book depth.
 - It demonstrates forecast accountability by treating stress reports as registered forecasts and verifying them against real reopen outcomes in replay mode. Stress testing is applied to the desk itself.
 
 ## 2. The problem
@@ -55,18 +55,31 @@ Not the target user: people who want an AI to trade for them, long-only cash inv
 
 The pipeline, end to end:
 
-**Step 1. Plain-English trade intake.** "I want to long rNVDA over the weekend at 3x with 5,000 USDT margin." The desk parses the trade shape: asset, direction, size, leverage, holding window, collateral.
+**Step 1. Plain-English trade intake.** "I want to long rNVDA over the weekend at 3x with 5,000 USDT margin." The desk parses the trade shape: asset, direction, size, leverage, holding window, and collateral.
 
-**Step 2. Rules engine: Bitget-native risk math.** Deterministic code, no model in the loop:
+**Step 2. Live market snapshot & Bitget-native risk math.** Deterministic code, no model in the calculation loop:
 
-- Friday-freeze collateral math: which mark controls collateral while the cash market is closed, and where the liquidation line sits against a frozen index.
-- Funding carry: what perpetual funding costs or pays across closed US hours, computed from real funding history.
-- Thin-book stress (planned / Phase 4): weekend depth and slippage evaluation from public order book snapshots (current desk exposes liquidation distance and funding carry).
-- Gap exposure: the size of Friday-close-to-Monday-open moves for this asset, from real history.
+- **Live market snapshot layer:** On Dossier load, current Bitget spot and perp funding rates are fetched live (4-second bounded timeout, allowlist-guarded, fail-closed). A compact status strip shows `LIVE OBSERVED` with retrieved timestamp and values, or `UNAVAILABLE` with reason and an explicit note that pinned replay values are in use for calculations. Adds observed and estimated `bitget_live` evidence rows.
+- **Friday-freeze collateral math:** Models Bitget UTA margin rules: which mark controls collateral while the cash market is closed, and where the liquidation line sits against a frozen Friday index.
+- **Funding carry:** Computes what perpetual funding costs or pays across closed US market hours (60 hours for weekend holds), derived from real stock perp funding history and proxy rates.
+- **Weekend depth check:** Current public Bitget spot order book is walked by a deterministic VWAP accumulator against the live spot reference and active counterfactual size. A compact card reports `LIVE OBSERVED`, `INSUFFICIENT DEPTH`, or `UNAVAILABLE` states, estimated execution slippage percentage, and order-book levels consumed, accompanied by a `HOW` disclosure showing exact inputs and accumulation rules. This is strictly a bounded liquidity estimate; zero orders are sent. Adds `bitget_orderbook` evidence rows.
+- **Gap exposure:** Quantifies Friday-close-to-Monday-open moves for the asset from verified native-market history.
 
-**Step 3. History engine: the base rate.** Decades of native-market daily history, organized into typed regimes by a deterministic classifier. For the user's exact situation, BaseRate returns the full outcome distribution: out of N historical episodes in this regime, the asset closed down this much X% of the time, gapped through this level Y% of the time, and the worst next-5-day outcome was Z. Every number traceable to dated source data. When history is too thin, the desk refuses: `INSUFFICIENT_EVIDENCE`.
+**Step 3. History engine, matching disclosure & deterministic interpretation.** Decades of native-market daily history, organized into typed regimes by a deterministic classifier:
 
-**Step 4. Live counterfactuals.** Drag the size slider. Switch a Friday entry to Monday. Change leverage. Every number recomputes in under a second against the same history, because per-regime outcome tables are precomputed. The trader reshapes the trade until the risk is one they can hold.
+- **"Why these weekends" disclosure:** Plain-English breakdown displaying asset, direction, leverage, holding window, entry timing, regime, sample size, native history source/date range, and the exact matching policy (regime-tagged full distribution for these datasets).
+- **Outcome distribution:** For the user's exact situation, BaseRate returns the full outcome distribution: out of N historical episodes in this regime, how often the asset closed down, gapped through liquidation levels, and its worst historical drawdown. Every number is traceable to dated source data. When history is insufficient, the desk refuses honestly: `INSUFFICIENT_EVIDENCE`.
+- **Deterministic risk interpretation:** Every dossier carries a computed interpretation with three honest states:
+  1. *Observed history did not reach the liquidation line* (with explicit warning that tail risk remains material).
+  2. *Historical sample includes outcomes through the liquidation distance*.
+  3. *Evidence incomplete* (no conclusion shown).
+  Displayed prominently above the risk tiles, labeled computed, with a `HOW` disclosure detailing exact inputs.
+
+**Step 4. Live counterfactuals & decision transformation.** Drag the size slider, switch entry timing, or adjust leverage:
+
+- **Decision transformation panel:** Directly compares the original trade shape against the current counterfactual state, displaying the liquidation distance before and after, the percentage-point delta, and a plain-language summary of how the risk shifted.
+- **"Stress at 10x" preset:** A convenience preset that immediately tests position survivability at high leverage using the existing recomputation path.
+- Every figure recomputes in under a second against the same history because outcome tables are precomputed. The trader reshapes the trade until the risk is acceptable to them.
 
 **Step 5. The Scorekeeper.** In the replay scorekeeper, past dossiers are registered as forecasts in an append-only ledger. At Monday reopen, the desk grades itself: did the asset close inside the issued band? Was the collateral stress within the stated worst case? Per-regime accuracy, published miss rates, and deterministic band adjustments demonstrate the calibration loop.
 
@@ -92,22 +105,24 @@ What does not learn: no neural network retrains, no hidden re-weighting of histo
 
 ## 6. BaseRate's core capabilities
 
-BaseRate combines five capabilities into one decision workflow:
+BaseRate combines six capabilities into one decision workflow:
 
-1. **Bitget-native weekend risk.** The desk models frozen Friday collateral, funding carry across closed market hours, and historical weekend gap distributions against the liquidation line. (Order-book depth stress is planned for subsequent phases).
-2. **Full-history base rates.** A deterministic regime engine organizes decades of native-market history and returns the complete distribution of observed outcomes, including sample size, median, tails, and dated evidence.
-3. **Live counterfactuals.** Position size, leverage, entry timing, and holding window can be changed in the dossier. The risk calculations and historical distribution recompute from the same pinned data.
-4. **Self-scoring forecasts.** Forecast accountability is demonstrated through an append-only ledger of historical replay dossiers, comparing issued bands with reality and recording hits, misses, and deterministic calibration changes.
-5. **Reproducible research.** The deterministic engine computes every number. The language model may narrate a sanitized dossier but cannot calculate, alter, or invent figures.
+1. **Bitget-native weekend risk & depth stress.** The desk models frozen Friday collateral, funding carry across closed market hours, historical weekend gap distributions against the liquidation line, and a live weekend order-book depth check that computes estimated slippage and levels consumed via a deterministic VWAP accumulator (with honest `INSUFFICIENT_DEPTH` states).
+2. **Live market snapshot layer.** Bounded live fetch (4s timeout, allowlist-guarded, fail-closed) observes current Bitget spot prices and perp funding rates, labeling provenance explicitly as `LIVE OBSERVED` or falling back to pinned replay values labeled `UNAVAILABLE`.
+3. **Full-history base rates & matching rationale.** A deterministic regime engine organizes decades of native-market history and returns the complete distribution of observed outcomes. A dedicated "Why these weekends" disclosure details the trade shape, regime, sample size, date range, and matching policy.
+4. **Deterministic risk interpretation.** A computed three-state interpretation card above the risk tiles states whether observed history breached the liquidation line, remained within buffer (with material tail warning), or is incomplete, complete with `HOW` formulas and inputs.
+5. **Live counterfactuals & decision transformation.** Interactive controls for position size, leverage, entry timing, and holding window, plus a Decision Transformation Panel showing liquidation distance delta (percentage points) and a "Stress at 10x" convenience preset. All risk numbers recompute instantly.
+6. **Self-scoring forecasts & reproducible research.** Forecast accountability demonstrated through an append-only cryptographic ledger of 12 historical replay dossiers, evaluating issued bands against actual reopen outcomes. All figures computed deterministically; the language model narrates a sanitized summary under strict numeric validation guards.
 
 | Decision Stress Testing capability | BaseRate implementation |
 |---|---|
-| Historical scenario retrieval | Full-history regime matching with typed regimes and dated evidence |
-| Trade stress testing | Friday-freeze calculator, funding carry, gap table (order-book depth planned) |
-| Interactive decision support | Continuous counterfactual controls for size, leverage, timing, and window |
-| Forecast accountability | Append-only registry, Monday reopen grading via replay mode, calibration report |
+| Historical scenario retrieval | Full-history regime matching with typed regimes, dated evidence, and "Why these weekends" matching disclosure |
+| Trade stress testing | Friday-freeze calculator, funding carry, gap table, live market snapshot, and weekend order-book depth stress (bounded estimate) |
+| Risk interpretation | Deterministic three-state interpretation card (breached / within buffer / incomplete) with mathematical `HOW` disclosures |
+| Interactive decision support | Continuous counterfactual controls, Decision Transformation Panel with delta tracking, and "Stress at 10x" preset |
+| Forecast accountability | Append-only registry, Monday reopen grading via replay mode, calibration report, and deterministic band adjustments |
 | Human-in-the-loop | Read-only research desk. The human decides. |
-| Evidence and safety | Provenance for every figure, refusal states, no execution, no account keys |
+| Evidence and safety | Provenance for every figure (`observed`, `estimated`, `computed`, `replay`, `unavailable`), refusal states, no execution, no account keys |
 
 ## 7. Product surfaces: four pages maximum
 
@@ -125,45 +140,48 @@ Supporting details remain inside these pages as drawers, expandable evidence pan
 - **Deterministic core.** Every number is computed by code with pinned inputs. Same inputs, same dossier, every time.
 - **Regime classifier.** Deterministic and statistical: fixed, published feature windows bucket historical episodes into typed regimes. Reproducible by any judge with the code.
 - **Narration layer.** The language model turns the computed dossier into prose. It receives sanitized summaries only, it never computes, and its output passes a forbidden-output gate that rejects trade signals and fabricated figures.
-- **Refusal states.** `INSUFFICIENT_EVIDENCE`, `UNAVAILABLE` (with reason), `REPLAY` (label). The desk would rather refuse than guess.
-- **Evidence labels.** Every figure is stamped `observed`, `estimated`, `target`, or `replay`.
-- **No fabrication.** If an upstream source fails, the field says UNAVAILABLE. Never interpolated, never invented.
+- **Refusal states.** `INSUFFICIENT_EVIDENCE`, `UNAVAILABLE` (with reason), `INSUFFICIENT_DEPTH`, `REPLAY` (label). The desk would rather refuse than guess.
+- **Evidence labels.** Every figure is stamped `observed` (or `live_observed`), `estimated`, `computed`, `replay`, or `unavailable`.
+- **No fabrication.** If an upstream source fails or times out, the field says `UNAVAILABLE` with an explicit reason and falls back to pinned baseline fixtures. Never interpolated, never invented.
 - **Read-only.** No keys, no account connections, no orders, no transfers.
 
-Planned repository layout:
+Repository layout:
 
 ```
 baserate/
   README.md
   docs/
+    claim-inventory.md
     architecture.md
     scorecard-spec.md
     data-provenance.md
-  engine/
-    rules/       # collateral freeze, funding carry, thin book, gap math
-    history/     # regime tables, outcome distributions
-    classify/    # deterministic regime classifier
-    scorecard/   # grading, calibration, band adjustment
-  ledger/
-    registry.md  # append-only forecast registry (hash-chained)
   web/
-    app/         # demo UI: dossier, counterfactuals, scorecard
-  fixtures/
-    replay/      # frozen weekends for replay mode
-  tests/
+    app/                 # Demo UI: landing, overview, dossier, scorecard, narrate API
+    components/
+      dossier/           # Risk tiles, depth card, snapshot strip, why weekends, transformation panel
+      landing/           # Landing page with hero tape chart, FAQ, workflow overview
+      scorecard/         # Calibration table, replay ledger, regime accuracy
+      shell/             # App shell, navigation, global styling tokens
+    src/
+      data/              # bitget-client, yahoo-client, live-market-snapshot, replay-fixtures
+      domain/            # types, trade-parser, validation, provenance
+      engine/            # risk-engine, depth-stress, risk-interpretation, base-rate, classifier
+      scorekeeper/       # grader, calibration, ledger, registry
+    fixtures/            # Pinned multi-asset replay datasets (NVDA, TSLA, AAPL, QQQ, MSTR)
+    tests/               # 31 test files, 286 automated tests
 ```
 
 ## 9. Data plan and provenance
 
 | Source | Used for | Status |
 |---|---|---|
-| Bitget public REST (spot) | rToken tickers, order book depth, daily candles | Verified live. Candles use plain enums (`1day`); `endTime` pagination walks back to each token's listing. |
-| Bitget public REST (futures) | Stock perp funding (current + history), perp candles | Verified live. Stock perps trade under plain tickers (NVDAUSDT, TSLAUSDT, QQQUSDT, and similar); futures candles use UTC-style enums. |
-| bitget-mcp-server (agent.bitget.com/mcp) | Guide queries, analyst targets, cross-checks | Endpoint live, 67 documented data entries. Cloudflare-blocked from the build VPS as of Sep 22; optional enhancer, not on the critical path. |
-| Public native-market daily history | Decades of stock and index history for regime tables | Decided: Yahoo Finance public chart API, keyless. NVDA to 1999 (6,958 daily bars), AAPL to 1980 (11,535), QQQ to 1999. Fallback: Stooq. |
+| Bitget public REST (spot) | rToken tickers, live spot price snapshot, order book depth stress, daily candles | Verified live. Spot ticker and order book fetched on dossier load (4s timeout, allowlist-guarded, fail-closed). Candles use plain enums (`1day`). |
+| Bitget public REST (futures) | Stock perp funding (live funding rate snapshot + history), perp candles | Verified live. Stock perps trade under plain tickers (NVDAUSDT, TSLAUSDT, QQQUSDT, and similar). Fetched live on dossier load; perp funding history used as overnight carry proxy. |
+| bitget-mcp-server (agent.bitget.com/mcp) | Guide queries, analyst targets, cross-checks | Endpoint live, 67 documented data entries. Optional enhancer, not on the critical path. |
+| Public native-market daily history | Decades of stock and index history for regime tables | Decided: Yahoo Finance public chart API, keyless. NVDA to 1999 (6,958 daily bars; 1,227 weekend episodes), TSLA to 2010 (736 episodes), AAPL, QQQ, MSTR. Fallback: Stooq. |
 | Bitget published rules pages | Friday-freeze and margin-index behavior | Documented basis for collateral math. |
 
-Every dossier ships its provenance: which source, which timestamp, which endpoint. Numbers without provenance do not ship.
+Every dossier ships its provenance: which source, which timestamp, which endpoint. Every figure is stamped `observed` (or `live_observed`), `pinned_replay`, `computed`, `estimated`, `replay_graded`, or `unavailable`. Numbers without provenance do not ship.
 
 ## 10. Rules and safety
 
@@ -171,7 +189,7 @@ What BaseRate will never do:
 
 - Place, cancel, or close orders. Transfer or withdraw funds. Hold keys.
 - Output BUY, SELL, LONG, SHORT, or any trade signal or confidence score.
-- Fabricate data. Missing input means UNAVAILABLE with a reason, never an interpolation.
+- Fabricate data. Missing or timed-out input means `UNAVAILABLE` with an explicit reason, never an interpolation.
 - Present replayed grades as live grades.
 - Let a language model compute or alter any number.
 
@@ -179,26 +197,41 @@ Human decides. The desk researches, computes, and grades itself. That is the who
 
 ## 11. Honest limitations
 
-- **Public demo boundary:** The public demo uses pinned replay fixtures so every judge sees the same deterministic result. Live Bitget and Yahoo links expose current public evidence. The scorekeeper loop is demonstrated with replay forecasts; this demo does not claim autonomous persistence or live Monday scheduling for each visitor's custom session.
-- rToken spot history begins at each token's Bitget listing (RNVDA: June 2025). Bitget-native layers such as live weekend tape are young; the deep base rates come from native-market history, and every figure is labeled so the two are never confused.
-- Stock perp funding history covers roughly the perp listing window (NVDA perp: since June 2026). Where the carry model leans on thin funding data, it is labeled estimated, never invented.
-- The calibration loop is demonstrated in replay mode over 12 past weekends. The mechanism is identical and clearly labeled.
-- Regime taxonomies are product settings, not empirical optima. Sensitivity is shown rather than hidden.
-- Descriptive, not predictive: past distributions condition expectations. They are not guarantees, and the desk says so in every dossier.
+- **Public demo boundary:** The public demo uses pinned replay fixtures so every judge sees the same deterministic result. Live Bitget and Yahoo links expose current public evidence, alongside bounded live market and order-book depth observations. The scorekeeper loop is demonstrated with replay forecasts; this demo does not claim autonomous persistence or live Monday scheduling for each visitor's custom session.
+- **Bitget public API availability & rate limits:** Bitget public REST endpoints are unauthenticated and subject to network conditions and rate limits. A 4-second bounded timeout ensures the dossier never hangs; if an endpoint fails or times out, the desk fails closed to an explicit `UNAVAILABLE` state with the reason shown and uses pinned baseline values for render math.
+- **Weekend order-book depth is an estimate:** The weekend depth check walks public top-of-book levels at the moment of observation. It computes a deterministic VWAP slippage estimate for the counterfactual notional size; it is strictly an informational estimate, not an execution quote or fill guarantee. If requested size exceeds available book depth, it reports `INSUFFICIENT_DEPTH` rather than guessing.
+- **rToken spot history & perp proxies:** rToken spot history begins at each token's Bitget listing (RNVDA: June 2025). Stock perp funding history covers the perp listing window (NVDA perp: since June 2026). Stock perp funding rates serve as proxies for rToken overnight carry where direct rToken funding is not traded, and are labeled estimated. Deep base rates come from multi-decade native cash-market history, and every figure is labeled with provenance so spot, perp, and cash data are never confused.
+- **Replay calibration:** The calibration loop is demonstrated in replay mode over 12 past weekends. The mechanism is identical to live grading and clearly labeled `REPLAY`.
+- **Regime taxonomies:** Regime taxonomies are product settings, not empirical optima. Sensitivity is shown rather than hidden.
+- **Descriptive, not predictive:** Past distributions condition expectations. They are not guarantees, and the desk says so in every dossier.
 
-## 12. Build plan (submission closes Sep 27, UTC+8)
+## 12. Verification and testing
 
-- **Day 1 (Sep 22, done):** data probes completed and verified: candle enum families (spot plain, futures UTC-style), funding endpoints mapped via plain-ticker stock perps, history source decided (Yahoo, keyless, multi-decade), external classifier decision closed (deterministic in-house engine; research archived in docs). Dossier schema next.
-- **Day 2 (Sep 23):** golden path. rNVDA weekend hold, end-to-end ugly-but-real pipeline.
-- **Day 3 (Sep 24):** regime engine batch classification over full history, counterfactual recompute, refusal states, freeze calculator.
-- **Day 4 (Sep 25):** UI polish, preset stress buttons, crash-replay fixture, README in judge order, first build-in-public post.
-- **Day 5 (Sep 26 to 27):** cold demo rehearsal, replay-mode scorecard generation, final form answers, final post, submit.
+Run the full verification suite from `web/`:
+
+```bash
+cd web
+npm test               # 31 test files, 286 tests green
+npx tsc --noEmit       # Strict TypeScript check (zero errors)
+npm run build          # Production Next.js build
+npm run demo:verify    # Offline multi-asset fixture and shell reliability check
+```
+
+All 286 tests, strict type checking, Next.js production build, and multi-asset fixture verification pass deterministically without network dependencies.
 
 ## 13. The judge's 60 seconds
 
 1. Type: "long rNVDA over the weekend at 3x, 5,000 USDT margin."
-2. Dossier lands: Friday-freeze liquidation line, weekend funding carry, gap table, and the full regime distribution with dates.
-3. Drag size from 5,000 to 12,000. Every number recomputes instantly. The liquidation line walks toward the worst-case weekend gap. Drag back.
+2. Dossier lands:
+   - Live Market Snapshot strip displays `LIVE OBSERVED` spot and funding with timestamp (or `UNAVAILABLE` fallback note).
+   - Weekend Depth Check card displays estimated slippage and levels consumed via VWAP accumulator (with `HOW` formula).
+   - Friday-freeze liquidation line, weekend funding carry, gap table, and the full regime distribution with dates.
+   - "Why these weekends" disclosure breaks down the matched asset, regime, sample size, and matching policy.
+   - Deterministic Risk Interpretation card delivers a computed three-state risk statement above the risk tiles.
+3. Test counterfactuals: drag size from 5,000 to 12,000 or click "Stress at 10x".
+   - The Decision Transformation Panel shows the exact liquidation distance delta in percentage points with plain-language description.
+   - Slippage and depth levels update dynamically.
+   - Every number recomputes instantly against the same history.
 4. Open the Scorecard: 12 replayed weekends, hit rate per regime, two labeled misses, one adjusted band with its reason.
 5. Close on the thesis: every stress report is a claim about the future. BaseRate is the desk that demonstrates its score through replay calibration.
 
@@ -224,6 +257,9 @@ rTokens make US stocks trade 24/7, but collateral valuation freezes while the na
 - **Base rate:** how often something happened across all of history, not a prediction.
 - **Regime:** a typed market situation (trend, chop, squeeze, capitulation) used to bucket historical episodes.
 - **Dossier:** the computed report BaseRate issues for one trade shape.
+- **Live market snapshot:** bounded live Bitget spot price and funding rate observed on dossier load.
+- **Weekend depth check:** deterministic VWAP walk of public Bitget order-book levels for counterfactual position size.
+- **Decision transformation:** comparative delta tracking between initial trade shape and counterfactual adjustments.
 - **Forecast registry:** the append-only ledger of issued dossiers used for Monday grading.
 - **Calibration:** measured agreement between issued bands and real outcomes, per regime.
 - **Replay mode:** re-issuing and grading past dossiers from frozen data, always labeled REPLAY.

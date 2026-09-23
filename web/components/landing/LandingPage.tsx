@@ -74,7 +74,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'What does the public demo claim and what are its boundaries?',
-    a: 'The public demo uses pinned replay fixtures so every judge sees the same deterministic result. Live Bitget and Yahoo links expose current public evidence. The scorekeeper loop is demonstrated with replay forecasts; this demo does not claim autonomous persistence or live Monday scheduling for each visitor\'s custom session.',
+    a: 'The public demo uses pinned replay fixtures so every judge sees the same deterministic result. Live Bitget and Yahoo links expose current public evidence, alongside bounded live market and order-book depth observations. The scorekeeper loop is demonstrated with replay forecasts; this demo does not claim autonomous persistence or live Monday scheduling for each visitor\'s custom session.',
   },
   {
     q: 'Where does the history come from?',
@@ -90,11 +90,11 @@ const FAQ_ITEMS = [
   },
   {
     q: 'What happens when data is missing?',
-    a: 'The desk refuses honestly. Insufficient history shows INSUFFICIENT_EVIDENCE. A dead source shows UNAVAILABLE with a reason. It never fills gaps with plausible-looking numbers.',
+    a: 'The desk refuses honestly. Insufficient history shows INSUFFICIENT_EVIDENCE. A dead or timed-out live source shows UNAVAILABLE with an explicit reason. If order-book liquidity cannot cover counterfactual size, it shows INSUFFICIENT_DEPTH. It never fills gaps with plausible-looking numbers.',
   },
   {
     q: 'Does it work offline?',
-    a: 'Yes. The demo runs from committed fixtures with zero network calls and zero API keys. A verification script (npm run demo:verify) proves the demo path works offline.',
+    a: 'Yes. When online, the desk observes live Bitget spot, funding, and top-of-book depth within a bounded 4-second timeout. If offline or unreachable, it fails closed to explicit UNAVAILABLE states, and the core research and replay engine runs entirely from committed fixtures with zero API keys required. The demo verification script (npm run demo:verify) proves the reproducible offline baseline.',
   },
 ] as const;
 
