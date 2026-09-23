@@ -12,6 +12,12 @@ BaseRate is a read-only pre-trade stress desk for leveraged rToken weekend posit
 
 Dossier, not signal. Computed, not vibes. And a desk that keeps score on itself.
 
+## Who it is for
+
+BaseRate is built for crypto-native traders on Bitget who hold tokenized US stocks (rNVDA, rTSLA, rAAPL and similar) as leveraged positions from Friday cash close to Monday reopen, funded with USDT or crypto collateral in a unified trading account. A weekend holder checks their account on Saturday night and no tool tells them their true weekend risk. This trader accepts leveraged directional risk, deploys small-to-mid retail size (e.g. 1,000-50,000 USDT positions), and maintains a trading frequency of weekend holds a few times per month around events they cannot watch live.
+
+It is not for people who want an AI to trade for them, long-only cash investors, or execution-algorithm users. BaseRate never executes.
+
 ## Live Demo
 
 BaseRate is live at **[baserate-ten.vercel.app](https://baserate-ten.vercel.app)** across four dedicated views:
@@ -38,7 +44,7 @@ BaseRate executes a five-step deterministic workflow:
 
 1. **Plain-English trade intake:** The desk parses natural-language prompts (e.g., *"long rNVDA over the weekend at 3x with 5,000 USDT margin"*) into an explicit trade specification defining asset, direction, notional size, leverage, entry timing, and collateral structure.
 2. **Live market snapshot and risk math:** A bounded query (4-second timeout, fail-closed) captures public Bitget spot prices and perp funding rates, feeding deterministic calculations for Friday-freeze liquidation thresholds, 60-hour funding carry, order-book depth slippage estimates, and historical gap exposures.
-3. **History engine, matching, and deterministic interpretation:** Multi-decade native-market daily records are bucketed into typed regimes by a deterministic classifier, outputting complete outcome distributions, an explicit "Why these weekends" matching disclosure, and a three-state deterministic risk interpretation.
+3. **History engine, matching, and deterministic interpretation:** Multi-decade native-market daily records are bucketed into typed regimes by a deterministic classifier, outputting complete outcome distributions, an explicit "Why these weekends" matching disclosure, and a three-state deterministic risk interpretation. The current datasets cover five assets - NVDA (1,227 weekend episodes back to 1999), TSLA (736 episodes back to its 2010 listing), AAPL, QQQ, and MSTR (1,227 episodes each), with MSTR showing the deepest observed tail: a -61.74% Friday-to-Monday gap in March 2000.
 4. **Live counterfactuals and decision transformation:** Traders modify position size, leverage, and entry timing interactively; the Decision Transformation Panel immediately recalculates liquidation distance deltas in percentage points against precomputed distributions.
 5. **The Scorekeeper:** Past dossiers are recorded into an append-only ledger protected by a deterministic hash chain (FNV-1a), scoring issued forecast bands against realized Monday cash reopen prints to adjust regime calibration bands.
 
@@ -115,7 +121,7 @@ A newly initialized desk has no multi-year operational track record. BaseRate de
 
 - **Deterministic core:** All numerical modeling and risk calculations execute in pure TypeScript with pinned parameter sets. Identical inputs yield identical outputs every time.
 - **Statistical regime classifier:** Documented indicator windows categorize historical market episodes into discrete volatility regimes without subjective tuning.
-- **Guarded narration:** The language model generates explanatory prose solely from computed metrics, bounded by strict numeric validation guards to prevent hallucinations or signal generation.
+- **Guarded narration:** The language model (DeepSeek-V4-Flash via GMI Cloud) generates explanatory prose solely from computed metrics, bounded by strict numeric validation guards to prevent hallucinations or signal generation.
 - **Fail-closed refusal states:** The system halts with `INSUFFICIENT_EVIDENCE`, `UNAVAILABLE`, or `INSUFFICIENT_DEPTH` rather than guessing when data is missing or out of bounds.
 - **Strict provenance tracking:** Every metric is marked `observed`, `live_observed`, `pinned_replay`, `computed`, `estimated`, or `unavailable`.
 - **Read-only design:** No wallet connections, no account keys, and no order execution capabilities.
@@ -173,6 +179,13 @@ Every dossier ships with full provenance: source name, observation timestamp, an
 - **Replay calibration:** The self-scoring calibration loop is evaluated over 12 historical weekends in replay mode. Every replayed outcome is explicitly labeled `REPLAY`.
 - **Regime taxonomy:** Regime classification boundaries are documented analytical configurations rather than absolute market truths. Sensitivity to parameter shifts is exposed rather than hidden.
 - **Descriptive, not predictive:** Historical outcome distributions describe what occurred under similar historical conditions; they do not guarantee future performance.
+
+## Build status
+
+- **Built:** all four product pages, deterministic risk engine, live Bitget snapshot + order-book depth check, replay scorekeeper with hash-chained ledger, guarded narration, multi-asset replay datasets.
+- **Not built:** live per-user forecast persistence, scheduled Monday grading (the deployed demo demonstrates the loop via replay), portfolio-level account analysis, order execution of any kind.
+- **Problems found and fixed during the build:** a parser that silently accepted negative margin (now refuses), an over-starved narration budget (fixed), copy that overstated live behavior (corrected to replay-labeled wording).
+- **Validation plan:** the deterministic engine and fixtures are the current validation surface; near term the plan is structured feedback from rToken traders on Bitget community channels plus tracking how often the desk refusal states fire in real use; longer term, live grading weeks accumulating real calibration as the primary success metric.
 
 ## Verification
 
