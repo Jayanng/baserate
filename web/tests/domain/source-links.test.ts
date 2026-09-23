@@ -53,7 +53,7 @@ describe('source-links', () => {
     expect(kind).toBe('live');
   });
 
-  it('engine_risk -> href contains github.com/Jayanng/baserate/blob/main/web/src/engine/risk-engine.ts and kind code', () => {
+  it('engine_risk -> href null and kind null (GitHub code links disabled by product decision)', () => {
     const item: EvidenceItem = {
       label: 'computed',
       source: 'engine_risk',
@@ -61,8 +61,18 @@ describe('source-links', () => {
     };
     const href = buildSourceHref(item, mockTrade);
     const kind = sourceLinkKind(item.source);
-    expect(href).toContain('github.com/Jayanng/baserate/blob/main/web/src/engine/risk-engine.ts');
-    expect(kind).toBe('code');
+    expect(href).toBeNull();
+    expect(kind).toBeNull();
+  });
+
+  it('replay_fixtures -> href null (GitHub code links disabled)', () => {
+    const item: EvidenceItem = {
+      label: 'replay',
+      source: 'replay_fixtures',
+      timestampUtc: null,
+    };
+    expect(buildSourceHref(item, mockTrade)).toBeNull();
+    expect(sourceLinkKind(item.source)).toBeNull();
   });
 
   it('unknown source -> null href', () => {

@@ -3,30 +3,19 @@ import type { EvidenceItem, ParsedTrade } from '@/src/domain/types';
 /**
  * Returns the categorization of an evidence source link:
  * - 'live': opens a public vendor endpoint returning JSON
- * - 'code': opens computation or fixture source code on GitHub
  * - null: no linkable source
+ *
+ * Note (product decision, Johnson 2026-09-23): GitHub code links are DISABLED.
+ * Computed/engine/fixture rows render as plain text - judges verify computed
+ * numbers via the HOW disclosures on each tile instead of reading source code.
  */
-export function sourceLinkKind(source: string): 'live' | 'code' | null {
+export function sourceLinkKind(source: string): 'live' | null {
   if (!source) {
     return null;
   }
   const s = source.toLowerCase().trim();
   if (s === 'bitget_spot' || s === 'bitget_mix' || s === 'yahoo_native') {
     return 'live';
-  }
-  if (
-    s === 'engine_risk' ||
-    s === 'engine_base_rate' ||
-    s === 'engine_regime' ||
-    s === 'dossier-builder' ||
-    s === 'dossier_builder' ||
-    s === 'computed' ||
-    s === 'replay_fixtures' ||
-    s.startsWith('engine_') ||
-    s.startsWith('replay_') ||
-    s.includes('fixture')
-  ) {
-    return 'code';
   }
   return null;
 }
@@ -64,9 +53,8 @@ function extractUnixSeconds(item: EvidenceItem): number | null {
 
 /**
  * Builds a direct public URL for an evidence item.
- * Live endpoints link to official REST JSON feeds.
- * Computed numbers link to the exact calculation logic on GitHub.
- * Returns null when no meaningful link exists.
+ * Only LIVE vendor endpoints are linked (public REST JSON feeds).
+ * Computed/engine/fixture rows return null (plain text, verified via HOW disclosures).
  */
 export function buildSourceHref(
   item: EvidenceItem,
@@ -107,40 +95,6 @@ export function buildSourceHref(
     return `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(ticker)}?period1=${period1}&period2=${period2}&interval=1d`;
   }
 
-  // 4. Replay Fixtures (GitHub source)
-  if (
-    source === 'replay_fixtures' ||
-    source.startsWith('replay_') ||
-    (item.note && /fixtures?/i.test(item.note) && !source.startsWith('engine_'))
-  ) {
-    const ticker = extractTicker(trade);
-    return `https://github.com/Jayanng/baserate/blob/main/web/fixtures/replay-${encodeURIComponent(ticker)}.json`;
-  }
-
-  // 5. Engine Base Rate (GitHub source)
-  if (source === 'engine_base_rate' || source.includes('base_rate') || source.includes('base-rate')) {
-    return 'https://github.com/Jayanng/baserate/blob/main/web/src/engine/base-rate.ts';
-  }
-
-  // 6. Dossier Builder (GitHub source)
-  if (
-    source === 'dossier-builder' ||
-    source === 'dossier_builder' ||
-    source.includes('dossier-builder') ||
-    source.includes('dossier_builder')
-  ) {
-    return 'https://github.com/Jayanng/baserate/blob/main/web/src/engine/dossier-builder.ts';
-  }
-
-  // 7. Regime Classifier (GitHub source)
-  if (source === 'engine_regime' || source.includes('regime')) {
-    return 'https://github.com/Jayanng/baserate/blob/main/web/src/engine/regime-classifier.ts';
-  }
-
-  // 8. Risk Engine & other computed (GitHub source)
-  if (source === 'engine_risk' || source.startsWith('engine_') || source === 'computed') {
-    return 'https://github.com/Jayanng/baserate/blob/main/web/src/engine/risk-engine.ts';
-  }
-
+  // Computed/engine/fixture sources: intentionally not linked (product decision).
   return null;
 }
