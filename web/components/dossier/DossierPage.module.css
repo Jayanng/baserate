@@ -275,6 +275,83 @@
 }
 
 /* --------------------------------------------------------------------------
+   3.6. Live Evidence Strip (Phase 3)
+   -------------------------------------------------------------------------- */
+
+.liveStrip {
+  display: flex;
+  align-items: center;
+  gap: var(--br-space-3);
+  background: var(--br-surface-paper);
+  border: 1px solid var(--br-border-hairline);
+  border-radius: var(--br-radius-inner);
+  padding: var(--br-space-3) var(--br-space-5);
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-sm);
+  color: var(--br-text-ink);
+  line-height: var(--br-line-height-tight);
+  flex-wrap: wrap;
+}
+
+.liveStripPrefix {
+  color: var(--br-text-muted);
+  font-weight: var(--br-font-weight-extrabold);
+  text-transform: uppercase;
+  letter-spacing: var(--br-letter-spacing-wide);
+  font-size: var(--br-font-size-xs);
+  font-family: var(--br-font-sans);
+}
+
+.liveStripBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--br-space-1);
+  font-size: var(--br-font-size-2xs);
+  font-weight: var(--br-font-weight-bold);
+  letter-spacing: var(--br-letter-spacing-wide);
+  text-transform: uppercase;
+  padding: var(--br-space-1) var(--br-space-2);
+  border-radius: var(--br-radius-xs);
+  font-family: var(--br-font-sans);
+}
+
+.liveStripBadgeLive {
+  background: var(--br-lime-soft);
+  color: var(--br-lime-ink);
+}
+
+.liveStripBadgeUnavailable {
+  background: var(--br-peach-soft);
+  color: var(--br-peach-ink);
+}
+
+.liveStripDot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--br-radius-round);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.liveStripDotLive {
+  background: var(--br-lime);
+}
+
+.liveStripDotUnavailable {
+  background: var(--br-peach);
+}
+
+.liveStripDetails {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--br-space-2);
+  flex-wrap: wrap;
+  color: var(--br-text-ink);
+  font-size: var(--br-font-size-xs);
+  font-family: var(--br-font-sans);
+}
+
+/* --------------------------------------------------------------------------
    4. Bento Grid (Risk Metrics + Base Rate Distribution)
    -------------------------------------------------------------------------- */
 

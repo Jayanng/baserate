@@ -32,6 +32,14 @@ import {
   buildMatchExplanation,
   deriveDateRangeFromGaps,
 } from '@/components/dossier/match-explanation';
+import LiveMarketSnapshotStrip from '@/components/dossier/LiveMarketSnapshotStrip';
+import {
+  fetchLiveMarketSnapshot,
+  isReplayAllowlistAsset,
+  type LiveMarketSnapshot,
+} from '@/src/data/live-market-snapshot';
+import { ASSET_MAP } from '@/src/domain/trade-parser';
+import type { EvidenceItem } from '@/src/domain/types';
 import styles from '@/components/dossier/DossierPage.module.css';
 
 const DEFAULT_TRADE_INTENT =
@@ -55,6 +63,7 @@ export default function DossierPage() {
   const [inputValue] = useState(DEFAULT_TRADE_INTENT);
   const [currentAsset, setCurrentAsset] = useState<ReplayAsset>(initialAsset);
   const [dossier, setDossier] = useState<Dossier | null>(initialDossier);
+  const [snapshot, setSnapshot] = useState<LiveMarketSnapshot | null>(null);
   const [loading, setLoading] = useState(false);
   const [narration, setNarration] = useState<string | null>(null);
   const [narrationLoading, setNarrationLoading] = useState<boolean>(false);
@@ -67,6 +76,68 @@ export default function DossierPage() {
   const [flashConfirm, setFlashConfirm] = useState(false);
   const flashTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const rafIdRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    let active = true;
+
+    const rawAsset = dossier?.parsed.asset ?? currentAsset;
+    if (!isReplayAllowlistAsset(rawAsset)) {
+      setSnapshot({
+        state: 'unavailable',
+        retrievedAtUtc: null,
+        spotPrice: null,
+        fundingRate: null,
+        sourceLabel: {
+          spotPrice: 'bitget_spot',
+          fundingRate: 'bitget_mix',
+        },
+        reason: 'asset not in replay allowlist',
+      });
+      return;
+    }
+
+    const mapping = ASSET_MAP[rawAsset.toLowerCase()];
+    const rTokenSymbol =
+      dossier?.parsed.rTokenSymbol ??
+      mapping?.rTokenSymbol ??
+      `${rawAsset.toUpperCase()}USDT`;
+    const perpSymbol =
+      dossier?.parsed.perpSymbol ??
+      mapping?.perpSymbol ??
+      `${rawAsset.replace(/^r/i, '').toUpperCase()}USDT`;
+
+    fetchLiveMarketSnapshot(rTokenSymbol, perpSymbol)
+      .then((result) => {
+        if (active) {
+          setSnapshot(result);
+        }
+      })
+      .catch((err) => {
+        if (active) {
+          setSnapshot({
+            state: 'unavailable',
+            retrievedAtUtc: null,
+            spotPrice: null,
+            fundingRate: null,
+            sourceLabel: {
+              spotPrice: 'bitget_spot',
+              fundingRate: 'bitget_mix',
+            },
+            reason:
+              err instanceof Error ? err.message : 'Live snapshot fetch failed',
+          });
+        }
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [
+    dossier?.parsed.asset,
+    currentAsset,
+    dossier?.parsed.rTokenSymbol,
+    dossier?.parsed.perpSymbol,
+  ]);
 
   useEffect(() => {
     return () => {
@@ -142,6 +213,7 @@ export default function DossierPage() {
 
     const asset = asReplayAsset(parsed.asset);
     setCurrentAsset(asset);
+    setSnapshot(null);
 
     const executeRecompute = () => {
       const bundle = getFixtureBundle(asset);
@@ -276,8 +348,28 @@ export default function DossierPage() {
       )
     : null;
 
-  const allEvidence = dossier
-    ? [...dossier.provenance, ...bundle.evidence]
+  const snapshotEvidence: EvidenceItem | null = snapshot
+    ? snapshot.state === 'live'
+      ? {
+          label: 'observed',
+          source: 'bitget_live',
+          timestampUtc: snapshot.retrievedAtUtc,
+          note: `Bitget public REST: spot ${snapshot.spotPrice}, funding ${snapshot.fundingRate}`,
+        }
+      : {
+          label: 'estimated',
+          source: 'bitget_live',
+          timestampUtc: null,
+          note: `Bitget live market snapshot unavailable (${snapshot.reason ?? 'market data unavailable'}); pinned replay values in use below.`,
+        }
+    : null;
+
+  const allEvidence: EvidenceItem[] = dossier
+    ? [
+        ...(snapshotEvidence ? [snapshotEvidence] : []),
+        ...dossier.provenance,
+        ...bundle.evidence,
+      ]
     : [];
 
   return (
@@ -355,6 +447,11 @@ export default function DossierPage() {
             <div className={styles.skeletonFootnote} />
           </div>
         ) : null}
+
+        {/* 3.6. Live Evidence Strip */}
+        {dossier && !dossier.refusal && (
+          <LiveMarketSnapshotStrip snapshot={snapshot} />
+        )}
 
         {/* 4. Bento Grid: RiskMetrics left, DistributionChart right */}
         {dossier && !dossier.refusal && displayedRisks && (
