@@ -1,0 +1,83 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--br-space-8);
+  background-color: var(--br-surface-canvas);
+}
+
+.heroCard {
+  max-width: 640px;
+  width: 100%;
+  background: var(--br-surface-paper);
+  border-radius: var(--br-radius-shell);
+  box-shadow: var(--br-shadow-shell);
+  padding: var(--br-space-12) var(--br-space-8);
+  text-align: center;
+}
+
+.title {
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-8xl);
+  font-weight: var(--br-font-weight-extrabold);
+  letter-spacing: var(--br-letter-spacing-tighter);
+  color: var(--br-text-ink);
+  margin-bottom: var(--br-space-4);
+}
+
+.thesis {
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-xl);
+  color: var(--br-text-muted);
+  line-height: var(--br-line-height-relaxed);
+  margin-bottom: var(--br-space-8);
+}
+
+.links {
+  display: flex;
+  gap: var(--br-space-3);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--br-space-3) var(--br-space-6);
+  border-radius: var(--br-radius-pill);
+  background: var(--br-primary);
+  color: var(--br-text-inverse);
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-body);
+  font-weight: var(--br-font-weight-semibold);
+  box-shadow: var(--br-shadow-primary);
+  text-decoration: none;
+  transition: background var(--br-transition-fast);
+}
+
+.primaryButton:hover {
+  background: var(--br-primary-hover);
+}
+
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--br-space-3) var(--br-space-6);
+  border-radius: var(--br-radius-pill);
+  background: var(--br-surface-subtle);
+  border: 1px solid var(--br-border-medium);
+  color: var(--br-text-ink);
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-body);
+  font-weight: var(--br-font-weight-semibold);
+  text-decoration: none;
+  transition: background var(--br-transition-fast);
+}
+
+.secondaryButton:hover {
+  background: var(--br-lavender-subtle);
+}

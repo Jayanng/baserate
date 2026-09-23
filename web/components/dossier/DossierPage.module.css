@@ -1,0 +1,711 @@
+/**
+ * BaseRate Dossier Page Styles
+ * Strictly consumes var(--br-*) design tokens. ZERO raw hex values.
+ */
+
+.content {
+  padding: var(--br-space-8) var(--br-space-9) var(--br-space-11);
+  display: flex;
+  flex-direction: column;
+  gap: var(--br-space-6);
+}
+
+/* --------------------------------------------------------------------------
+   1. Intake Section
+   -------------------------------------------------------------------------- */
+
+.intakeSection {
+  background: var(--br-surface-card);
+  border-radius: var(--br-radius-card);
+  padding: var(--br-space-7) var(--br-space-8);
+  border: 1px solid var(--br-border-hairline);
+  box-shadow: var(--br-shadow-card);
+}
+
+.intakeLabel {
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--br-letter-spacing-caps);
+  color: var(--br-primary);
+  font-weight: var(--br-font-weight-extrabold);
+  display: block;
+  margin-bottom: var(--br-space-3);
+}
+
+.intakeRow {
+  display: flex;
+  align-items: center;
+  gap: var(--br-space-4);
+}
+
+.intakeInput {
+  flex: 1;
+  background: var(--br-surface-paper);
+  border: 1px solid var(--br-border-medium);
+  border-radius: var(--br-radius-inner);
+  padding: var(--br-space-4) var(--br-space-5);
+  font-size: var(--br-font-size-lg);
+  font-family: inherit;
+  color: var(--br-text-ink);
+  font-weight: var(--br-font-weight-medium);
+  outline: none;
+  transition: border-color var(--br-transition-fast), box-shadow var(--br-transition-fast);
+}
+
+.intakeInput::placeholder {
+  color: var(--br-text-placeholder);
+}
+
+.intakeInput:focus {
+  border-color: var(--br-border-focus);
+  box-shadow: var(--br-shadow-focus);
+}
+
+.submitButton {
+  background: var(--br-primary);
+  color: var(--br-text-inverse);
+  border: none;
+  border-radius: var(--br-radius-pill);
+  padding: var(--br-space-4) var(--br-space-7);
+  font-size: var(--br-font-size-md);
+  font-weight: var(--br-font-weight-bold);
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: var(--br-shadow-primary-sm);
+  transition: background-color var(--br-transition-fast), transform var(--br-transition-fast);
+}
+
+.submitButton:hover {
+  background: var(--br-primary-hover);
+}
+
+.submitButton:active {
+  transform: translateY(1px);
+}
+
+/* --------------------------------------------------------------------------
+   2. Parsed Chips & Confirmation
+   -------------------------------------------------------------------------- */
+
+.parsedChips {
+  display: flex;
+  gap: var(--br-space-2);
+  margin-top: var(--br-space-4);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.chip {
+  background: var(--br-lavender-soft);
+  color: var(--br-lavender-ink);
+  font-size: var(--br-font-size-sm);
+  font-weight: var(--br-font-weight-bold);
+  padding: var(--br-space-1) var(--br-space-3);
+  border-radius: var(--br-radius-pill);
+  font-family: var(--br-font-sans);
+}
+
+.chipReadonly {
+  background: var(--br-surface-subtle);
+  color: var(--br-text-muted);
+}
+
+.confirmBanner {
+  display: flex;
+  align-items: center;
+  gap: var(--br-space-4);
+  background: var(--br-lime-soft);
+  border-radius: var(--br-radius-inner);
+  padding: var(--br-space-4) var(--br-space-6);
+  border: 1px solid var(--br-lime-border);
+}
+
+.confirmIcon {
+  width: 20px;
+  height: 20px;
+  stroke: var(--br-lime-ink);
+  fill: none;
+  stroke-width: 2;
+  flex-shrink: 0;
+}
+
+.confirmText {
+  font-size: var(--br-font-size-md);
+  color: var(--br-lime-ink);
+  font-weight: var(--br-font-weight-semibold);
+  margin: 0;
+  font-family: var(--br-font-sans);
+}
+
+/* --------------------------------------------------------------------------
+   3. Refusal Banner
+   -------------------------------------------------------------------------- */
+
+.refusalBanner {
+  background: var(--br-peach-soft);
+  border: 1px solid var(--br-peach-border);
+  border-radius: var(--br-radius-inner);
+  padding: var(--br-space-4) var(--br-space-6);
+  color: var(--br-peach-ink);
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-md);
+  font-weight: var(--br-font-weight-medium);
+  display: flex;
+  align-items: center;
+  gap: var(--br-space-3);
+}
+
+.refusalCode {
+  font-family: var(--br-font-mono);
+  font-weight: var(--br-font-weight-bold);
+  font-size: var(--br-font-size-sm);
+  background: var(--br-peach);
+  color: var(--br-peach-ink);
+  padding: var(--br-space-1) var(--br-space-2);
+  border-radius: var(--br-radius-xs);
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   3.5. Narration Layer (Desk Summary)
+   -------------------------------------------------------------------------- */
+
+.narrationCard {
+  background: var(--br-surface-paper);
+  border-radius: var(--br-radius-inner);
+  border: 1px solid var(--br-border-hairline);
+  border-left: 3px solid var(--br-lavender-soft);
+  box-shadow: var(--br-shadow-card-subtle);
+  padding: var(--br-space-4) var(--br-space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--br-space-2);
+}
+
+.narrationLabel {
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--br-letter-spacing-caps);
+  color: var(--br-primary);
+  font-weight: var(--br-font-weight-extrabold);
+}
+
+.narrationText {
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-md);
+  color: var(--br-text-ink);
+  line-height: var(--br-line-height-base);
+  font-weight: var(--br-font-weight-medium);
+  margin: 0;
+}
+
+.narrationFootnote {
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-2xs);
+  color: var(--br-text-faint);
+  letter-spacing: var(--br-letter-spacing-wide);
+  margin: 0;
+}
+
+.narrationSkeleton {
+  background: var(--br-surface-paper);
+  border-radius: var(--br-radius-inner);
+  border: 1px solid var(--br-border-hairline);
+  border-left: 3px solid var(--br-lavender-soft);
+  box-shadow: var(--br-shadow-card-subtle);
+  padding: var(--br-space-4) var(--br-space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--br-space-2);
+  animation: narrationPulse 1.8s ease-in-out infinite;
+}
+
+.skeletonTitle {
+  width: 90px;
+  height: 12px;
+  background: var(--br-surface-well);
+  border-radius: var(--br-radius-xs);
+}
+
+.skeletonText {
+  width: 75%;
+  height: 16px;
+  background: var(--br-surface-well);
+  border-radius: var(--br-radius-xs);
+}
+
+.skeletonFootnote {
+  width: 220px;
+  height: 10px;
+  background: var(--br-surface-well);
+  border-radius: var(--br-radius-xs);
+}
+
+@keyframes narrationPulse {
+  0%, 100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. Bento Grid (Risk Metrics + Base Rate Distribution)
+   -------------------------------------------------------------------------- */
+
+.bentoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--br-space-6);
+}
+
+.cardTitle {
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--br-letter-spacing-caps);
+  color: var(--br-text-muted);
+  font-weight: var(--br-font-weight-extrabold);
+  margin-bottom: var(--br-space-5);
+}
+
+/* --------------------------------------------------------------------------
+   5. Risk Card & Metric Tiles
+   -------------------------------------------------------------------------- */
+
+.riskCard {
+  background: var(--br-surface-card);
+  border-radius: var(--br-radius-card);
+  padding: var(--br-space-6) var(--br-space-7);
+  border: 1px solid var(--br-border-hairline);
+  box-shadow: var(--br-shadow-card);
+  display: flex;
+  flex-direction: column;
+}
+
+.riskStack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--br-space-3);
+  flex: 1;
+  justify-content: space-between;
+}
+
+.metricTile {
+  background: var(--br-surface-paper);
+  border-radius: var(--br-radius-inner);
+  padding: var(--br-space-4);
+  border: 1px solid var(--br-border-hairline);
+  display: flex;
+  flex-direction: column;
+  gap: var(--br-space-2);
+}
+
+.metricLabel {
+  font-size: var(--br-font-size-xs);
+  color: var(--br-text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--br-letter-spacing-wide);
+  font-weight: var(--br-font-weight-semibold);
+  font-family: var(--br-font-sans);
+}
+
+.metricValue {
+  font-size: var(--br-font-size-5xl);
+  font-weight: var(--br-font-weight-extrabold);
+  letter-spacing: var(--br-letter-spacing-tight);
+  font-family: var(--br-font-mono);
+  font-variant-numeric: tabular-nums;
+  line-height: var(--br-line-height-tight);
+}
+
+.metricCoral {
+  color: var(--br-coral-bright);
+}
+
+.metricInk {
+  color: var(--br-text-ink);
+}
+
+.evidenceTag {
+  align-self: flex-start;
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-2xs);
+  font-weight: var(--br-font-weight-bold);
+  letter-spacing: var(--br-letter-spacing-wide);
+  text-transform: uppercase;
+  padding: var(--br-space-1) var(--br-space-2);
+  border-radius: var(--br-radius-xs);
+  line-height: var(--br-line-height-tight);
+}
+
+.tagObserved {
+  background: var(--br-lime-soft);
+  color: var(--br-lime-ink);
+}
+
+.tagEstimated {
+  background: var(--br-peach-soft);
+  color: var(--br-peach-ink);
+}
+
+.tagComputed {
+  background: var(--br-lavender-soft);
+  color: var(--br-lavender-ink);
+}
+
+.tagReplay {
+  background: var(--br-peach-soft);
+  color: var(--br-peach-ink);
+}
+
+.tagTarget {
+  background: var(--br-lavender-soft);
+  color: var(--br-lavender-ink);
+}
+
+.pillUnavailable {
+  display: inline-block;
+  background: var(--br-peach-soft);
+  color: var(--br-peach-ink);
+  border: 1px solid var(--br-peach-border);
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-sm);
+  font-weight: var(--br-font-weight-bold);
+  letter-spacing: var(--br-letter-spacing-wide);
+  padding: var(--br-space-1) var(--br-space-3);
+  border-radius: var(--br-radius-xs);
+  align-self: flex-start;
+}
+
+/* --------------------------------------------------------------------------
+   6. Distribution Section
+   -------------------------------------------------------------------------- */
+
+.distributionSection {
+  background: var(--br-surface-card);
+  border-radius: var(--br-radius-card);
+  padding: var(--br-space-6) var(--br-space-7);
+  border: 1px solid var(--br-border-hairline);
+  box-shadow: var(--br-shadow-card);
+  display: flex;
+  flex-direction: column;
+}
+
+.distRow {
+  display: flex;
+  align-items: center;
+  gap: var(--br-space-3);
+  margin-bottom: var(--br-space-3);
+}
+
+.distLabel {
+  width: 120px;
+  font-size: var(--br-font-size-base);
+  font-weight: var(--br-font-weight-semibold);
+  color: var(--br-text-ink);
+  font-family: var(--br-font-sans);
+  flex-shrink: 0;
+}
+
+.distTrack {
+  flex: 1;
+  height: 24px;
+  background: var(--br-surface-well);
+  border-radius: var(--br-radius-sm);
+  overflow: hidden;
+  position: relative;
+}
+
+.distFill {
+  height: 100%;
+  border-radius: var(--br-radius-sm);
+  transition: width var(--br-transition-base);
+}
+
+.distFillLime {
+  background: var(--br-lime);
+}
+
+.distFillLavender {
+  background: var(--br-lavender);
+}
+
+.distFillPeach {
+  background: var(--br-peach);
+}
+
+.distFillCoral {
+  background: var(--br-coral);
+}
+
+.distFillCoralDeep {
+  background: var(--br-coral-deep);
+}
+
+.distPct {
+  width: 44px;
+  text-align: right;
+  font-size: var(--br-font-size-base);
+  font-weight: var(--br-font-weight-bold);
+  color: var(--br-text-ink);
+  font-family: var(--br-font-mono);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+
+.distMeta {
+  display: flex;
+  gap: var(--br-space-5);
+  margin-top: var(--br-space-4);
+  padding-top: var(--br-space-3);
+  border-top: 1px solid var(--br-border-subtle);
+  flex-wrap: wrap;
+}
+
+.distMetaItem {
+  font-size: var(--br-font-size-sm);
+  color: var(--br-text-muted);
+  font-family: var(--br-font-sans);
+}
+
+.distMetaItem b {
+  color: var(--br-text-ink);
+  font-weight: var(--br-font-weight-bold);
+  font-family: var(--br-font-mono);
+}
+
+/* --------------------------------------------------------------------------
+   7. Counterfactual Section
+   -------------------------------------------------------------------------- */
+
+.counterfactualSection {
+  background: var(--br-surface-card);
+  border-radius: var(--br-radius-card);
+  padding: var(--br-space-6) var(--br-space-7);
+  border: 1px solid var(--br-border-hairline);
+  box-shadow: var(--br-shadow-card);
+}
+
+.sliderGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--br-space-5);
+  margin-bottom: var(--br-space-4);
+}
+
+.sliderLabel {
+  font-size: var(--br-font-size-base);
+  font-weight: var(--br-font-weight-bold);
+  color: var(--br-text-ink);
+  width: 120px;
+  flex-shrink: 0;
+  font-family: var(--br-font-sans);
+}
+
+.sliderInput {
+  flex: 1;
+  height: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--br-surface-well);
+  border-radius: var(--br-radius-pill);
+  outline: none;
+  cursor: pointer;
+}
+
+.sliderInput::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--br-radius-round);
+  background: var(--br-primary);
+  cursor: pointer;
+  box-shadow: var(--br-shadow-thumb);
+  border: none;
+}
+
+.sliderInput::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: var(--br-radius-round);
+  background: var(--br-primary);
+  cursor: pointer;
+  box-shadow: var(--br-shadow-thumb);
+  border: none;
+}
+
+.sliderInput::-moz-range-track {
+  height: 6px;
+  background: var(--br-surface-well);
+  border-radius: var(--br-radius-pill);
+}
+
+.sliderValue {
+  font-size: var(--br-font-size-body);
+  font-weight: var(--br-font-weight-extrabold);
+  color: var(--br-primary);
+  width: 110px;
+  text-align: right;
+  font-family: var(--br-font-mono);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+
+.cfResult {
+  background: var(--br-surface-paper);
+  border-radius: var(--br-radius-inner);
+  padding: var(--br-space-4) var(--br-space-6);
+  border: 1px solid var(--br-border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--br-space-5);
+}
+
+.cfResultLeft {
+  font-size: var(--br-font-size-md);
+  font-weight: var(--br-font-weight-semibold);
+  color: var(--br-text-ink);
+  font-family: var(--br-font-sans);
+}
+
+.cfResultSub {
+  display: block;
+  font-size: var(--br-font-size-sm);
+  color: var(--br-text-muted);
+  font-weight: var(--br-font-weight-medium);
+  margin-top: var(--br-space-1);
+}
+
+.cfResultRight {
+  font-size: var(--br-font-size-3xl);
+  font-weight: var(--br-font-weight-extrabold);
+  color: var(--br-coral-bright);
+  font-family: var(--br-font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --------------------------------------------------------------------------
+   8. Evidence Table Section
+   -------------------------------------------------------------------------- */
+
+.evidenceSection {
+  background: var(--br-surface-card);
+  border-radius: var(--br-radius-card);
+  padding: var(--br-space-6) var(--br-space-7);
+  border: 1px solid var(--br-border-hairline);
+  box-shadow: var(--br-shadow-card);
+}
+
+.tableWrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.evidenceTable {
+  width: 100%;
+  min-width: 600px;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--br-font-sans);
+}
+
+.evidenceHeaderRow {
+  display: grid;
+  grid-template-columns: 120px 160px 180px 1fr;
+  gap: var(--br-space-4);
+  padding: var(--br-space-2) 0 var(--br-space-3);
+  border-bottom: 1px solid var(--br-border-medium);
+  font-size: var(--br-font-size-xs);
+  font-weight: var(--br-font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--br-letter-spacing-wide);
+  color: var(--br-text-muted);
+}
+
+.evidenceRow {
+  display: grid;
+  grid-template-columns: 120px 160px 180px 1fr;
+  gap: var(--br-space-4);
+  align-items: center;
+  padding: var(--br-space-3) 0;
+  border-bottom: 1px solid var(--br-border-hairline);
+  font-size: var(--br-font-size-base);
+  color: var(--br-text-ink);
+}
+
+.evidenceRow:last-child {
+  border-bottom: none;
+}
+
+.colLabel {
+  display: flex;
+  align-items: center;
+}
+
+.colSource {
+  font-family: var(--br-font-mono);
+  font-size: var(--br-font-size-sm);
+  color: var(--br-text-ink);
+  font-weight: var(--br-font-weight-medium);
+}
+
+.colTimestamp {
+  font-family: var(--br-font-mono);
+  font-size: var(--br-font-size-xs);
+  color: var(--br-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.colNote {
+  color: var(--br-text-muted);
+  font-size: var(--br-font-size-base);
+  line-height: var(--br-line-height-base);
+}
+
+/* --------------------------------------------------------------------------
+   9. Responsive Layout
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+  .content {
+    padding: var(--br-space-4);
+  }
+
+  .bentoGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .intakeRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sliderGroup {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--br-space-2);
+  }
+
+  .sliderLabel,
+  .sliderValue {
+    width: 100%;
+    text-align: left;
+  }
+
+  .sliderInput {
+    width: 100%;
+  }
+
+  .evidenceHeaderRow,
+  .evidenceRow {
+    grid-template-columns: 100px 140px 150px 1fr;
+  }
+}

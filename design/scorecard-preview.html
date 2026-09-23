@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>BaseRate — Scorecard</title>
+<style>
+@font-face{font-family:Jakarta;src:url('fonts/PlusJakartaSans.woff2') format('woff2-variations');font-weight:200 800;font-display:block}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#e9eaf0;color:#17182d}
+body{font-family:Jakarta,Inter,sans-serif;padding:32px;font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
+.frame{width:1420px;margin:auto;background:#fff;border-radius:36px;box-shadow:0 28px 70px -22px rgba(23,24,45,.12),0 4px 14px rgba(23,24,45,.04);overflow:hidden}
+
+/* top nav */
+.topnav{display:flex;align-items:center;height:72px;padding:0 36px;border-bottom:1px solid rgba(23,24,45,.06)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:16px;color:#17182d}
+.mark{width:32px;height:32px;border-radius:10px;background:#3a1ec8;display:grid;place-items:center;color:#fff;font-size:13px;font-weight:800}
+.navlinks{display:flex;gap:6px;margin-left:48px}
+.navlinks a{text-decoration:none;font-size:13px;font-weight:600;color:#77798b;padding:8px 16px;border-radius:999px}
+.navlinks a.on{background:#3a1ec8;color:#fff}
+.spacer{flex:1}
+.search{background:#f8f9fc;border:1px solid rgba(23,24,45,.06);border-radius:999px;padding:9px 16px;font-size:12px;color:#999bab;width:200px;display:flex;align-items:center;gap:8px}
+.search kbd{background:#fff;border:1px solid rgba(23,24,45,.08);border-radius:5px;padding:1px 6px;font-size:10px;color:#77798b;font-family:inherit}
+.avatar{width:34px;height:34px;border-radius:50%;background:#ece9ff;color:#3a1ec8;display:grid;place-items:center;font-size:11px;font-weight:800;margin-left:16px}
+
+.content{padding:32px 36px 44px}
+
+/* header */
+.header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:28px}
+.header h1{font-size:26px;font-weight:800;letter-spacing:-.03em}
+.header p{font-size:13px;color:#77798b;margin-top:4px}
+.replay-pill{background:#ffe2d7;color:#a9462b;font-size:11px;font-weight:700;padding:7px 14px;border-radius:999px;display:flex;align-items:center;gap:6px}
+.replay-pill svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+
+/* bento grid */
+.bento{display:grid;grid-template-columns:1fr 1.4fr;gap:16px}
+.card{background:#f8f9fc;border-radius:24px;padding:26px 28px;border:1px solid rgba(23,24,45,.04)}
+.card h3{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#77798b;font-weight:800;margin-bottom:18px}
+
+/* hero calibration */
+.hero-cal{display:flex;align-items:center;gap:32px}
+.big-num{font-size:72px;font-weight:800;letter-spacing:-.05em;color:#17182d;line-height:1}
+.big-label{font-size:14px;color:#77798b;font-weight:500;line-height:1.5;max-width:200px}
+.big-label b{color:#17182d;font-weight:700;display:block;font-size:15px;margin-bottom:2px}
+.mini-stats{display:flex;gap:12px;margin-left:auto}
+.mini-stat{background:#fff;border-radius:16px;padding:16px 20px;border:1px solid rgba(23,24,45,.05);text-align:center}
+.mini-stat .v{font-size:22px;font-weight:800;letter-spacing:-.03em}
+.mini-stat .k{font-size:10px;color:#77798b;text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-top:4px}
+.mini-stat .v.green{color:#3f5b00}
+.mini-stat .v.coral{color:#e8603c}
+.mini-stat .v.muted{color:#999bab}
+
+/* regime accuracy table */
+.regime-table{width:100%}
+.regime-row{display:grid;grid-template-columns:1.2fr 1fr 140px 100px;align-items:center;padding:14px 0;border-bottom:1px solid rgba(23,24,45,.05);gap:12px}
+.regime-row:last-child{border:none}
+.regime-row.head{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#999bab;font-weight:700;padding-bottom:10px}
+.regime-name{font-size:13px;font-weight:700;color:#17182d;display:flex;align-items:center;gap:8px}
+.regime-name .dot{width:8px;height:8px;border-radius:50%}
+.dot.trend-up{background:#d9f884}
+.dot.chop{background:#ddd8fb}
+.dot.trend-down{background:#ffb4a2}
+.dot.capitulation{background:#fecdd3}
+.dot.squeeze{background:#e8603c}
+.regime-record{font-size:13px;font-weight:600;color:#17182d}
+.regime-bar-wrap{height:8px;background:#efeff5;border-radius:4px;overflow:hidden}
+.regime-bar{height:100%;border-radius:4px}
+.regime-bar.high{background:#d9f884}
+.regime-bar.mid{background:#ffb4a2}
+.regime-bar.low{background:#fecdd3}
+.pill{font-size:10px;font-weight:700;padding:4px 10px;border-radius:999px;text-align:center}
+.pill.ok{background:#edfbd2;color:#3f5b00}
+.pill.warn{background:#ffe2d7;color:#a9462b}
+.pill.bad{background:#fecdd3;color:#991b1b}
+.pill.prov{background:#f0f1f5;color:#77798b}
+
+/* ledger */
+.ledger{grid-column:1/-1}
+.ledger-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.ledger-item{background:#fff;border-radius:16px;padding:16px;border:1px solid rgba(23,24,45,.05)}
+.ledger-date{font-size:10px;color:#999bab;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.ledger-trade{font-size:12px;font-weight:700;color:#17182d;margin:6px 0 8px}
+.ledger-band{font-size:11px;color:#77798b;font-weight:500}
+.ledger-result{display:flex;align-items:center;gap:6px;margin-top:10px}
+.ledger-result .dot{width:6px;height:6px;border-radius:50%}
+.ledger-result span{font-size:11px;font-weight:700}
+.ledger-result.hit .dot{background:#3f5b00}
+.ledger-result.hit span{color:#3f5b00}
+.ledger-result.miss .dot{background:#e8603c}
+.ledger-result.miss span{color:#e8603c}
+.ledger-hash{font-size:9px;color:#b0b3c1;margin-top:8px;font-family:'SF Mono',Monaco,Consolas,monospace;letter-spacing:.02em}
+
+/* adjustment log */
+.adjustments{grid-column:1/-1}
+.adj-list{display:flex;flex-direction:column;gap:10px}
+.adj-item{display:flex;align-items:center;gap:16px;background:#fff;border-radius:16px;padding:16px 20px;border:1px solid rgba(23,24,45,.05)}
+.adj-icon{width:36px;height:36px;border-radius:12px;background:#ffe2d7;display:grid;place-items:center;flex-shrink:0}
+.adj-icon svg{width:16px;height:16px;stroke:#a9462b;fill:none;stroke-width:2}
+.adj-text{flex:1}
+.adj-text b{font-size:12px;font-weight:700;color:#17182d;display:block}
+.adj-text span{font-size:11px;color:#77798b}
+.adj-tag{font-size:10px;font-weight:700;padding:4px 10px;border-radius:999px;background:#edfbd2;color:#3f5b00}
+
+/* replay note */
+.replay-note{grid-column:1/-1;background:#fff;border-radius:20px;padding:20px 24px;border:1px solid rgba(23,24,45,.06);display:flex;align-items:flex-start;gap:14px}
+.replay-note svg{width:20px;height:20px;stroke:#a9462b;fill:none;stroke-width:2;flex-shrink:0;margin-top:1px}
+.replay-note p{font-size:12px;color:#77798b;line-height:1.6}
+.replay-note b{color:#17182d;font-weight:700}
+</style></head><body><div class="frame">
+
+<nav class="topnav">
+  <div class="brand"><div class="mark">B</div>BaseRate</div>
+  <div class="navlinks">
+    <a href="#">Overview</a>
+    <a href="#">Dossier</a>
+    <a href="#" class="on">Scorecard</a>
+  </div>
+  <div class="spacer"></div>
+  <div class="search">Search your desk <kbd>⌘K</kbd></div>
+  <div class="avatar">JE</div>
+</nav>
+
+<div class="content">
+
+  <div class="header">
+    <div>
+      <h1>Scorecard</h1>
+      <p>Every forecast graded. Misses stay visible.</p>
+    </div>
+    <div class="replay-pill">
+      <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 3v6h6"/></svg>
+      Replay mode · 30 weekends
+    </div>
+  </div>
+
+  <div class="bento">
+
+    <!-- Hero Calibration -->
+    <div class="card" style="grid-column:1/-1">
+      <h3>Overall calibration</h3>
+      <div class="hero-cal">
+        <div class="big-num">83%</div>
+        <div class="big-label">
+          <b>of issued bands contained reality</b>
+          25 of 30 forecasts landed inside their predicted range
+        </div>
+        <div class="mini-stats">
+          <div class="mini-stat"><div class="v green">25</div><div class="k">Hits</div></div>
+          <div class="mini-stat"><div class="v coral">3</div><div class="k">Misses</div></div>
+          <div class="mini-stat"><div class="v muted">2</div><div class="k">Pending</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Regime Accuracy -->
+    <div class="card" style="grid-column:1/-1">
+      <h3>Per-regime accuracy</h3>
+      <div class="regime-table">
+        <div class="regime-row head">
+          <span>Regime</span>
+          <span>Record</span>
+          <span>Accuracy</span>
+          <span>Status</span>
+        </div>
+        <div class="regime-row">
+          <span class="regime-name"><span class="dot trend-up"></span>Trend-up</span>
+          <span class="regime-record">9 of 10 accurate</span>
+          <div class="regime-bar-wrap"><div class="regime-bar high" style="width:90%"></div></div>
+          <span class="pill ok">Reliable</span>
+        </div>
+        <div class="regime-row">
+          <span class="regime-name"><span class="dot chop"></span>Chop</span>
+          <span class="regime-record">11 of 12 accurate</span>
+          <div class="regime-bar-wrap"><div class="regime-bar high" style="width:92%"></div></div>
+          <span class="pill ok">Reliable</span>
+        </div>
+        <div class="regime-row">
+          <span class="regime-name"><span class="dot trend-down"></span>Trend-down</span>
+          <span class="regime-record">7 of 9 accurate</span>
+          <div class="regime-bar-wrap"><div class="regime-bar mid" style="width:78%"></div></div>
+          <span class="pill warn">2 misses</span>
+        </div>
+        <div class="regime-row">
+          <span class="regime-name"><span class="dot capitulation"></span>Capitulation</span>
+          <span class="regime-record">2 of 2 graded</span>
+          <div class="regime-bar-wrap"><div class="regime-bar low" style="width:50%"></div></div>
+          <span class="pill prov">Provisional</span>
+        </div>
+        <div class="regime-row">
+          <span class="regime-name"><span class="dot squeeze"></span>Squeeze</span>
+          <span class="regime-record">Cried wolf on 3 of 4</span>
+          <div class="regime-bar-wrap"><div class="regime-bar low" style="width:25%"></div></div>
+          <span class="pill bad">Widened</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Adjustments -->
+    <div class="card adjustments">
+      <h3>Band adjustments</h3>
+      <div class="adj-list">
+        <div class="adj-item">
+          <div class="adj-icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
+          <div class="adj-text">
+            <b>Squeeze regime bands widened by 2.4 percentage points</b>
+            <span>After 3 consecutive false alarms where the predicted range was too tight. Adjustment applied Sep 22.</span>
+          </div>
+          <span class="adj-tag">Auto</span>
+        </div>
+        <div class="adj-item">
+          <div class="adj-icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
+          <div class="adj-text">
+            <b>Trend-down lower bound extended to -6.1%</b>
+            <span>Two misses in Sep showed actual gaps exceeded the -5% floor. Floor moved based on observed data.</span>
+          </div>
+          <span class="adj-tag">Auto</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Forecast Ledger -->
+    <div class="card ledger">
+      <h3>Forecast ledger</h3>
+      <div class="ledger-grid">
+        <div class="ledger-item">
+          <div class="ledger-date">Sep 21, 2026</div>
+          <div class="ledger-trade">rNVDA · long · 3x</div>
+          <div class="ledger-band">Band: -4.2% to +1.8%</div>
+          <div class="ledger-result hit"><span class="dot"></span><span>Actual: -0.9% · Hit</span></div>
+          <div class="ledger-hash">hash 9f2c…e41a</div>
+        </div>
+        <div class="ledger-item">
+          <div class="ledger-date">Sep 14, 2026</div>
+          <div class="ledger-trade">rTSLA · long · 2x</div>
+          <div class="ledger-band">Band: -3.1% to +2.4%</div>
+          <div class="ledger-result hit"><span class="dot"></span><span>Actual: +1.2% · Hit</span></div>
+          <div class="ledger-hash">hash 4a1b…7c3d</div>
+        </div>
+        <div class="ledger-item">
+          <div class="ledger-date">Sep 7, 2026</div>
+          <div class="ledger-trade">rAAPL · short · 5x</div>
+          <div class="ledger-band">Band: -2.8% to +3.6%</div>
+          <div class="ledger-result miss"><span class="dot"></span><span>Actual: +4.1% · Miss</span></div>
+          <div class="ledger-hash">hash 8e2f…1a9b</div>
+        </div>
+        <div class="ledger-item">
+          <div class="ledger-date">Aug 31, 2026</div>
+          <div class="ledger-trade">rNVDA · long · 3x</div>
+          <div class="ledger-band">Band: -5.0% to +1.2%</div>
+          <div class="ledger-result hit"><span class="dot"></span><span>Actual: -2.3% · Hit</span></div>
+          <div class="ledger-hash">hash c3d4…5e6f</div>
+        </div>
+        <div class="ledger-item">
+          <div class="ledger-date">Aug 24, 2026</div>
+          <div class="ledger-trade">rQQQ · long · 2x</div>
+          <div class="ledger-band">Band: -1.9% to +2.1%</div>
+          <div class="ledger-result hit"><span class="dot"></span><span>Actual: +0.4% · Hit</span></div>
+          <div class="ledger-hash">hash f7a8…b9c0</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Replay Note -->
+    <div class="replay-note">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l2 2"/></svg>
+      <p><b>Replay mode active.</b> These 30 forecasts were re-issued from frozen historical data, then graded against what actually happened. The mechanism and math are identical to live grading. Every replayed number is labeled REPLAY so nobody mistakes it for a live call. As live weekends accumulate, replay entries are replaced with real grades.</p>
+    </div>
+
+  </div>
+</div>
+
+</div></body></html>

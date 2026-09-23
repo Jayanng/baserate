@@ -1,0 +1,927 @@
+/**
+ * BaseRate Overview Page Styles
+ * Strictly consumes var(--br-*) design tokens. ZERO raw hex values.
+ * Responsive single column below 900px.
+ */
+
+.content {
+  padding: var(--br-space-8) var(--br-space-9) var(--br-space-11);
+  display: flex;
+  flex-direction: column;
+  gap: var(--br-space-6);
+}
+
+/* --------------------------------------------------------------------------
+   1. Page Header
+   -------------------------------------------------------------------------- */
+
+.pageHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--br-space-4);
+  flex-wrap: wrap;
+}
+
+.headerTextGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--br-space-1);
+}
+
+.pageTitle {
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-6xl);
+  font-weight: var(--br-font-weight-extrabold);
+  letter-spacing: var(--br-letter-spacing-tight);
+  line-height: var(--br-line-height-tight);
+  color: var(--br-text-ink);
+  margin: 0;
+}
+
+.pageSubtitle {
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-md);
+  color: var(--br-text-muted);
+  font-weight: var(--br-font-weight-medium);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   2. Restrained Status Pills (Max 3 on entire page)
+   -------------------------------------------------------------------------- */
+
+.statusPill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--br-space-2);
+  background: var(--br-surface-paper);
+  border: 1px solid var(--br-border-medium);
+  border-radius: var(--br-radius-pill);
+  padding: var(--br-space-2) var(--br-space-4);
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-sm);
+  font-weight: var(--br-font-weight-semibold);
+  color: var(--br-text-ink);
+  box-shadow: var(--br-shadow-card-subtle);
+  white-space: nowrap;
+}
+
+.statusDotLive {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--br-radius-round);
+  background: var(--br-lime-ink);
+  box-shadow: 0 0 0 2px var(--br-lime-soft);
+  flex-shrink: 0;
+}
+
+.positionPill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--br-space-2);
+  background: var(--br-lavender-soft);
+  color: var(--br-lavender-ink);
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-sm);
+  font-weight: var(--br-font-weight-bold);
+  padding: var(--br-space-1) var(--br-space-3);
+  border-radius: var(--br-radius-pill);
+  letter-spacing: var(--br-letter-spacing-wide);
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   3. Hero Grid (2-Column Bento: Exposure Hero + Weekend Strip)
+   -------------------------------------------------------------------------- */
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: var(--br-space-6);
+  align-items: stretch;
+}
+
+.exposureCard {
+  background: var(--br-surface-card-white);
+  border-radius: var(--br-radius-card);
+  box-shadow: var(--br-shadow-card);
+  border: 1px solid var(--br-border-hairline);
+  padding: var(--br-space-6) var(--br-space-7);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--br-space-5);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--br-space-4);
+}
+
+.cardEyebrow {
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-xs);
+  font-weight: var(--br-font-weight-extrabold);
+  text-transform: uppercase;
+  letter-spacing: var(--br-letter-spacing-caps);
+  color: var(--br-text-muted);
+}
+
+.survivalBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--br-space-2);
+}
+
+.survivalNumberRow {
+  display: flex;
+  align-items: baseline;
+  gap: var(--br-space-4);
+  flex-wrap: wrap;
+}
+
+.survivalHero {
+  font-family: var(--br-font-mono);
+  font-size: var(--br-font-size-8xl);
+  font-weight: var(--br-font-weight-extrabold);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--br-letter-spacing-tighter);
+  line-height: var(--br-line-height-tight);
+  color: var(--br-text-ink);
+}
+
+.survivalBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--br-space-2);
+  background: var(--br-lime-soft);
+  color: var(--br-lime-ink);
+  border: 1px solid var(--br-lime-border);
+  border-radius: var(--br-radius-pill);
+  padding: var(--br-space-2) var(--br-space-4);
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-sm);
+  font-weight: var(--br-font-weight-bold);
+  white-space: nowrap;
+}
+
+.survivalBadgeDot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--br-radius-round);
+  background: var(--br-lime-ink);
+  flex-shrink: 0;
+}
+
+.survivalContext {
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-sm);
+  color: var(--br-text-muted);
+  margin: 0;
+}
+
+.journeyRow {
+  padding-top: var(--br-space-4);
+  border-top: 1px solid var(--br-border-hairline);
+}
+
+/* --------------------------------------------------------------------------
+   4. Journey Stepper (5 stages)
+   -------------------------------------------------------------------------- */
+
+@keyframes pulseDot {
+  0% {
+    box-shadow: 0 0 0 0 var(--br-primary-border);
+  }
+  70% {
+    box-shadow: 0 0 0 6px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+.stepperContainer {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.stepperHairline {
+  position: absolute;
+  top: 12px;
+  left: 20px;
+  right: 20px;
+  height: 1px;
+  background: var(--br-border-medium);
+  z-index: 0;
+}
+
+.stepItem {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--br-space-2);
+  min-width: 54px;
+}
+
+.stepDot {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--br-radius-round);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--br-transition-fast);
+}
+
+.stepDotDone {
+  background: var(--br-lavender);
+  color: var(--br-primary);
+}
+
+.stepDotCurrent {
+  background: var(--br-primary);
+  animation: pulseDot 2s infinite;
+}
+
+.stepDotCurrentInner {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--br-radius-round);
+  background: var(--br-surface-paper);
+}
+
+.stepDotFuture {
+  background: var(--br-surface-well);
+  border: 1px solid var(--br-border-medium);
+}
+
+.stepCheckIcon {
+  width: 12px;
+  height: 12px;
+  stroke: var(--br-primary);
+  stroke-width: 2;
+  fill: none;
+}
+
+.stepLabel {
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-xs);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.stepLabelDone {
+  color: var(--br-text-ink);
+  font-weight: var(--br-font-weight-medium);
+}
+
+.stepLabelCurrent {
+  color: var(--br-primary);
+  font-weight: var(--br-font-weight-bold);
+}
+
+.stepLabelFuture {
+  color: var(--br-text-faint);
+  font-weight: var(--br-font-weight-regular);
+}
+
+/* --------------------------------------------------------------------------
+   5. Weekend Strip Card
+   -------------------------------------------------------------------------- */
+
+.weekendStrip {
+  background: var(--br-surface-card-white);
+  border-radius: var(--br-radius-card);
+  box-shadow: var(--br-shadow-card);
+  border: 1px solid var(--br-border-hairline);
+  padding: var(--br-space-6) var(--br-space-7);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--br-space-4);
+}
+
+.stripHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tilesGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--br-space-3);
+}
+
+.dayTile {
+  background: var(--br-surface-card);
+  border-radius: var(--br-radius-inner);
+  padding: var(--br-space-3);
+  border: 1px solid var(--br-border-hairline);
+  border-top-width: 3px;
+  border-top-style: solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 82px;
+  gap: var(--br-space-2);
+}
+
+.dayTileLime {
+  border-top-color: var(--br-lime);
+}
+
+.dayTileIndigo {
+  border-top-color: var(--br-primary);
+  background: var(--br-primary-soft);
+}
+
+.dayTileWell {
+  border-top-color: var(--br-surface-well);
+}
+
+.dayTilePeach {
+  border-top-color: var(--br-peach);
+  border-style: dashed;
+  border-top-style: solid;
+}
+
+.dayLabel {
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-xs);
+  font-weight: var(--br-font-weight-extrabold);
+  text-transform: uppercase;
+  letter-spacing: var(--br-letter-spacing-caps);
+  color: var(--br-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dayDot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--br-radius-round);
+  flex-shrink: 0;
+}
+
+.dayDotLime {
+  background: var(--br-lime-ink);
+}
+
+.dayDotIndigo {
+  background: var(--br-primary);
+}
+
+.dayDotWell {
+  background: var(--br-text-faint);
+}
+
+.dayDotPeach {
+  background: var(--br-peach-ink);
+}
+
+.dayStatus {
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-sm);
+  font-weight: var(--br-font-weight-semibold);
+  color: var(--br-text-ink);
+  line-height: var(--br-line-height-snug);
+}
+
+.stripNotes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--br-space-2);
+  padding-top: var(--br-space-3);
+  border-top: 1px solid var(--br-border-hairline);
+}
+
+.stripNoteRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-xs);
+  color: var(--br-text-muted);
+}
+
+.stripNoteLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--br-space-2);
+}
+
+.stripNoteTime {
+  font-family: var(--br-font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--br-text-faint);
+}
+
+/* --------------------------------------------------------------------------
+   6. Metrics Row (3 Compact Stat Tiles)
+   -------------------------------------------------------------------------- */
+
+.metricsRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--br-space-6);
+}
+
+.metricTile {
+  background: var(--br-surface-card);
+  border-radius: var(--br-radius-inner);
+  padding: var(--br-space-5) var(--br-space-6);
+  border: 1px solid var(--br-border-hairline);
+  display: flex;
+  flex-direction: column;
+  gap: var(--br-space-2);
+}
+
+.metricHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.metricLabel {
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-xs);
+  font-weight: var(--br-font-weight-extrabold);
+  text-transform: uppercase;
+  letter-spacing: var(--br-letter-spacing-caps);
+  color: var(--br-text-muted);
+}
+
+.evidenceTag {
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-2xs);
+  font-weight: var(--br-font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--br-letter-spacing-wide);
+  padding: var(--br-space-1) var(--br-space-2);
+  border-radius: var(--br-radius-xs);
+  line-height: 1;
+}
+
+.tagObserved {
+  background: var(--br-lime-soft);
+  color: var(--br-lime-ink);
+  border: 1px solid var(--br-lime-border);
+}
+
+.tagEstimated {
+  background: var(--br-peach-soft);
+  color: var(--br-peach-ink);
+  border: 1px solid var(--br-peach-border);
+}
+
+.tagComputed {
+  background: var(--br-lavender-soft);
+  color: var(--br-lavender-ink);
+  border: 1px solid var(--br-lavender-border);
+}
+
+.metricValue {
+  font-family: var(--br-font-mono);
+  font-size: var(--br-font-size-5xl);
+  font-weight: var(--br-font-weight-extrabold);
+  font-variant-numeric: tabular-nums;
+  line-height: var(--br-line-height-tight);
+}
+
+.metricValueCoral {
+  color: var(--br-coral-bright);
+}
+
+.metricValueInk {
+  color: var(--br-text-ink);
+}
+
+.metricSubtext {
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-xs);
+  color: var(--br-text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   7. Action Grid (2 Action Link Cards)
+   -------------------------------------------------------------------------- */
+
+.actionGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--br-space-6);
+}
+
+.actionCard {
+  background: var(--br-surface-card-white);
+  border-radius: var(--br-radius-card);
+  border: 1px solid var(--br-border-hairline);
+  box-shadow: var(--br-shadow-card);
+  padding: var(--br-space-6) var(--br-space-7);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--br-space-4);
+  text-decoration: none;
+  transition: transform var(--br-transition-fast), box-shadow var(--br-transition-fast), border-color var(--br-transition-fast);
+  cursor: pointer;
+}
+
+.actionCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--br-shadow-float);
+  border-color: var(--br-primary-border);
+}
+
+.actionContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--br-space-1);
+}
+
+.actionTitle {
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-xl);
+  font-weight: var(--br-font-weight-bold);
+  color: var(--br-text-ink);
+  margin: 0;
+}
+
+.actionDescription {
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-sm);
+  color: var(--br-text-muted);
+  line-height: var(--br-line-height-base);
+  margin: 0;
+}
+
+.actionArrow {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--br-radius-compact);
+  background: var(--br-surface-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--br-primary);
+  flex-shrink: 0;
+  transition: background-color var(--br-transition-fast), transform var(--br-transition-fast);
+}
+
+.actionCard:hover .actionArrow {
+  background: var(--br-primary-soft);
+  transform: translateX(2px);
+}
+
+.actionArrowIcon {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  fill: none;
+}
+
+/* --------------------------------------------------------------------------
+   8. Bottom Bento Grid (Record Summary + Activity Feed)
+   -------------------------------------------------------------------------- */
+
+.bottomGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--br-space-6);
+  align-items: stretch;
+}
+
+.recordCard {
+  background: var(--br-surface-card-white);
+  border-radius: var(--br-radius-card);
+  border: 1px solid var(--br-border-hairline);
+  box-shadow: var(--br-shadow-card);
+  padding: var(--br-space-6) var(--br-space-7);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--br-space-5);
+}
+
+.feedCard {
+  background: var(--br-surface-card-white);
+  border-radius: var(--br-radius-card);
+  border: 1px solid var(--br-border-hairline);
+  box-shadow: var(--br-shadow-card);
+  padding: var(--br-space-6) var(--br-space-7);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--br-space-4);
+}
+
+.cardHeaderAction {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cardTitle {
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-xs);
+  font-weight: var(--br-font-weight-extrabold);
+  text-transform: uppercase;
+  letter-spacing: var(--br-letter-spacing-caps);
+  color: var(--br-text-muted);
+  margin: 0;
+}
+
+.cardLinkHeader {
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-xs);
+  font-weight: var(--br-font-weight-semibold);
+  color: var(--br-primary);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--br-space-1);
+  transition: color var(--br-transition-fast);
+}
+
+.cardLinkHeader:hover {
+  color: var(--br-primary-hover);
+}
+
+.recordFootnote {
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-xs);
+  color: var(--br-text-muted);
+  line-height: var(--br-line-height-base);
+  margin: 0;
+  padding-top: var(--br-space-3);
+  border-top: 1px solid var(--br-border-hairline);
+}
+
+.linkRow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--br-space-2);
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-sm);
+  font-weight: var(--br-font-weight-bold);
+  color: var(--br-text-ink);
+  text-decoration: none;
+  transition: color var(--br-transition-fast);
+  padding-top: var(--br-space-2);
+}
+
+.linkRow:hover {
+  color: var(--br-primary);
+}
+
+.linkRowArrow {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  fill: none;
+}
+
+/* --------------------------------------------------------------------------
+   9. Donut Chart Component Styles
+   -------------------------------------------------------------------------- */
+
+.donutContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--br-space-6);
+  padding: var(--br-space-2) 0;
+}
+
+.donutSvgWrap {
+  position: relative;
+  width: 116px;
+  height: 116px;
+  flex-shrink: 0;
+}
+
+.donutSvg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.donutTrack {
+  fill: none;
+  stroke: var(--br-surface-well);
+  stroke-width: 14;
+}
+
+.donutSegmentHits {
+  fill: none;
+  stroke: var(--br-lime);
+  stroke-width: 14;
+  transition: stroke-dasharray var(--br-transition-base);
+}
+
+.donutSegmentMisses {
+  fill: none;
+  stroke: var(--br-coral-bright);
+  stroke-width: 14;
+  transition: stroke-dasharray var(--br-transition-base);
+}
+
+.donutSegmentPending {
+  fill: none;
+  stroke: var(--br-peach);
+  stroke-width: 14;
+  transition: stroke-dasharray var(--br-transition-base);
+}
+
+.donutCenterGroup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.donutCenterNumber {
+  font-family: var(--br-font-mono);
+  font-size: var(--br-font-size-3xl);
+  font-weight: var(--br-font-weight-extrabold);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  color: var(--br-text-ink);
+}
+
+.donutCenterLabel {
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-2xs);
+  font-weight: var(--br-font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--br-letter-spacing-wide);
+  color: var(--br-text-muted);
+  margin-top: var(--br-space-1);
+}
+
+.donutLegend {
+  display: flex;
+  flex-direction: column;
+  gap: var(--br-space-3);
+  flex: 1;
+}
+
+.legendRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--br-space-3);
+}
+
+.legendLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--br-space-2);
+}
+
+.legendDot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--br-radius-round);
+  flex-shrink: 0;
+}
+
+.legendDotLime {
+  background: var(--br-lime);
+  box-shadow: 0 0 0 1px var(--br-lime-border);
+}
+
+.legendDotCoral {
+  background: var(--br-coral-bright);
+}
+
+.legendDotPeach {
+  background: var(--br-peach);
+  box-shadow: 0 0 0 1px var(--br-peach-border);
+}
+
+.legendLabel {
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-sm);
+  color: var(--br-text-muted);
+}
+
+.legendCount {
+  font-family: var(--br-font-mono);
+  font-size: var(--br-font-size-sm);
+  font-weight: var(--br-font-weight-bold);
+  font-variant-numeric: tabular-nums;
+  color: var(--br-text-ink);
+}
+
+/* --------------------------------------------------------------------------
+   10. Activity Feed Component Styles
+   -------------------------------------------------------------------------- */
+
+.feedList {
+  display: flex;
+  flex-direction: column;
+}
+
+.feedItem {
+  display: flex;
+  align-items: center;
+  gap: var(--br-space-3);
+  padding: var(--br-space-3) 0;
+  border-bottom: 1px solid var(--br-border-subtle);
+}
+
+.feedItem:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.feedItem:first-child {
+  padding-top: 0;
+}
+
+.feedIconChip {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--br-radius-compact);
+  background: var(--br-lavender-soft);
+  color: var(--br-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.feedIconSvg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  fill: none;
+}
+
+.feedText {
+  font-family: var(--br-font-sans);
+  font-size: var(--br-font-size-sm);
+  color: var(--br-text-ink);
+  line-height: var(--br-line-height-snug);
+  flex: 1;
+}
+
+.feedTime {
+  font-family: var(--br-font-mono);
+  font-size: var(--br-font-size-xs);
+  font-variant-numeric: tabular-nums;
+  color: var(--br-text-faint);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   11. Responsive Layout (Single Column Below 900px)
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .content {
+    padding: var(--br-space-5) var(--br-space-4);
+  }
+
+  .heroGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .metricsRow {
+    grid-template-columns: 1fr;
+  }
+
+  .actionGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .bottomGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .tilesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

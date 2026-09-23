@@ -1,0 +1,7664 @@
+{
+  "generatedAtUtc": "2026-09-23T07:33:34.077Z",
+  "source": "yahoo_native AAPL daily",
+  "totalEpisodes": 1227,
+  "gaps": [
+    {
+      "pct": -17.9195,
+      "episodeDate": "2008-09-26",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 13.9049,
+      "episodeDate": "2008-10-10",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": -12.8647,
+      "episodeDate": "2020-03-13",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": 12.5575,
+      "episodeDate": "2008-11-21",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": 11.3492,
+      "episodeDate": "2003-05-02",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 11.2017,
+      "episodeDate": "2004-11-19",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 10.8628,
+      "episodeDate": "2001-01-26",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 10.7263,
+      "episodeDate": "2000-04-14",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": 9.8161,
+      "episodeDate": "2000-09-15",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": 9.3101,
+      "episodeDate": "2020-02-28",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": 9.1296,
+      "episodeDate": "1999-11-05",
+      "source": "yahoo_native",
+      "regime": "insufficient_evidence"
+    },
+    {
+      "pct": -9.1015,
+      "episodeDate": "2000-07-21",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 8.8754,
+      "episodeDate": "1999-12-31",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 8.7237,
+      "episodeDate": "2020-04-03",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -8.0247,
+      "episodeDate": "2001-03-09",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": -7.9092,
+      "episodeDate": "2020-03-06",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 7.7718,
+      "episodeDate": "2001-06-22",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 7.7116,
+      "episodeDate": "2001-11-23",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 7.6868,
+      "episodeDate": "2010-05-07",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": 7.2108,
+      "episodeDate": "2012-11-16",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -7.0206,
+      "episodeDate": "2007-11-09",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -6.9974,
+      "episodeDate": "2008-09-19",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": 6.4942,
+      "episodeDate": "2000-02-11",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 6.3521,
+      "episodeDate": "2020-10-09",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -6.3326,
+      "episodeDate": "2006-02-03",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 6.1754,
+      "episodeDate": "2025-05-09",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -6.1556,
+      "episodeDate": "2000-05-12",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 6.0851,
+      "episodeDate": "2008-12-05",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 6.0263,
+      "episodeDate": "2004-11-26",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": -6.0037,
+      "episodeDate": "2001-06-08",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 5.975,
+      "episodeDate": "2009-03-20",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 5.963,
+      "episodeDate": "2000-06-16",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 5.8855,
+      "episodeDate": "2005-05-20",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 5.8441,
+      "episodeDate": "2001-03-02",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 5.826,
+      "episodeDate": "2012-05-18",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -5.8251,
+      "episodeDate": "2000-09-29",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -5.8119,
+      "episodeDate": "2019-05-10",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -5.7607,
+      "episodeDate": "2008-09-12",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 5.728,
+      "episodeDate": "2005-10-28",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 5.6134,
+      "episodeDate": "2000-02-04",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -5.5823,
+      "episodeDate": "1999-09-24",
+      "source": "yahoo_native",
+      "regime": "insufficient_evidence"
+    },
+    {
+      "pct": -5.5706,
+      "episodeDate": "2001-10-26",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -5.4628,
+      "episodeDate": "2011-08-05",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 5.4297,
+      "episodeDate": "2001-11-16",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 5.3851,
+      "episodeDate": "2021-02-26",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -5.3042,
+      "episodeDate": "2001-03-23",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": -5.2348,
+      "episodeDate": "2019-08-02",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 5.1747,
+      "episodeDate": "2000-07-28",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 5.1406,
+      "episodeDate": "2011-10-07",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -5.1234,
+      "episodeDate": "2000-04-07",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -5.0374,
+      "episodeDate": "2018-11-09",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 4.9699,
+      "episodeDate": "2013-09-20",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 4.9458,
+      "episodeDate": "2004-12-03",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 4.9451,
+      "episodeDate": "2004-10-15",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 4.9369,
+      "episodeDate": "2000-07-07",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 4.8796,
+      "episodeDate": "2003-06-13",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -4.848,
+      "episodeDate": "2025-03-07",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -4.8167,
+      "episodeDate": "2024-08-02",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 4.7773,
+      "episodeDate": "2001-03-16",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -4.7651,
+      "episodeDate": "2000-06-09",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -4.7619,
+      "episodeDate": "2008-07-25",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -4.75,
+      "episodeDate": "2020-02-21",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 4.7472,
+      "episodeDate": "2018-03-23",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 4.742,
+      "episodeDate": "2002-07-26",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -4.7333,
+      "episodeDate": "2008-12-19",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 4.7159,
+      "episodeDate": "2000-06-23",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 4.7056,
+      "episodeDate": "2002-02-22",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": -4.6601,
+      "episodeDate": "2009-02-20",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 4.6077,
+      "episodeDate": "1999-10-01",
+      "source": "yahoo_native",
+      "regime": "insufficient_evidence"
+    },
+    {
+      "pct": 4.5772,
+      "episodeDate": "2001-09-21",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": -4.548,
+      "episodeDate": "2000-01-21",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 4.4872,
+      "episodeDate": "2000-10-20",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -4.4511,
+      "episodeDate": "2008-10-24",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 4.431,
+      "episodeDate": "2012-12-28",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 4.4212,
+      "episodeDate": "2008-04-18",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -4.3219,
+      "episodeDate": "2000-05-19",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -4.3111,
+      "episodeDate": "2009-08-14",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 4.3096,
+      "episodeDate": "2025-09-19",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -4.293,
+      "episodeDate": "2002-11-08",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 4.29,
+      "episodeDate": "2003-11-21",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": 4.2204,
+      "episodeDate": "2009-01-02",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 4.2113,
+      "episodeDate": "2005-02-11",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -4.2,
+      "episodeDate": "2003-03-21",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 4.1824,
+      "episodeDate": "2004-01-02",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 4.169,
+      "episodeDate": "2005-04-22",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -4.1674,
+      "episodeDate": "2021-03-05",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -4.1609,
+      "episodeDate": "2005-04-08",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -4.1472,
+      "episodeDate": "2012-04-13",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 4.1286,
+      "episodeDate": "2002-04-26",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 4.1233,
+      "episodeDate": "2006-01-27",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": 4.1119,
+      "episodeDate": "2002-07-12",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 4.0581,
+      "episodeDate": "2026-01-30",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 4.0405,
+      "episodeDate": "2000-10-27",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -4.0358,
+      "episodeDate": "2008-11-28",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 4.0279,
+      "episodeDate": "2018-02-09",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -4.0277,
+      "episodeDate": "2004-03-12",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 4.0119,
+      "episodeDate": "2022-05-20",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 4.0013,
+      "episodeDate": "2007-10-05",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 3.9666,
+      "episodeDate": "2012-10-19",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -3.9632,
+      "episodeDate": "2018-11-16",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": 3.9533,
+      "episodeDate": "2002-02-08",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 3.947,
+      "episodeDate": "2005-01-28",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 3.9439,
+      "episodeDate": "2025-10-17",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 3.9405,
+      "episodeDate": "2006-03-10",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": 3.9344,
+      "episodeDate": "2001-10-19",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -3.8955,
+      "episodeDate": "2002-07-05",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -3.8835,
+      "episodeDate": "1999-12-10",
+      "source": "yahoo_native",
+      "regime": "insufficient_evidence"
+    },
+    {
+      "pct": 3.8728,
+      "episodeDate": "2014-04-25",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": -3.8628,
+      "episodeDate": "2006-02-10",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": -3.8528,
+      "episodeDate": "2003-09-12",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 3.8509,
+      "episodeDate": "2002-02-01",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 3.8508,
+      "episodeDate": "2022-09-09",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 3.8378,
+      "episodeDate": "2013-12-20",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -3.8285,
+      "episodeDate": "2022-06-10",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 3.826,
+      "episodeDate": "2003-11-28",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 3.8202,
+      "episodeDate": "2003-04-25",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 3.8091,
+      "episodeDate": "2007-06-15",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 3.796,
+      "episodeDate": "2009-05-01",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -3.7812,
+      "episodeDate": "2006-06-09",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 3.7671,
+      "episodeDate": "2006-09-22",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 3.749,
+      "episodeDate": "2007-09-07",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -3.7247,
+      "episodeDate": "2002-06-28",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -3.7234,
+      "episodeDate": "2003-05-16",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 3.7119,
+      "episodeDate": "2016-05-13",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -3.6734,
+      "episodeDate": "2025-04-04",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": 3.6637,
+      "episodeDate": "2009-11-06",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -3.658,
+      "episodeDate": "2002-05-03",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 3.6542,
+      "episodeDate": "2001-02-23",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -3.6515,
+      "episodeDate": "2000-11-03",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 3.6357,
+      "episodeDate": "2015-08-07",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 3.6134,
+      "episodeDate": "2006-07-28",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -3.5905,
+      "episodeDate": "2004-06-25",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 3.5821,
+      "episodeDate": "2002-03-01",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -3.582,
+      "episodeDate": "2008-12-12",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -3.5815,
+      "episodeDate": "2001-07-13",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 3.5787,
+      "episodeDate": "2004-06-04",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -3.5653,
+      "episodeDate": "2013-01-11",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -3.5289,
+      "episodeDate": "2000-03-10",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 3.5266,
+      "episodeDate": "2008-01-11",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": 3.4942,
+      "episodeDate": "2018-11-30",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -3.4929,
+      "episodeDate": "2004-12-17",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 3.4642,
+      "episodeDate": "2019-03-08",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 3.4553,
+      "episodeDate": "2009-05-15",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -3.4541,
+      "episodeDate": "2007-06-08",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 3.4519,
+      "episodeDate": "2011-11-25",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -3.4466,
+      "episodeDate": "2003-12-12",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 3.4273,
+      "episodeDate": "2005-08-12",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 3.3912,
+      "episodeDate": "2020-08-28",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -3.3856,
+      "episodeDate": "2025-01-31",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 3.355,
+      "episodeDate": "2006-07-14",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -3.3347,
+      "episodeDate": "2002-01-04",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": -3.3189,
+      "episodeDate": "2022-05-06",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -3.3077,
+      "episodeDate": "2006-03-03",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 3.2842,
+      "episodeDate": "2011-01-21",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 3.2835,
+      "episodeDate": "2011-10-21",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -3.2456,
+      "episodeDate": "2014-11-28",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 3.2395,
+      "episodeDate": "2002-11-01",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": -3.2363,
+      "episodeDate": "2000-11-24",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 3.2175,
+      "episodeDate": "2004-03-26",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 3.2003,
+      "episodeDate": "2013-06-28",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 3.1963,
+      "episodeDate": "2003-08-15",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -3.1911,
+      "episodeDate": "2015-10-23",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -3.1837,
+      "episodeDate": "2002-08-02",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 3.1824,
+      "episodeDate": "2012-03-30",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -3.1792,
+      "episodeDate": "2013-09-13",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 3.178,
+      "episodeDate": "2025-01-24",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 3.174,
+      "episodeDate": "2004-01-09",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 3.1638,
+      "episodeDate": "2008-02-08",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": -3.1549,
+      "episodeDate": "2001-04-20",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 3.1549,
+      "episodeDate": "2012-11-23",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -3.1542,
+      "episodeDate": "2012-04-27",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -3.1462,
+      "episodeDate": "2007-12-14",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -3.1459,
+      "episodeDate": "2025-05-02",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -3.127,
+      "episodeDate": "2019-05-17",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -3.1202,
+      "episodeDate": "1999-10-29",
+      "source": "yahoo_native",
+      "regime": "insufficient_evidence"
+    },
+    {
+      "pct": 3.0968,
+      "episodeDate": "2013-04-26",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 3.085,
+      "episodeDate": "2007-05-04",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 3.0791,
+      "episodeDate": "2020-10-02",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 3.0753,
+      "episodeDate": "2022-09-30",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -3.072,
+      "episodeDate": "2002-03-22",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -3.0679,
+      "episodeDate": "2001-05-04",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 3.0417,
+      "episodeDate": "2021-08-27",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 3.0412,
+      "episodeDate": "2001-07-06",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 3.0326,
+      "episodeDate": "2020-09-18",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 3,
+      "episodeDate": "2020-09-11",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": 2.9819,
+      "episodeDate": "2004-04-02",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 2.9812,
+      "episodeDate": "2009-11-20",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.9799,
+      "episodeDate": "2021-02-19",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.9743,
+      "episodeDate": "2020-11-20",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.9713,
+      "episodeDate": "2026-01-23",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -2.9637,
+      "episodeDate": "2004-07-09",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.9514,
+      "episodeDate": "2003-03-28",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.9483,
+      "episodeDate": "2003-09-26",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": 2.9413,
+      "episodeDate": "2001-02-09",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.9405,
+      "episodeDate": "2020-01-24",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 2.9123,
+      "episodeDate": "2022-10-14",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 2.9105,
+      "episodeDate": "2024-06-28",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 2.8789,
+      "episodeDate": "2003-04-11",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.8651,
+      "episodeDate": "2007-09-21",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.8608,
+      "episodeDate": "2017-06-16",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.8543,
+      "episodeDate": "2010-09-17",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.8538,
+      "episodeDate": "2020-03-27",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.8443,
+      "episodeDate": "2004-04-16",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 2.8408,
+      "episodeDate": "2013-08-09",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 2.8405,
+      "episodeDate": "2019-02-01",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": -2.8388,
+      "episodeDate": "2018-11-02",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.8336,
+      "episodeDate": "2021-03-19",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 2.8293,
+      "episodeDate": "2003-10-10",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": -2.8172,
+      "episodeDate": "2015-01-02",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.7978,
+      "episodeDate": "2009-02-06",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.7957,
+      "episodeDate": "2001-06-29",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.7924,
+      "episodeDate": "2005-09-16",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 2.7921,
+      "episodeDate": "2007-04-20",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.7856,
+      "episodeDate": "2003-05-30",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 2.779,
+      "episodeDate": "2011-09-16",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.7775,
+      "episodeDate": "2024-09-13",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.7684,
+      "episodeDate": "2021-01-22",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -2.7673,
+      "episodeDate": "2004-03-05",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 2.7664,
+      "episodeDate": "2003-10-03",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 2.7577,
+      "episodeDate": "2009-07-10",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.754,
+      "episodeDate": "2006-09-29",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 2.7188,
+      "episodeDate": "2017-05-05",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.7183,
+      "episodeDate": "2013-03-15",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.7098,
+      "episodeDate": "2001-04-27",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.7027,
+      "episodeDate": "2015-02-20",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 2.6926,
+      "episodeDate": "2001-11-02",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.6922,
+      "episodeDate": "2006-06-02",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.6914,
+      "episodeDate": "2021-07-16",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 2.6903,
+      "episodeDate": "2010-01-22",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.6668,
+      "episodeDate": "2003-11-07",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -2.6626,
+      "episodeDate": "2018-09-14",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 2.6586,
+      "episodeDate": "2002-05-10",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.6562,
+      "episodeDate": "2022-03-11",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 2.6521,
+      "episodeDate": "2012-03-16",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": -2.652,
+      "episodeDate": "2000-05-05",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": -2.6505,
+      "episodeDate": "2013-06-21",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.6316,
+      "episodeDate": "2008-02-29",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.6292,
+      "episodeDate": "2012-08-17",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -2.6264,
+      "episodeDate": "2022-11-25",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.6164,
+      "episodeDate": "2020-06-19",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 2.6126,
+      "episodeDate": "2022-01-28",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.6099,
+      "episodeDate": "2011-03-18",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.6066,
+      "episodeDate": "2009-05-29",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 2.6048,
+      "episodeDate": "2000-02-25",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -2.6013,
+      "episodeDate": "2012-09-07",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 2.5933,
+      "episodeDate": "2008-06-13",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": -2.5874,
+      "episodeDate": "2018-12-21",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": -2.5805,
+      "episodeDate": "2021-05-07",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.5787,
+      "episodeDate": "2007-08-03",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.5745,
+      "episodeDate": "2006-08-25",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 2.5675,
+      "episodeDate": "2008-05-09",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -2.5674,
+      "episodeDate": "2009-03-06",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.565,
+      "episodeDate": "2006-12-15",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -2.5542,
+      "episodeDate": "2020-10-16",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.5535,
+      "episodeDate": "2003-07-25",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.5516,
+      "episodeDate": "2022-04-08",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.5494,
+      "episodeDate": "2000-10-13",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": -2.5381,
+      "episodeDate": "2024-03-01",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.5314,
+      "episodeDate": "2015-03-27",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.5218,
+      "episodeDate": "2007-12-21",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.5198,
+      "episodeDate": "2020-07-31",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 2.5149,
+      "episodeDate": "2000-09-22",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.5085,
+      "episodeDate": "2016-11-11",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.5083,
+      "episodeDate": "2022-09-16",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.5004,
+      "episodeDate": "2021-12-31",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -2.4984,
+      "episodeDate": "2018-02-02",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.4962,
+      "episodeDate": "2015-08-21",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 2.4926,
+      "episodeDate": "2002-06-21",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": 2.4914,
+      "episodeDate": "2007-03-23",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.4911,
+      "episodeDate": "2013-02-01",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.4808,
+      "episodeDate": "2024-04-26",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.4752,
+      "episodeDate": "2002-12-20",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.4747,
+      "episodeDate": "2007-06-01",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -2.4641,
+      "episodeDate": "2015-01-09",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.4606,
+      "episodeDate": "2021-10-01",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.4578,
+      "episodeDate": "2021-06-11",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.4504,
+      "episodeDate": "2013-10-18",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.4457,
+      "episodeDate": "2021-03-12",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.4334,
+      "episodeDate": "2011-07-15",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.4206,
+      "episodeDate": "2013-03-01",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 2.4175,
+      "episodeDate": "2024-01-05",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.4023,
+      "episodeDate": "2008-11-07",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": -2.3986,
+      "episodeDate": "2003-02-28",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.3983,
+      "episodeDate": "2008-08-22",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.391,
+      "episodeDate": "2003-01-24",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -2.3896,
+      "episodeDate": "2017-06-09",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 2.3869,
+      "episodeDate": "2020-09-25",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.3846,
+      "episodeDate": "2013-05-03",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": -2.3718,
+      "episodeDate": "2022-03-04",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.37,
+      "episodeDate": "2020-07-24",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.3693,
+      "episodeDate": "2022-04-01",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.3659,
+      "episodeDate": "2009-04-17",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 2.3651,
+      "episodeDate": "2008-08-08",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.365,
+      "episodeDate": "2000-11-17",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -2.3631,
+      "episodeDate": "2001-12-28",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -2.3578,
+      "episodeDate": "2015-07-31",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.3561,
+      "episodeDate": "2020-05-15",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 2.3535,
+      "episodeDate": "2019-09-27",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.35,
+      "episodeDate": "2004-07-30",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 2.35,
+      "episodeDate": "2023-01-20",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.3289,
+      "episodeDate": "2002-09-13",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -2.3271,
+      "episodeDate": "2008-11-14",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -2.3249,
+      "episodeDate": "2021-01-08",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.3154,
+      "episodeDate": "2003-08-01",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -2.315,
+      "episodeDate": "2013-04-12",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.3119,
+      "episodeDate": "2007-10-19",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 2.3047,
+      "episodeDate": "2020-06-26",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -2.3029,
+      "episodeDate": "2022-08-19",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 2.2872,
+      "episodeDate": "2024-09-27",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.2854,
+      "episodeDate": "2019-07-19",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 2.2846,
+      "episodeDate": "2015-04-17",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.2809,
+      "episodeDate": "2006-11-24",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 2.2791,
+      "episodeDate": "2025-10-24",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 2.262,
+      "episodeDate": "2013-01-25",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": -2.2609,
+      "episodeDate": "2014-12-05",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.2605,
+      "episodeDate": "2009-12-04",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.2543,
+      "episodeDate": "2007-08-24",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": -2.2531,
+      "episodeDate": "2024-10-04",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.2508,
+      "episodeDate": "2017-10-27",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.2433,
+      "episodeDate": "2005-05-13",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 2.2399,
+      "episodeDate": "2016-09-09",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.232,
+      "episodeDate": "2007-08-10",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.2319,
+      "episodeDate": "2013-05-17",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.2142,
+      "episodeDate": "2003-09-19",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -2.2097,
+      "episodeDate": "2012-10-05",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.2087,
+      "episodeDate": "2009-03-27",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 2.2054,
+      "episodeDate": "2025-04-11",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -2.2048,
+      "episodeDate": "2012-03-02",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -2.2022,
+      "episodeDate": "2001-07-20",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": 2.2002,
+      "episodeDate": "2000-08-25",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": -2.198,
+      "episodeDate": "2000-12-01",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": -2.1895,
+      "episodeDate": "2008-08-01",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 2.189,
+      "episodeDate": "2002-06-14",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": 2.1874,
+      "episodeDate": "2021-11-26",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -2.1863,
+      "episodeDate": "2024-04-12",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.1748,
+      "episodeDate": "2001-03-30",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 2.1732,
+      "episodeDate": "2010-12-31",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.1709,
+      "episodeDate": "2008-06-06",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -2.168,
+      "episodeDate": "2022-11-18",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.1615,
+      "episodeDate": "2010-11-19",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.1598,
+      "episodeDate": "2007-03-09",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.1575,
+      "episodeDate": "2016-04-15",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 2.1503,
+      "episodeDate": "2021-12-03",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -2.1426,
+      "episodeDate": "2008-05-16",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -2.1424,
+      "episodeDate": "2026-07-17",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.1399,
+      "episodeDate": "2014-10-17",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.1386,
+      "episodeDate": "2018-10-12",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.1364,
+      "episodeDate": "2020-01-10",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -2.1361,
+      "episodeDate": "2021-09-17",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.1357,
+      "episodeDate": "2010-02-26",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -2.1244,
+      "episodeDate": "2020-03-20",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -2.1213,
+      "episodeDate": "2001-02-02",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 2.1209,
+      "episodeDate": "2009-04-03",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -2.1197,
+      "episodeDate": "2009-01-09",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": -2.1145,
+      "episodeDate": "2011-05-13",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.11,
+      "episodeDate": "2020-11-27",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.1074,
+      "episodeDate": "2020-07-17",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -2.0993,
+      "episodeDate": "2003-06-06",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.0946,
+      "episodeDate": "2008-05-02",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -2.0941,
+      "episodeDate": "2008-03-07",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 2.091,
+      "episodeDate": "2000-01-28",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.0891,
+      "episodeDate": "2003-01-31",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.0843,
+      "episodeDate": "2013-04-19",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": 2.0765,
+      "episodeDate": "2006-01-20",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.0757,
+      "episodeDate": "2020-04-17",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.0727,
+      "episodeDate": "2009-09-25",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.0698,
+      "episodeDate": "2018-01-26",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.0674,
+      "episodeDate": "2021-12-10",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 2.066,
+      "episodeDate": "2003-10-17",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.0648,
+      "episodeDate": "2002-11-29",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -2.0643,
+      "episodeDate": "2022-07-15",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.0614,
+      "episodeDate": "2019-07-05",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2.0579,
+      "episodeDate": "2004-04-23",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.0397,
+      "episodeDate": "2017-04-28",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.034,
+      "episodeDate": "2025-06-27",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 2.0302,
+      "episodeDate": "2005-10-21",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 2.0292,
+      "episodeDate": "2012-06-15",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 2.0146,
+      "episodeDate": "2010-04-30",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -2.0078,
+      "episodeDate": "2023-01-27",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -2,
+      "episodeDate": "1999-12-17",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.9968,
+      "episodeDate": "2020-11-06",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.9947,
+      "episodeDate": "2004-01-23",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": -1.9879,
+      "episodeDate": "2006-08-18",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -1.9789,
+      "episodeDate": "2015-09-25",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.9772,
+      "episodeDate": "2018-02-23",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.9717,
+      "episodeDate": "2000-10-06",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": 1.9671,
+      "episodeDate": "2024-06-14",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": -1.9612,
+      "episodeDate": "2010-06-04",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.9608,
+      "episodeDate": "1999-11-19",
+      "source": "yahoo_native",
+      "regime": "insufficient_evidence"
+    },
+    {
+      "pct": -1.9523,
+      "episodeDate": "2016-01-22",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 1.9484,
+      "episodeDate": "2017-12-08",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.9464,
+      "episodeDate": "2012-06-22",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.9413,
+      "episodeDate": "2025-03-28",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.9335,
+      "episodeDate": "2007-02-09",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.9322,
+      "episodeDate": "2007-01-19",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": 1.9306,
+      "episodeDate": "2015-07-10",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.9256,
+      "episodeDate": "2001-05-11",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.9242,
+      "episodeDate": "2006-04-21",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.9148,
+      "episodeDate": "2024-06-07",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.8999,
+      "episodeDate": "2019-08-23",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.8974,
+      "episodeDate": "2001-08-03",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.8901,
+      "episodeDate": "2015-07-17",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.8887,
+      "episodeDate": "2006-10-20",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -1.8872,
+      "episodeDate": "2026-06-05",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.8848,
+      "episodeDate": "2001-08-24",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 1.8833,
+      "episodeDate": "2011-01-07",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -1.8808,
+      "episodeDate": "2002-11-15",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.8807,
+      "episodeDate": "2023-02-10",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.8787,
+      "episodeDate": "2012-08-24",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -1.877,
+      "episodeDate": "2018-10-26",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.8701,
+      "episodeDate": "2007-09-28",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 1.8644,
+      "episodeDate": "2019-08-16",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.8606,
+      "episodeDate": "2009-07-31",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.8605,
+      "episodeDate": "2012-02-10",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 1.8546,
+      "episodeDate": "2014-11-21",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.8539,
+      "episodeDate": "2023-03-03",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.8532,
+      "episodeDate": "2002-10-04",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.8439,
+      "episodeDate": "2007-11-30",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": -1.8426,
+      "episodeDate": "2026-05-29",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.8409,
+      "episodeDate": "2017-10-13",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.8408,
+      "episodeDate": "2000-03-31",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": 1.8356,
+      "episodeDate": "2008-04-04",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 1.8341,
+      "episodeDate": "2019-06-28",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.8337,
+      "episodeDate": "2012-03-23",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.8323,
+      "episodeDate": "2010-05-21",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.8272,
+      "episodeDate": "2005-06-17",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.8241,
+      "episodeDate": "2004-07-23",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.8192,
+      "episodeDate": "2015-04-24",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.8171,
+      "episodeDate": "2025-11-14",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.8171,
+      "episodeDate": "2026-06-12",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.8138,
+      "episodeDate": "2006-11-03",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.8128,
+      "episodeDate": "2005-10-07",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.8112,
+      "episodeDate": "2018-04-27",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.8092,
+      "episodeDate": "2017-09-08",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.8066,
+      "episodeDate": "2000-03-03",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -1.8013,
+      "episodeDate": "2002-04-19",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.7929,
+      "episodeDate": "2023-02-03",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.7919,
+      "episodeDate": "2002-10-11",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 1.7915,
+      "episodeDate": "2014-02-07",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.79,
+      "episodeDate": "2000-06-30",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 1.7881,
+      "episodeDate": "2010-07-30",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.7815,
+      "episodeDate": "2007-05-18",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.7808,
+      "episodeDate": "2003-12-26",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.7772,
+      "episodeDate": "2026-07-31",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -1.7768,
+      "episodeDate": "2013-02-22",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 1.7733,
+      "episodeDate": "2012-12-14",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 1.7657,
+      "episodeDate": "2016-07-29",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.7645,
+      "episodeDate": "2024-05-10",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.7625,
+      "episodeDate": "2004-06-18",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": -1.7623,
+      "episodeDate": "2011-09-30",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.7619,
+      "episodeDate": "2003-06-27",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -1.7603,
+      "episodeDate": "1999-10-15",
+      "source": "yahoo_native",
+      "regime": "insufficient_evidence"
+    },
+    {
+      "pct": -1.7588,
+      "episodeDate": "2000-01-07",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.7534,
+      "episodeDate": "2019-11-22",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.7517,
+      "episodeDate": "2006-05-19",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.7515,
+      "episodeDate": "2015-06-26",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.7478,
+      "episodeDate": "2005-06-24",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.746,
+      "episodeDate": "2004-08-06",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.7447,
+      "episodeDate": "2016-10-07",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.7435,
+      "episodeDate": "2011-06-24",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.7343,
+      "episodeDate": "2019-10-18",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -1.7334,
+      "episodeDate": "2003-02-21",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.7306,
+      "episodeDate": "2023-07-14",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.7287,
+      "episodeDate": "2010-07-16",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.7254,
+      "episodeDate": "2023-08-04",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.7236,
+      "episodeDate": "2004-12-31",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.7225,
+      "episodeDate": "2005-03-18",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.7189,
+      "episodeDate": "2007-03-16",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.716,
+      "episodeDate": "1999-10-08",
+      "source": "yahoo_native",
+      "regime": "insufficient_evidence"
+    },
+    {
+      "pct": 1.7144,
+      "episodeDate": "2001-12-21",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.7118,
+      "episodeDate": "2019-12-13",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.703,
+      "episodeDate": "2011-08-12",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.6917,
+      "episodeDate": "2012-01-20",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.6913,
+      "episodeDate": "2023-09-15",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 1.6867,
+      "episodeDate": "2012-07-27",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.6823,
+      "episodeDate": "2007-07-27",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.6743,
+      "episodeDate": "2024-07-12",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -1.6738,
+      "episodeDate": "2002-05-31",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.6659,
+      "episodeDate": "2011-08-26",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.652,
+      "episodeDate": "2021-01-29",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.648,
+      "episodeDate": "2024-10-11",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.6392,
+      "episodeDate": "2000-11-10",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": 1.639,
+      "episodeDate": "2022-12-09",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.6379,
+      "episodeDate": "2015-11-13",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.6318,
+      "episodeDate": "2019-12-20",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.6317,
+      "episodeDate": "2025-11-21",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.6221,
+      "episodeDate": "2002-03-08",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 1.6192,
+      "episodeDate": "2016-01-08",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": -1.6181,
+      "episodeDate": "2026-08-07",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.6101,
+      "episodeDate": "2024-12-06",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.6057,
+      "episodeDate": "2011-07-29",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -1.6048,
+      "episodeDate": "2006-04-07",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 1.6001,
+      "episodeDate": "2014-06-06",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -1.6,
+      "episodeDate": "2000-03-17",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.5959,
+      "episodeDate": "2006-08-04",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 1.5957,
+      "episodeDate": "2013-09-06",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -1.591,
+      "episodeDate": "2022-12-16",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.5874,
+      "episodeDate": "2011-07-08",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.5816,
+      "episodeDate": "2011-11-18",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.5767,
+      "episodeDate": "2012-06-08",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -1.5754,
+      "episodeDate": "2025-02-28",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.5736,
+      "episodeDate": "2019-04-05",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.5735,
+      "episodeDate": "2020-05-08",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -1.5723,
+      "episodeDate": "2011-06-03",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.5701,
+      "episodeDate": "2008-02-01",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -1.5701,
+      "episodeDate": "2014-04-04",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.5639,
+      "episodeDate": "2023-06-09",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -1.558,
+      "episodeDate": "2008-06-27",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.5561,
+      "episodeDate": "2003-03-14",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.5527,
+      "episodeDate": "2011-02-04",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -1.5521,
+      "episodeDate": "2004-05-14",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.5513,
+      "episodeDate": "2015-09-18",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.5484,
+      "episodeDate": "2023-03-17",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.5482,
+      "episodeDate": "2005-09-30",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.5474,
+      "episodeDate": "2017-08-04",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.5443,
+      "episodeDate": "2019-05-03",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -1.5425,
+      "episodeDate": "2011-06-17",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.542,
+      "episodeDate": "2013-07-26",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.541,
+      "episodeDate": "2022-10-28",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.5382,
+      "episodeDate": "2010-08-20",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.5378,
+      "episodeDate": "2003-11-14",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.5348,
+      "episodeDate": "2004-09-17",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.5343,
+      "episodeDate": "2002-10-18",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.534,
+      "episodeDate": "2009-02-27",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.5311,
+      "episodeDate": "2009-01-30",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.5279,
+      "episodeDate": "2018-03-16",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.5241,
+      "episodeDate": "2025-11-28",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.5174,
+      "episodeDate": "2016-11-18",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.5128,
+      "episodeDate": "2009-06-19",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.5076,
+      "episodeDate": "2016-06-10",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.505,
+      "episodeDate": "2017-08-11",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.5045,
+      "episodeDate": "2005-11-04",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": -1.5037,
+      "episodeDate": "2019-01-11",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": -1.4985,
+      "episodeDate": "2025-12-12",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.4981,
+      "episodeDate": "2012-05-11",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.4943,
+      "episodeDate": "2002-09-27",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.4939,
+      "episodeDate": "2013-08-02",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.489,
+      "episodeDate": "2007-07-06",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": -1.4871,
+      "episodeDate": "2018-06-22",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.4836,
+      "episodeDate": "2023-09-29",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 1.4803,
+      "episodeDate": "2022-10-21",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.4798,
+      "episodeDate": "2006-11-10",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.4788,
+      "episodeDate": "2008-04-25",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": -1.4758,
+      "episodeDate": "2022-07-08",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.4664,
+      "episodeDate": "2007-11-16",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.4623,
+      "episodeDate": "2004-05-07",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.4605,
+      "episodeDate": "2023-11-03",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.4589,
+      "episodeDate": "2012-06-29",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.4561,
+      "episodeDate": "2016-06-24",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.4535,
+      "episodeDate": "2020-08-07",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 1.4505,
+      "episodeDate": "2011-02-25",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.4486,
+      "episodeDate": "2009-01-23",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.4425,
+      "episodeDate": "2016-11-04",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.438,
+      "episodeDate": "2018-09-21",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.4327,
+      "episodeDate": "2009-12-18",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.4245,
+      "episodeDate": "2013-03-08",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -1.423,
+      "episodeDate": "2010-06-18",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 1.4208,
+      "episodeDate": "2003-05-09",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 1.4149,
+      "episodeDate": "2020-05-01",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.4142,
+      "episodeDate": "2014-05-02",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.4133,
+      "episodeDate": "2003-02-07",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.4113,
+      "episodeDate": "2026-03-20",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.4109,
+      "episodeDate": "2008-09-05",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.4104,
+      "episodeDate": "2021-06-18",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.4083,
+      "episodeDate": "2017-12-15",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.4059,
+      "episodeDate": "2015-10-30",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.404,
+      "episodeDate": "2008-05-30",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -1.4,
+      "episodeDate": "2019-12-06",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.3936,
+      "episodeDate": "2011-11-11",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.3902,
+      "episodeDate": "2010-01-29",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.3896,
+      "episodeDate": "2015-07-24",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.3885,
+      "episodeDate": "2018-07-06",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.3837,
+      "episodeDate": "2026-01-02",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.3822,
+      "episodeDate": "2014-07-25",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.3781,
+      "episodeDate": "2010-09-10",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.3733,
+      "episodeDate": "2010-10-01",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.369,
+      "episodeDate": "2022-08-26",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.367,
+      "episodeDate": "2014-12-12",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.3558,
+      "episodeDate": "2012-11-02",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 1.3548,
+      "episodeDate": "2021-08-13",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.3524,
+      "episodeDate": "2018-11-23",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -1.3505,
+      "episodeDate": "2000-06-02",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.3422,
+      "episodeDate": "2024-11-15",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.3421,
+      "episodeDate": "2018-09-07",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.3406,
+      "episodeDate": "2011-04-15",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.3385,
+      "episodeDate": "2008-01-04",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.3379,
+      "episodeDate": "2016-07-22",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.3376,
+      "episodeDate": "2002-12-06",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.335,
+      "episodeDate": "2012-08-10",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.3332,
+      "episodeDate": "2000-12-15",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.3314,
+      "episodeDate": "2021-05-21",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.3284,
+      "episodeDate": "2012-09-21",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.3266,
+      "episodeDate": "2023-03-10",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -1.3263,
+      "episodeDate": "2024-12-27",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -1.3233,
+      "episodeDate": "2021-04-09",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.3221,
+      "episodeDate": "2011-07-22",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 1.322,
+      "episodeDate": "2012-07-06",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.3194,
+      "episodeDate": "2014-08-08",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.3187,
+      "episodeDate": "2007-04-13",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.3106,
+      "episodeDate": "2000-08-11",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.3104,
+      "episodeDate": "1999-11-12",
+      "source": "yahoo_native",
+      "regime": "insufficient_evidence"
+    },
+    {
+      "pct": 1.3051,
+      "episodeDate": "2024-11-22",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.2992,
+      "episodeDate": "2015-11-20",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.2963,
+      "episodeDate": "2014-10-31",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.2927,
+      "episodeDate": "2023-12-08",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.2922,
+      "episodeDate": "2013-11-01",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.2917,
+      "episodeDate": "2014-07-11",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -1.2889,
+      "episodeDate": "2011-03-04",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -1.282,
+      "episodeDate": "2001-01-19",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 1.2811,
+      "episodeDate": "2012-01-27",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.2779,
+      "episodeDate": "2019-06-07",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.2728,
+      "episodeDate": "2026-04-24",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.2717,
+      "episodeDate": "2002-08-23",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.2714,
+      "episodeDate": "2011-04-08",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.2707,
+      "episodeDate": "2016-05-20",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.2584,
+      "episodeDate": "2026-02-06",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.2547,
+      "episodeDate": "2015-01-30",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.2546,
+      "episodeDate": "2021-06-25",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.2528,
+      "episodeDate": "2012-03-09",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.245,
+      "episodeDate": "2014-05-09",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.2429,
+      "episodeDate": "2013-09-27",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.2395,
+      "episodeDate": "2020-12-18",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.2367,
+      "episodeDate": "2020-06-12",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.2322,
+      "episodeDate": "2002-10-25",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.2305,
+      "episodeDate": "2023-10-27",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.2298,
+      "episodeDate": "2020-05-29",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.2296,
+      "episodeDate": "2012-09-14",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -1.2293,
+      "episodeDate": "2023-03-24",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.227,
+      "episodeDate": "2020-12-04",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.2261,
+      "episodeDate": "2015-12-18",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.218,
+      "episodeDate": "2010-03-12",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.2163,
+      "episodeDate": "2024-01-19",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.2115,
+      "episodeDate": "2013-11-15",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -1.2113,
+      "episodeDate": "2025-06-06",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.2111,
+      "episodeDate": "2017-07-21",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.2091,
+      "episodeDate": "2019-03-22",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.2043,
+      "episodeDate": "2014-08-15",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.2039,
+      "episodeDate": "2008-06-20",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -1.2033,
+      "episodeDate": "2004-10-08",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.203,
+      "episodeDate": "2005-09-23",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -1.2029,
+      "episodeDate": "2024-11-08",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.2029,
+      "episodeDate": "2025-07-11",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.2017,
+      "episodeDate": "2016-08-12",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -1.1984,
+      "episodeDate": "2003-07-18",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.196,
+      "episodeDate": "2020-08-21",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.1874,
+      "episodeDate": "2000-08-04",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.1874,
+      "episodeDate": "2006-06-30",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 1.1866,
+      "episodeDate": "2009-12-11",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.186,
+      "episodeDate": "2014-03-21",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.1849,
+      "episodeDate": "2014-05-16",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.1832,
+      "episodeDate": "2024-03-08",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -1.1816,
+      "episodeDate": "2026-05-01",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.1806,
+      "episodeDate": "2021-10-15",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.1739,
+      "episodeDate": "2025-05-16",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.1736,
+      "episodeDate": "2001-11-30",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.1728,
+      "episodeDate": "2024-12-13",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.1681,
+      "episodeDate": "2026-07-24",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.166,
+      "episodeDate": "2016-09-16",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": -1.1562,
+      "episodeDate": "2019-11-29",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -1.1558,
+      "episodeDate": "2012-09-28",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.1528,
+      "episodeDate": "2006-07-21",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 1.145,
+      "episodeDate": "2001-01-05",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 1.1446,
+      "episodeDate": "2013-12-06",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.1359,
+      "episodeDate": "2003-10-31",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.128,
+      "episodeDate": "2001-12-14",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.127,
+      "episodeDate": "2025-03-21",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.125,
+      "episodeDate": "2004-04-30",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.1249,
+      "episodeDate": "2010-03-19",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.1236,
+      "episodeDate": "2025-09-12",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.1223,
+      "episodeDate": "2006-04-28",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.1182,
+      "episodeDate": "2018-06-29",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -1.1153,
+      "episodeDate": "2005-12-02",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.1126,
+      "episodeDate": "2012-08-03",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -1.1067,
+      "episodeDate": "2016-03-04",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.1027,
+      "episodeDate": "2015-05-15",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.1023,
+      "episodeDate": "2008-10-03",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": -1.1011,
+      "episodeDate": "2003-03-07",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.101,
+      "episodeDate": "2001-06-01",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": 1.1004,
+      "episodeDate": "2015-03-13",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.0996,
+      "episodeDate": "2011-04-29",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.0856,
+      "episodeDate": "2023-07-07",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.0835,
+      "episodeDate": "2000-07-14",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": -1.082,
+      "episodeDate": "2009-08-28",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -1.0795,
+      "episodeDate": "2002-05-17",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.0795,
+      "episodeDate": "2026-03-13",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.077,
+      "episodeDate": "2013-08-16",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 1.0754,
+      "episodeDate": "2002-08-16",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.0678,
+      "episodeDate": "2008-10-17",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": -1.0672,
+      "episodeDate": "2022-05-13",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": 1.0665,
+      "episodeDate": "2003-09-05",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.0663,
+      "episodeDate": "2009-11-13",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.0654,
+      "episodeDate": "2007-03-02",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.0639,
+      "episodeDate": "2004-01-30",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.0632,
+      "episodeDate": "2010-10-29",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.063,
+      "episodeDate": "2016-07-15",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.055,
+      "episodeDate": "2021-09-24",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.053,
+      "episodeDate": "2016-02-05",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.0501,
+      "episodeDate": "2017-03-17",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.0435,
+      "episodeDate": "2026-04-17",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.0421,
+      "episodeDate": "2013-02-08",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.0405,
+      "episodeDate": "2015-03-20",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.0378,
+      "episodeDate": "2014-12-19",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -1.037,
+      "episodeDate": "2005-10-14",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -1.0362,
+      "episodeDate": "2006-03-17",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.0358,
+      "episodeDate": "2010-10-15",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.0348,
+      "episodeDate": "2015-08-14",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.0344,
+      "episodeDate": "2025-01-10",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.0328,
+      "episodeDate": "2014-06-27",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.0274,
+      "episodeDate": "2016-04-01",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.026,
+      "episodeDate": "2005-04-29",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 1.0257,
+      "episodeDate": "2021-08-20",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.0209,
+      "episodeDate": "2019-03-15",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -1.0187,
+      "episodeDate": "2015-05-08",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.0145,
+      "episodeDate": "2017-11-03",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -1.011,
+      "episodeDate": "2019-05-31",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 1.0079,
+      "episodeDate": "2014-06-13",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.0071,
+      "episodeDate": "2017-08-25",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1.0028,
+      "episodeDate": "2025-06-13",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 1.0017,
+      "episodeDate": "2019-10-25",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 1,
+      "episodeDate": "2000-08-18",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": -0.9945,
+      "episodeDate": "2013-12-27",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.9918,
+      "episodeDate": "2018-04-06",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.9866,
+      "episodeDate": "2025-12-19",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.9847,
+      "episodeDate": "2024-02-02",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.9781,
+      "episodeDate": "2011-04-01",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.9778,
+      "episodeDate": "2017-06-02",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.9772,
+      "episodeDate": "2013-10-04",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.9744,
+      "episodeDate": "2018-08-17",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.9744,
+      "episodeDate": "2025-10-10",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.9668,
+      "episodeDate": "2018-03-09",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.9665,
+      "episodeDate": "2018-12-28",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 0.9631,
+      "episodeDate": "2015-09-11",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.963,
+      "episodeDate": "2017-04-21",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.9625,
+      "episodeDate": "2009-10-16",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.9594,
+      "episodeDate": "2003-12-05",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.9581,
+      "episodeDate": "2011-01-28",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.9558,
+      "episodeDate": "2007-02-02",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.9523,
+      "episodeDate": "2024-11-29",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.9486,
+      "episodeDate": "2022-11-11",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.9465,
+      "episodeDate": "2023-12-01",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.9462,
+      "episodeDate": "2025-08-08",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.94,
+      "episodeDate": "2026-03-06",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.9395,
+      "episodeDate": "2019-07-12",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.9393,
+      "episodeDate": "2023-08-11",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.9375,
+      "episodeDate": "2004-02-20",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.9374,
+      "episodeDate": "2017-02-03",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.9349,
+      "episodeDate": "2016-01-29",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 0.9339,
+      "episodeDate": "2019-07-26",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.9333,
+      "episodeDate": "2012-02-03",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.9323,
+      "episodeDate": "2008-12-26",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -0.9306,
+      "episodeDate": "2018-12-14",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 0.9278,
+      "episodeDate": "2023-11-17",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.9259,
+      "episodeDate": "2021-05-14",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.9259,
+      "episodeDate": "2024-05-31",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.9255,
+      "episodeDate": "2019-01-25",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 0.9159,
+      "episodeDate": "2017-01-06",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.9133,
+      "episodeDate": "2014-10-10",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.9107,
+      "episodeDate": "2024-05-03",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.9091,
+      "episodeDate": "2004-08-20",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.9061,
+      "episodeDate": "2009-09-11",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.9005,
+      "episodeDate": "2016-10-21",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.9002,
+      "episodeDate": "2024-02-09",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.8996,
+      "episodeDate": "2007-11-02",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.8975,
+      "episodeDate": "2010-07-09",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.8915,
+      "episodeDate": "2026-08-28",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.8856,
+      "episodeDate": "2017-02-10",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.8846,
+      "episodeDate": "2023-08-25",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.8822,
+      "episodeDate": "2017-09-22",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.8821,
+      "episodeDate": "2010-01-08",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.8757,
+      "episodeDate": "2007-12-28",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 0.8746,
+      "episodeDate": "2016-02-19",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.8722,
+      "episodeDate": "2026-03-27",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.872,
+      "episodeDate": "2020-11-13",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.8704,
+      "episodeDate": "2013-11-29",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.8695,
+      "episodeDate": "1999-12-03",
+      "source": "yahoo_native",
+      "regime": "insufficient_evidence"
+    },
+    {
+      "pct": 0.8599,
+      "episodeDate": "2024-10-25",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.8584,
+      "episodeDate": "2023-11-10",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.8538,
+      "episodeDate": "2022-03-18",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.8537,
+      "episodeDate": "2010-12-03",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.8503,
+      "episodeDate": "2023-12-15",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.8494,
+      "episodeDate": "2011-12-02",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.8484,
+      "episodeDate": "2004-05-21",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.8479,
+      "episodeDate": "2026-09-18",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.8451,
+      "episodeDate": "2023-10-06",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.8417,
+      "episodeDate": "2002-03-15",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.8368,
+      "episodeDate": "2005-06-03",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.8358,
+      "episodeDate": "2018-06-01",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.83,
+      "episodeDate": "2024-03-22",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 0.8298,
+      "episodeDate": "2000-12-08",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": 0.8281,
+      "episodeDate": "2016-08-05",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.8248,
+      "episodeDate": "2023-02-24",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.8235,
+      "episodeDate": "2018-08-24",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.8215,
+      "episodeDate": "2021-04-30",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.8203,
+      "episodeDate": "2005-02-25",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.8181,
+      "episodeDate": "2018-01-19",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.8122,
+      "episodeDate": "2021-12-17",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.8112,
+      "episodeDate": "2014-01-24",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.802,
+      "episodeDate": "2012-10-12",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.7983,
+      "episodeDate": "2022-12-02",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.7978,
+      "episodeDate": "2015-06-19",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.7968,
+      "episodeDate": "2020-01-03",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.7965,
+      "episodeDate": "2007-03-30",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.7961,
+      "episodeDate": "2026-05-15",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.7919,
+      "episodeDate": "2019-11-08",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.7909,
+      "episodeDate": "2005-08-05",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.7806,
+      "episodeDate": "2004-09-10",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.7803,
+      "episodeDate": "2005-12-09",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.7785,
+      "episodeDate": "2023-06-30",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.7772,
+      "episodeDate": "2016-08-19",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.7737,
+      "episodeDate": "2023-08-18",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.7732,
+      "episodeDate": "2012-11-09",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": 0.7702,
+      "episodeDate": "2023-03-31",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.7644,
+      "episodeDate": "2009-07-17",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 0.7638,
+      "episodeDate": "2005-04-15",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": 0.7613,
+      "episodeDate": "2003-12-19",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 0.7609,
+      "episodeDate": "1999-10-22",
+      "source": "yahoo_native",
+      "regime": "insufficient_evidence"
+    },
+    {
+      "pct": -0.7581,
+      "episodeDate": "2024-09-20",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.758,
+      "episodeDate": "2013-11-22",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.7571,
+      "episodeDate": "2023-06-02",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.7568,
+      "episodeDate": "2017-09-15",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.7553,
+      "episodeDate": "2023-06-23",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.7551,
+      "episodeDate": "2025-09-05",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.7533,
+      "episodeDate": "2008-07-11",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.7505,
+      "episodeDate": "2006-03-24",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 0.7483,
+      "episodeDate": "2012-05-04",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.7453,
+      "episodeDate": "2013-10-25",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.7451,
+      "episodeDate": "2024-02-23",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.7431,
+      "episodeDate": "2000-09-08",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.7398,
+      "episodeDate": "2022-07-22",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.738,
+      "episodeDate": "2023-09-22",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -0.7308,
+      "episodeDate": "2017-12-01",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.7292,
+      "episodeDate": "2003-06-20",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.7284,
+      "episodeDate": "2019-02-22",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.7277,
+      "episodeDate": "2002-04-05",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.7251,
+      "episodeDate": "2016-06-03",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -0.725,
+      "episodeDate": "2005-05-06",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.7235,
+      "episodeDate": "2018-05-04",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.7222,
+      "episodeDate": "2006-11-17",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.722,
+      "episodeDate": "2006-07-07",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -0.7189,
+      "episodeDate": "2026-06-26",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.7188,
+      "episodeDate": "2016-12-02",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -0.7159,
+      "episodeDate": "2009-10-23",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.7143,
+      "episodeDate": "2004-07-16",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 0.7112,
+      "episodeDate": "2013-04-05",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.7085,
+      "episodeDate": "2018-05-18",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.6903,
+      "episodeDate": "2008-07-18",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -0.6872,
+      "episodeDate": "2014-05-30",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.6856,
+      "episodeDate": "2010-02-05",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.6791,
+      "episodeDate": "2019-03-29",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.6739,
+      "episodeDate": "2025-01-03",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.6737,
+      "episodeDate": "2022-04-22",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.6733,
+      "episodeDate": "2018-09-28",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.6699,
+      "episodeDate": "2009-04-24",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.6696,
+      "episodeDate": "2004-08-27",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": -0.6664,
+      "episodeDate": "2024-04-05",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 0.6643,
+      "episodeDate": "2015-02-06",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.6623,
+      "episodeDate": "2023-09-08",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -0.6609,
+      "episodeDate": "2013-06-07",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.6607,
+      "episodeDate": "2015-06-05",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.6588,
+      "episodeDate": "2018-12-07",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -0.6577,
+      "episodeDate": "2006-02-24",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.6567,
+      "episodeDate": "2019-11-01",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.6559,
+      "episodeDate": "2007-01-26",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.6554,
+      "episodeDate": "2013-10-11",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.6539,
+      "episodeDate": "2024-07-05",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.6529,
+      "episodeDate": "2011-02-11",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.6517,
+      "episodeDate": "2011-09-09",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.6457,
+      "episodeDate": "2018-08-10",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.6453,
+      "episodeDate": "2010-03-26",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.6436,
+      "episodeDate": "2004-09-24",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.6432,
+      "episodeDate": "2012-12-07",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -0.6425,
+      "episodeDate": "2009-06-12",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.6413,
+      "episodeDate": "2012-02-24",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.6391,
+      "episodeDate": "2007-06-29",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.6382,
+      "episodeDate": "2010-08-06",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.6372,
+      "episodeDate": "2024-03-15",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.6352,
+      "episodeDate": "2014-09-26",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.6334,
+      "episodeDate": "2022-08-12",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.6312,
+      "episodeDate": "2025-02-21",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.6311,
+      "episodeDate": "2026-07-10",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.631,
+      "episodeDate": "2000-03-24",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": -0.6301,
+      "episodeDate": "2015-12-04",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.6298,
+      "episodeDate": "2024-10-18",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.6287,
+      "episodeDate": "2007-02-23",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.6254,
+      "episodeDate": "2006-06-16",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 0.6238,
+      "episodeDate": "2018-04-13",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.6214,
+      "episodeDate": "2004-11-05",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.6214,
+      "episodeDate": "2015-10-16",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.6198,
+      "episodeDate": "2010-02-19",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.6196,
+      "episodeDate": "2005-11-18",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.6185,
+      "episodeDate": "2015-12-11",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.6163,
+      "episodeDate": "2014-09-05",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.6162,
+      "episodeDate": "2024-05-17",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.6156,
+      "episodeDate": "2025-07-18",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.6153,
+      "episodeDate": "2022-07-29",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.6114,
+      "episodeDate": "2003-01-10",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 0.611,
+      "episodeDate": "2018-10-19",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.6104,
+      "episodeDate": "2017-07-07",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 0.6076,
+      "episodeDate": "2017-05-19",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.6057,
+      "episodeDate": "2009-10-02",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.6047,
+      "episodeDate": "2026-02-20",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.5999,
+      "episodeDate": "2010-06-25",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.5967,
+      "episodeDate": "2019-06-14",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.5966,
+      "episodeDate": "2024-08-09",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.5937,
+      "episodeDate": "2010-11-26",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.5935,
+      "episodeDate": "2019-12-27",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.5912,
+      "episodeDate": "2020-06-05",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.5882,
+      "episodeDate": "2012-06-01",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.5882,
+      "episodeDate": "2013-01-04",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.5861,
+      "episodeDate": "2010-08-13",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.5856,
+      "episodeDate": "2008-10-31",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 0.583,
+      "episodeDate": "2007-11-23",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.5777,
+      "episodeDate": "2016-12-16",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.5751,
+      "episodeDate": "2019-02-08",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.5704,
+      "episodeDate": "2016-12-09",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.5702,
+      "episodeDate": "2007-05-11",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.5678,
+      "episodeDate": "2013-07-05",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.5678,
+      "episodeDate": "2016-04-22",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.5668,
+      "episodeDate": "2009-06-05",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.5617,
+      "episodeDate": "2014-08-01",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.5607,
+      "episodeDate": "2021-10-29",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.5603,
+      "episodeDate": "2018-07-27",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.5553,
+      "episodeDate": "2003-04-04",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.5553,
+      "episodeDate": "2021-11-05",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.5552,
+      "episodeDate": "2006-12-08",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.5537,
+      "episodeDate": "2013-12-13",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.5524,
+      "episodeDate": "2006-10-06",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.5481,
+      "episodeDate": "2023-05-19",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.5453,
+      "episodeDate": "2014-01-03",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.5405,
+      "episodeDate": "2009-09-18",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.5381,
+      "episodeDate": "2001-06-15",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": -0.5366,
+      "episodeDate": "2007-06-22",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.5316,
+      "episodeDate": "2009-03-13",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": -0.5259,
+      "episodeDate": "1999-11-26",
+      "source": "yahoo_native",
+      "regime": "insufficient_evidence"
+    },
+    {
+      "pct": 0.5257,
+      "episodeDate": "2019-09-13",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.5235,
+      "episodeDate": "2014-01-10",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.5228,
+      "episodeDate": "2022-06-03",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.5211,
+      "episodeDate": "2001-09-07",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 0.5193,
+      "episodeDate": "2018-08-03",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.5189,
+      "episodeDate": "2014-07-18",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.5155,
+      "episodeDate": "2025-10-03",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.5151,
+      "episodeDate": "2017-07-28",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.5147,
+      "episodeDate": "2020-12-11",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.5091,
+      "episodeDate": "2024-04-19",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 0.5069,
+      "episodeDate": "2021-04-16",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.5065,
+      "episodeDate": "2006-10-13",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.5042,
+      "episodeDate": "2019-11-15",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.5037,
+      "episodeDate": "2022-03-25",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": -0.5029,
+      "episodeDate": "2017-11-24",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.5029,
+      "episodeDate": "2019-03-01",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.499,
+      "episodeDate": "2010-12-17",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.4938,
+      "episodeDate": "2007-01-05",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.4914,
+      "episodeDate": "2026-04-10",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.4911,
+      "episodeDate": "2010-04-23",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.4904,
+      "episodeDate": "2015-02-27",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.4891,
+      "episodeDate": "2005-04-01",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.4882,
+      "episodeDate": "2025-10-31",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.4864,
+      "episodeDate": "2022-01-21",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.4793,
+      "episodeDate": "2025-08-01",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.4773,
+      "episodeDate": "2009-08-07",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.4763,
+      "episodeDate": "2011-10-14",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 0.4751,
+      "episodeDate": "2002-01-11",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": 0.475,
+      "episodeDate": "2020-02-07",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.4698,
+      "episodeDate": "2010-11-05",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.4688,
+      "episodeDate": "2016-09-30",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.4684,
+      "episodeDate": "2004-11-12",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.4678,
+      "episodeDate": "2015-08-28",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.4638,
+      "episodeDate": "2015-10-09",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.4615,
+      "episodeDate": "2005-11-25",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.4613,
+      "episodeDate": "2020-07-10",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.4556,
+      "episodeDate": "2006-08-11",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.4547,
+      "episodeDate": "2019-09-20",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.4534,
+      "episodeDate": "2013-06-14",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.4522,
+      "episodeDate": "2011-12-09",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.446,
+      "episodeDate": "2011-03-11",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.4456,
+      "episodeDate": "2010-10-22",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.4387,
+      "episodeDate": "2010-10-08",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.4379,
+      "episodeDate": "2014-02-21",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 0.435,
+      "episodeDate": "2008-04-11",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.4318,
+      "episodeDate": "2005-07-22",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.4297,
+      "episodeDate": "2009-10-30",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.4267,
+      "episodeDate": "2019-09-06",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.4265,
+      "episodeDate": "2015-03-06",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.4235,
+      "episodeDate": "2022-02-04",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 0.4232,
+      "episodeDate": "2025-05-30",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.422,
+      "episodeDate": "2023-07-21",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.4204,
+      "episodeDate": "2021-07-09",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.4187,
+      "episodeDate": "2005-01-07",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.4181,
+      "episodeDate": "2004-02-27",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.4159,
+      "episodeDate": "2015-11-27",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.4109,
+      "episodeDate": "2025-04-25",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.4089,
+      "episodeDate": "2023-01-06",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 0.4059,
+      "episodeDate": "2002-12-13",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.4048,
+      "episodeDate": "2015-11-06",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.4038,
+      "episodeDate": "2024-11-01",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.4032,
+      "episodeDate": "2025-09-26",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.4008,
+      "episodeDate": "2017-11-10",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.3984,
+      "episodeDate": "2014-04-11",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.3968,
+      "episodeDate": "2010-09-24",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.3921,
+      "episodeDate": "2005-07-08",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.3907,
+      "episodeDate": "2013-05-10",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.3907,
+      "episodeDate": "2014-03-14",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.3902,
+      "episodeDate": "2022-11-04",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 0.3893,
+      "episodeDate": "2021-09-10",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.3892,
+      "episodeDate": "2013-08-23",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.383,
+      "episodeDate": "2005-01-21",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.3797,
+      "episodeDate": "2005-12-16",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.3737,
+      "episodeDate": "2002-06-07",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": 0.3719,
+      "episodeDate": "2001-10-05",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.3714,
+      "episodeDate": "2018-01-05",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.3684,
+      "episodeDate": "2004-12-10",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.368,
+      "episodeDate": "2001-08-10",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 0.3642,
+      "episodeDate": "2010-08-27",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.3624,
+      "episodeDate": "2015-10-02",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.3615,
+      "episodeDate": "2013-03-22",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.3611,
+      "episodeDate": "2017-06-30",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.3586,
+      "episodeDate": "2024-01-26",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.3576,
+      "episodeDate": "2025-11-07",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.3489,
+      "episodeDate": "2017-07-14",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.3477,
+      "episodeDate": "2017-10-06",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.3463,
+      "episodeDate": "2010-12-10",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.3462,
+      "episodeDate": "2018-03-02",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.3426,
+      "episodeDate": "2008-03-28",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 0.3393,
+      "episodeDate": "2026-01-09",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.339,
+      "episodeDate": "2009-11-27",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.3313,
+      "episodeDate": "2016-04-08",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.33,
+      "episodeDate": "2009-06-26",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.3277,
+      "episodeDate": "2006-01-06",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.3214,
+      "episodeDate": "2010-11-12",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.3207,
+      "episodeDate": "2012-07-13",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.32,
+      "episodeDate": "2013-07-19",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.32,
+      "episodeDate": "2026-08-21",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.3192,
+      "episodeDate": "2025-12-05",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.3166,
+      "episodeDate": "2023-07-28",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.3148,
+      "episodeDate": "2017-03-03",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.3145,
+      "episodeDate": "2017-06-23",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.3133,
+      "episodeDate": "2024-06-21",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.3129,
+      "episodeDate": "2011-03-25",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.3123,
+      "episodeDate": "2011-12-16",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 0.3103,
+      "episodeDate": "2004-10-01",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.3103,
+      "episodeDate": "2016-07-08",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.3065,
+      "episodeDate": "2024-12-20",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.3037,
+      "episodeDate": "2010-06-11",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.3023,
+      "episodeDate": "2025-08-15",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.2978,
+      "episodeDate": "2021-04-23",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.2953,
+      "episodeDate": "2004-10-22",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.2941,
+      "episodeDate": "2009-05-08",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.2927,
+      "episodeDate": "2021-11-19",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.2903,
+      "episodeDate": "2022-08-05",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.2901,
+      "episodeDate": "2013-11-08",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.2897,
+      "episodeDate": "2023-05-12",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.2896,
+      "episodeDate": "2018-04-20",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.2895,
+      "episodeDate": "2021-07-23",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.2888,
+      "episodeDate": "2014-02-28",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -0.2882,
+      "episodeDate": "2007-09-14",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.2834,
+      "episodeDate": "2006-09-15",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.2795,
+      "episodeDate": "2011-09-23",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.2764,
+      "episodeDate": "2001-08-17",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -0.2746,
+      "episodeDate": "2020-01-31",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.272,
+      "episodeDate": "2006-06-23",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.2712,
+      "episodeDate": "2011-05-06",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.2686,
+      "episodeDate": "2007-07-13",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.2673,
+      "episodeDate": "2002-07-19",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": -0.2634,
+      "episodeDate": "2025-08-22",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.2624,
+      "episodeDate": "2017-01-27",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.2611,
+      "episodeDate": "2020-08-14",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.2563,
+      "episodeDate": "2017-05-12",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.2542,
+      "episodeDate": "2016-03-11",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.2539,
+      "episodeDate": "2010-07-23",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.2537,
+      "episodeDate": "2019-08-09",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.2519,
+      "episodeDate": "2003-07-11",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.2513,
+      "episodeDate": "2005-06-10",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.2497,
+      "episodeDate": "2002-11-22",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.2488,
+      "episodeDate": "2025-06-20",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.2452,
+      "episodeDate": "2018-06-08",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.2446,
+      "episodeDate": "2011-05-20",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.2438,
+      "episodeDate": "2026-09-11",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.2429,
+      "episodeDate": "2001-04-06",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.2413,
+      "episodeDate": "2016-06-17",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.2393,
+      "episodeDate": "2002-04-12",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.2389,
+      "episodeDate": "2025-03-14",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": 0.2356,
+      "episodeDate": "2022-10-07",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.2345,
+      "episodeDate": "2005-07-29",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.2344,
+      "episodeDate": "2008-02-22",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -0.2333,
+      "episodeDate": "2018-05-11",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.2331,
+      "episodeDate": "2021-07-30",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.2318,
+      "episodeDate": "2018-10-05",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.227,
+      "episodeDate": "2016-02-26",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.226,
+      "episodeDate": "2022-09-23",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.2234,
+      "episodeDate": "2012-04-20",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.2226,
+      "episodeDate": "2019-01-04",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": 0.2201,
+      "episodeDate": "2013-05-31",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.2195,
+      "episodeDate": "2018-07-13",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.219,
+      "episodeDate": "2006-12-01",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.2187,
+      "episodeDate": "2005-08-26",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.2182,
+      "episodeDate": "2026-05-08",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.218,
+      "episodeDate": "2013-07-12",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.2171,
+      "episodeDate": "2014-08-22",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.2148,
+      "episodeDate": "2011-06-10",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.2137,
+      "episodeDate": "2001-11-09",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.2111,
+      "episodeDate": "2007-10-26",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.2068,
+      "episodeDate": "2010-04-09",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.2044,
+      "episodeDate": "2026-02-27",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.2015,
+      "episodeDate": "2000-04-28",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.2011,
+      "episodeDate": "2017-09-29",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.1996,
+      "episodeDate": "2015-05-29",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.1992,
+      "episodeDate": "2008-08-15",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 0.1976,
+      "episodeDate": "2017-02-24",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.1968,
+      "episodeDate": "2016-11-25",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.1967,
+      "episodeDate": "2015-04-10",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.1966,
+      "episodeDate": "2015-06-12",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.1966,
+      "episodeDate": "2022-04-29",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.1945,
+      "episodeDate": "2004-08-13",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.1939,
+      "episodeDate": "2015-05-01",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.1935,
+      "episodeDate": "2001-09-28",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 0.1879,
+      "episodeDate": "2023-04-21",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.1858,
+      "episodeDate": "2014-01-31",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": -0.1841,
+      "episodeDate": "2017-08-18",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.181,
+      "episodeDate": "2019-04-12",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.1785,
+      "episodeDate": "2009-10-09",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.1763,
+      "episodeDate": "2004-02-06",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.1754,
+      "episodeDate": "2005-09-09",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.1707,
+      "episodeDate": "2017-03-24",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.1664,
+      "episodeDate": "2014-11-14",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.1651,
+      "episodeDate": "2014-11-07",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.1638,
+      "episodeDate": "2022-02-25",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.1617,
+      "episodeDate": "2012-12-21",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -0.1614,
+      "episodeDate": "2007-10-12",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.1586,
+      "episodeDate": "2012-01-06",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.1583,
+      "episodeDate": "2016-10-28",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.158,
+      "episodeDate": "2001-07-27",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.1576,
+      "episodeDate": "2010-05-14",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.156,
+      "episodeDate": "2024-07-19",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.1555,
+      "episodeDate": "2012-11-30",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.1517,
+      "episodeDate": "2019-04-26",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.1508,
+      "episodeDate": "2016-09-23",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.1499,
+      "episodeDate": "2024-08-23",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.1485,
+      "episodeDate": "2021-03-26",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.1462,
+      "episodeDate": "2005-11-11",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.1444,
+      "episodeDate": "2005-07-15",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": -0.1439,
+      "episodeDate": "2019-10-11",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.1423,
+      "episodeDate": "2022-02-11",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.1402,
+      "episodeDate": "2005-03-04",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.1344,
+      "episodeDate": "2002-09-20",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.1334,
+      "episodeDate": "2010-04-16",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.1329,
+      "episodeDate": "2006-05-12",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.1317,
+      "episodeDate": "2025-12-26",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.1311,
+      "episodeDate": "2007-08-17",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.1285,
+      "episodeDate": "2024-07-26",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.1274,
+      "episodeDate": "2011-11-04",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.1273,
+      "episodeDate": "2001-05-18",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.1269,
+      "episodeDate": "2005-02-04",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.1242,
+      "episodeDate": "2005-03-11",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.1201,
+      "episodeDate": "2007-04-27",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": -0.1186,
+      "episodeDate": "2017-04-07",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.1152,
+      "episodeDate": "2011-08-19",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.1122,
+      "episodeDate": "2016-08-26",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.1116,
+      "episodeDate": "2006-03-31",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.1111,
+      "episodeDate": "2026-08-14",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.111,
+      "episodeDate": "2001-10-12",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 0.1097,
+      "episodeDate": "2021-02-05",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.1067,
+      "episodeDate": "2016-04-29",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": 0.1062,
+      "episodeDate": "2015-01-23",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.1045,
+      "episodeDate": "2014-10-24",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 0.1018,
+      "episodeDate": "2003-08-08",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.1006,
+      "episodeDate": "2019-06-21",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.0999,
+      "episodeDate": "2017-11-17",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.099,
+      "episodeDate": "2014-09-19",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.0957,
+      "episodeDate": "2003-08-22",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 0.0954,
+      "episodeDate": "2004-10-29",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 0.0948,
+      "episodeDate": "2008-03-14",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.0948,
+      "episodeDate": "2023-11-24",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.0945,
+      "episodeDate": "2009-08-21",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.0905,
+      "episodeDate": "2014-03-07",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.0888,
+      "episodeDate": "2018-07-20",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.088,
+      "episodeDate": "2014-06-20",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.0872,
+      "episodeDate": "2005-08-19",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.086,
+      "episodeDate": "2002-01-25",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": -0.0827,
+      "episodeDate": "2020-10-30",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.0795,
+      "episodeDate": "2025-07-25",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.0778,
+      "episodeDate": "2012-07-20",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.0755,
+      "episodeDate": "2016-05-06",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.0727,
+      "episodeDate": "2023-10-13",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.0713,
+      "episodeDate": "2002-12-27",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -0.0708,
+      "episodeDate": "2024-08-16",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.0707,
+      "episodeDate": "2020-04-24",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": -0.0702,
+      "episodeDate": "2014-12-26",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.0697,
+      "episodeDate": "2002-09-06",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 0.0694,
+      "episodeDate": "2023-10-20",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.0687,
+      "episodeDate": "2009-07-24",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.068,
+      "episodeDate": "2016-10-14",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.0667,
+      "episodeDate": "2017-01-20",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.0664,
+      "episodeDate": "2002-08-09",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.063,
+      "episodeDate": "2021-10-08",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.0594,
+      "episodeDate": "2010-03-05",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.053,
+      "episodeDate": "2018-06-15",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.053,
+      "episodeDate": "2023-04-28",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.0512,
+      "episodeDate": "2017-10-20",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.0463,
+      "episodeDate": "2007-12-07",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.0431,
+      "episodeDate": "2017-03-10",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.042,
+      "episodeDate": "2011-10-28",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.0408,
+      "episodeDate": "2024-09-06",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.0403,
+      "episodeDate": "2023-05-05",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.0348,
+      "episodeDate": "2007-07-20",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.0342,
+      "episodeDate": "2021-08-06",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.0336,
+      "episodeDate": "2021-10-22",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.0295,
+      "episodeDate": "2014-09-12",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.0278,
+      "episodeDate": "2017-03-31",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": -0.0276,
+      "episodeDate": "2006-09-08",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": -0.0223,
+      "episodeDate": "2014-03-28",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.022,
+      "episodeDate": "2019-10-04",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.0124,
+      "episodeDate": "2006-10-27",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.0121,
+      "episodeDate": "2023-04-14",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.0116,
+      "episodeDate": "2022-01-07",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": -0.0094,
+      "episodeDate": "2016-03-18",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0.0088,
+      "episodeDate": "2025-02-07",
+      "source": "yahoo_native",
+      "regime": "trend_down"
+    },
+    {
+      "pct": 0.0087,
+      "episodeDate": "2020-10-23",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.0079,
+      "episodeDate": "2021-06-04",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0.0067,
+      "episodeDate": "2021-11-12",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0,
+      "episodeDate": "2001-12-07",
+      "source": "yahoo_native",
+      "regime": "squeeze"
+    },
+    {
+      "pct": 0,
+      "episodeDate": "2003-01-03",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0,
+      "episodeDate": "2003-10-24",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0,
+      "episodeDate": "2004-03-19",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0,
+      "episodeDate": "2006-05-05",
+      "source": "yahoo_native",
+      "regime": "trend_up"
+    },
+    {
+      "pct": 0,
+      "episodeDate": "2008-01-25",
+      "source": "yahoo_native",
+      "regime": "capitulation"
+    },
+    {
+      "pct": 0,
+      "episodeDate": "2014-10-03",
+      "source": "yahoo_native",
+      "regime": "chop"
+    },
+    {
+      "pct": 0,
+      "episodeDate": "2022-06-24",
+      "source": "yahoo_native",
+      "regime": "chop"
+    }
+  ],
+  "distribution": {
+    "sampleSize": 1227,
+    "categories": [
+      {
+        "label": "Closed up",
+        "count": 419,
+        "pct": 34
+      },
+      {
+        "label": "Flat",
+        "count": 508,
+        "pct": 41
+      },
+      {
+        "label": "Down 1-5%",
+        "count": 280,
+        "pct": 23
+      },
+      {
+        "label": "Down >5%",
+        "count": 19,
+        "pct": 2
+      },
+      {
+        "label": "Gap thru liq",
+        "count": 1,
+        "pct": 0
+      }
+    ],
+    "medianNext5dPct": 0.2895,
+    "worstNext5dPct": -17.9195,
+    "worstEpisodeDate": "2008-09-26"
+  },
+  "replayForecasts": [
+    {
+      "id": "fc_replay_2004_06_18",
+      "issuedAtUtc": "2004-06-18T20:00:00.000Z",
+      "tradeHash": "th_aapl_2004_06_18",
+      "bandLowPct": -4,
+      "bandHighPct": 4,
+      "regime": "squeeze",
+      "status": "hit",
+      "mode": "replay"
+    },
+    {
+      "id": "fc_replay_2007_06_01",
+      "issuedAtUtc": "2007-06-01T20:00:00.000Z",
+      "tradeHash": "th_aapl_2007_06_01",
+      "bandLowPct": -3.7,
+      "bandHighPct": 4.3,
+      "regime": "trend_up",
+      "status": "hit",
+      "mode": "replay"
+    },
+    {
+      "id": "fc_replay_2008_08_15",
+      "issuedAtUtc": "2008-08-15T20:00:00.000Z",
+      "tradeHash": "th_aapl_2008_08_15",
+      "bandLowPct": -4,
+      "bandHighPct": 4,
+      "regime": "squeeze",
+      "status": "hit",
+      "mode": "replay"
+    },
+    {
+      "id": "fc_replay_2010_07_30",
+      "issuedAtUtc": "2010-07-30T20:00:00.000Z",
+      "tradeHash": "th_aapl_2010_07_30",
+      "bandLowPct": -3.8,
+      "bandHighPct": 4.2,
+      "regime": "chop",
+      "status": "hit",
+      "mode": "replay"
+    },
+    {
+      "id": "fc_replay_2012_10_19",
+      "issuedAtUtc": "2012-10-19T20:00:00.000Z",
+      "tradeHash": "th_aapl_2012_10_19",
+      "bandLowPct": -3.8,
+      "bandHighPct": 4.2,
+      "regime": "chop",
+      "status": "hit",
+      "mode": "replay"
+    },
+    {
+      "id": "fc_replay_2015_03_06",
+      "issuedAtUtc": "2015-03-06T20:00:00.000Z",
+      "tradeHash": "th_aapl_2015_03_06",
+      "bandLowPct": -3.8,
+      "bandHighPct": 4.2,
+      "regime": "chop",
+      "status": "hit",
+      "mode": "replay"
+    },
+    {
+      "id": "fc_replay_2018_04_20",
+      "issuedAtUtc": "2018-04-20T20:00:00.000Z",
+      "tradeHash": "th_aapl_2018_04_20",
+      "bandLowPct": -3.8,
+      "bandHighPct": 4.2,
+      "regime": "chop",
+      "status": "hit",
+      "mode": "replay"
+    },
+    {
+      "id": "fc_replay_2020_03_13",
+      "issuedAtUtc": "2020-03-13T20:00:00.000Z",
+      "tradeHash": "th_aapl_2020_03_13",
+      "bandLowPct": -3.2,
+      "bandHighPct": 4.8,
+      "regime": "capitulation",
+      "status": "miss",
+      "mode": "replay"
+    },
+    {
+      "id": "fc_replay_2021_07_16",
+      "issuedAtUtc": "2021-07-16T20:00:00.000Z",
+      "tradeHash": "th_aapl_2021_07_16",
+      "bandLowPct": -3.7,
+      "bandHighPct": 4.3,
+      "regime": "trend_up",
+      "status": "hit",
+      "mode": "replay"
+    },
+    {
+      "id": "fc_replay_2024_03_15",
+      "issuedAtUtc": "2024-03-15T20:00:00.000Z",
+      "tradeHash": "th_aapl_2024_03_15",
+      "bandLowPct": -3.8,
+      "bandHighPct": 4.2,
+      "regime": "chop",
+      "status": "hit",
+      "mode": "replay"
+    },
+    {
+      "id": "fc_replay_2025_01_24",
+      "issuedAtUtc": "2025-01-24T20:00:00.000Z",
+      "tradeHash": "th_aapl_2025_01_24",
+      "bandLowPct": -3.8,
+      "bandHighPct": 4.2,
+      "regime": "chop",
+      "status": "hit",
+      "mode": "replay"
+    },
+    {
+      "id": "fc_replay_2026_09_18",
+      "issuedAtUtc": "2026-09-18T20:00:00.000Z",
+      "tradeHash": "th_aapl_2026_09_18",
+      "bandLowPct": -3.8,
+      "bandHighPct": 4.2,
+      "regime": "chop",
+      "status": "hit",
+      "mode": "replay"
+    }
+  ],
+  "calibration": {
+    "total": 12,
+    "hits": 11,
+    "misses": 1,
+    "pending": 0,
+    "byRegime": [
+      {
+        "regime": "squeeze",
+        "total": 2,
+        "hits": 2,
+        "status": "provisional"
+      },
+      {
+        "regime": "trend_up",
+        "total": 2,
+        "hits": 2,
+        "status": "provisional"
+      },
+      {
+        "regime": "chop",
+        "total": 7,
+        "hits": 7,
+        "status": "reliable"
+      },
+      {
+        "regime": "capitulation",
+        "total": 1,
+        "hits": 0,
+        "status": "provisional"
+      }
+    ]
+  },
+  "bandAdjustments": [],
+  "ledger": {
+    "entries": [
+      {
+        "index": 0,
+        "forecastId": "fc_replay_2004_06_18",
+        "grade": "hit",
+        "previousHash": "GENESIS",
+        "entryHash": "68911799"
+      },
+      {
+        "index": 1,
+        "forecastId": "fc_replay_2007_06_01",
+        "grade": "hit",
+        "previousHash": "68911799",
+        "entryHash": "f33a3d67"
+      },
+      {
+        "index": 2,
+        "forecastId": "fc_replay_2008_08_15",
+        "grade": "hit",
+        "previousHash": "f33a3d67",
+        "entryHash": "e2e6d4bd"
+      },
+      {
+        "index": 3,
+        "forecastId": "fc_replay_2010_07_30",
+        "grade": "hit",
+        "previousHash": "e2e6d4bd",
+        "entryHash": "31b73e44"
+      },
+      {
+        "index": 4,
+        "forecastId": "fc_replay_2012_10_19",
+        "grade": "hit",
+        "previousHash": "31b73e44",
+        "entryHash": "82b8a08f"
+      },
+      {
+        "index": 5,
+        "forecastId": "fc_replay_2015_03_06",
+        "grade": "hit",
+        "previousHash": "82b8a08f",
+        "entryHash": "9f161cad"
+      },
+      {
+        "index": 6,
+        "forecastId": "fc_replay_2018_04_20",
+        "grade": "hit",
+        "previousHash": "9f161cad",
+        "entryHash": "c8eb8e4a"
+      },
+      {
+        "index": 7,
+        "forecastId": "fc_replay_2020_03_13",
+        "grade": "miss",
+        "previousHash": "c8eb8e4a",
+        "entryHash": "ac02a151"
+      },
+      {
+        "index": 8,
+        "forecastId": "fc_replay_2021_07_16",
+        "grade": "hit",
+        "previousHash": "ac02a151",
+        "entryHash": "7545dab1"
+      },
+      {
+        "index": 9,
+        "forecastId": "fc_replay_2024_03_15",
+        "grade": "hit",
+        "previousHash": "7545dab1",
+        "entryHash": "853ed087"
+      },
+      {
+        "index": 10,
+        "forecastId": "fc_replay_2025_01_24",
+        "grade": "hit",
+        "previousHash": "853ed087",
+        "entryHash": "40092493"
+      },
+      {
+        "index": 11,
+        "forecastId": "fc_replay_2026_09_18",
+        "grade": "hit",
+        "previousHash": "40092493",
+        "entryHash": "15bac5db"
+      }
+    ],
+    "verified": true
+  },
+  "stats": {
+    "totalEpisodes": 1227,
+    "closedUpCount": 419,
+    "closedUpPct": 34,
+    "survivedWorstGapCount": 1226,
+    "survivedWorstGapPct": 100,
+    "medianPct": 0.2895,
+    "worstPct": -17.9195,
+    "worstDate": "2008-09-26",
+    "regimeCounts": {
+      "trend_down": 101,
+      "capitulation": 52,
+      "chop": 659,
+      "trend_up": 331,
+      "insufficient_evidence": 12,
+      "squeeze": 72
+    }
+  }
+}

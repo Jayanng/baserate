@@ -24,17 +24,17 @@ Dossier, not signal. Computed, not vibes. And a desk that keeps score on itself.
 
 ### Why this fits Decision Stress Testing
 
-The sub-theme asks for tools that retrieve historically similar scenarios and stress test a decision before it is made. BaseRate does exactly that, deeper than preset shock tables:
+The sub-theme asks for tools that retrieve historically similar scenarios and stress test a decision before it is made. BaseRate addresses that brief through three connected capabilities:
 
-- It retrieves historically similar scenarios from decades of market history, not a handful of preset windows.
-- It stress tests the exact trade the user is about to place, including Bitget's weekend collateral mechanics.
-- It treats every stress report as a registered forecast and verifies it. Stress testing applied to the tool itself.
+- It retrieves historically similar scenarios from decades of native-market history and returns the complete outcome distribution.
+- It stress tests the exact trade the user is considering, including Bitget's weekend collateral mechanics.
+- It treats every stress report as a registered forecast and verifies it after the relevant market window. Stress testing is applied to the desk itself.
 
 ## 2. The problem
 
-rTokens made US stocks trade 24/7. Risk tooling still sleeps at 4pm New York time.
+rTokens made US stocks trade 24/7, creating a weekend risk window that requires its own analysis.
 
-A trader who holds a leveraged rToken position over the weekend faces a structure most tools never model:
+A trader who holds a leveraged rToken position over the weekend faces a structure that must be modeled explicitly:
 
 - The UTA margin index for stock tokens is fixed while the native US market is closed. Collateral valuation freezes on Friday.
 - Crypto collateral marks and perpetual funding keep moving all weekend. The part of the account that can liquidate the trader stays live while the part that defines the liquidation line is frozen.
@@ -90,23 +90,37 @@ What does not learn: no neural network retrains, no hidden re-weighting of histo
 
 **Replay mode.** A brand-new desk has no grades yet. So BaseRate replays the past: it re-issues what it would have said for the last 30 weekends using only data frozen before each weekend, then scores those against what actually happened. The mechanism, math, and ledger are identical to live grading. Every replayed number is labeled `REPLAY` so nobody mistakes it for a live call. Honesty about replay is part of the product.
 
-## 6. Why this stands out
+## 6. BaseRate's core capabilities
 
-- Common pattern: historical analogs drawn from a few preset windows or a short lookback with a top-N shortlist. BaseRate matches regimes across decades and shows the whole distribution, not a hand-picked sample.
-- Common pattern: static reports, generate once and read once. BaseRate's counterfactuals recompute live, and its reports come back for grading.
-- Most desks stop at the report. BaseRate's forecast registry and Monday grading close the loop on the desk's own calls.
-- Common pattern: model-generated numbers nobody can reproduce. BaseRate's regime engine is deterministic: same inputs, same regime tags, same distribution, every time. Reproducibility is the trust feature.
+BaseRate combines five capabilities into one decision workflow:
 
-| What judges look for | BaseRate's answer |
+1. **Bitget-native weekend risk.** The desk models frozen Friday collateral, live funding carry, thin weekend books, slippage, and the Monday cash-market reopen.
+2. **Full-history base rates.** A deterministic regime engine organizes decades of native-market history and returns the complete distribution of observed outcomes, including sample size, median, tails, and dated evidence.
+3. **Live counterfactuals.** Position size, leverage, entry timing, and holding window can be changed in the dossier. The risk calculations and historical distribution recompute from the same pinned data.
+4. **Self-scoring forecasts.** Every dossier becomes an append-only forecast. After the relevant market window, BaseRate compares the issued bands with reality and records hits, misses, and calibration changes.
+5. **Reproducible research.** The deterministic engine computes every number. The language model may narrate a sanitized dossier but cannot calculate, alter, or invent figures.
+
+| Decision Stress Testing capability | BaseRate implementation |
 |---|---|
-| Retrieve historically similar scenarios | Full-history regime matching with typed regimes and dated evidence |
-| Preset stress tests | Friday-freeze calculator, funding carry, thin-book stress, gap table |
-| Feature depth on Bitget rails | Spot tape, UTA collateral rules, futures funding, MCP server |
-| Research quality | Calibration math, Brier-style scores, published miss rates, sensitivity shown |
-| Human-in-the-loop | Deterministic desk, narrating model, human decides, zero execution |
-| Trust | Publishes its own scorecard, misses included |
+| Historical scenario retrieval | Full-history regime matching with typed regimes and dated evidence |
+| Trade stress testing | Friday-freeze calculator, funding carry, thin-book stress, gap table |
+| Interactive decision support | Continuous counterfactual controls for size, leverage, timing, and window |
+| Forecast accountability | Append-only registry, Monday grading, calibration report, replay mode |
+| Human-in-the-loop | Read-only research desk. The human decides. |
+| Evidence and safety | Provenance for every figure, refusal states, no execution, no account keys |
 
-## 7. Architecture
+## 7. Product surfaces: four pages maximum
+
+BaseRate is intentionally limited to four pages:
+
+1. **Landing.** Explains the weekend rToken problem, the BaseRate workflow, the scorekeeping idea, and opens the desk.
+2. **Overview.** Shows the active weekend exposure, frozen collateral state, funding status, weekend timeline, current warnings, and entry points into the dossier and scorecard.
+3. **Dossier.** Provides one natural-language trade intake field, parsed trade details, deterministic Bitget-native stress calculations, historical outcome distribution, evidence, and live counterfactual controls. It is a structured workbench, not a persistent chat interface.
+4. **Scorecard.** Shows calibration, issued bands versus actual outcomes, regime accuracy, replay results, misses, band adjustments, and the append-only forecast ledger.
+
+Supporting details remain inside these pages as drawers, expandable evidence panels, or focused states. There is no separate chat page, settings page, weekend-map page, or ledger page.
+
+## 8. Architecture
 
 - **Deterministic core.** Every number is computed by code with pinned inputs. Same inputs, same dossier, every time.
 - **Regime classifier.** Deterministic and statistical: fixed, published feature windows bucket historical episodes into typed regimes. Reproducible by any judge with the code.
@@ -139,7 +153,7 @@ baserate/
   tests/
 ```
 
-## 8. Data plan and provenance
+## 9. Data plan and provenance
 
 | Source | Used for | Status |
 |---|---|---|
@@ -151,7 +165,7 @@ baserate/
 
 Every dossier ships its provenance: which source, which timestamp, which endpoint. Numbers without provenance do not ship.
 
-## 9. Rules and safety
+## 10. Rules and safety
 
 What BaseRate will never do:
 
@@ -163,7 +177,7 @@ What BaseRate will never do:
 
 Human decides. The desk researches, computes, and grades itself. That is the whole job.
 
-## 10. Honest limitations
+## 11. Honest limitations
 
 - rToken spot history begins at each token's Bitget listing (RNVDA: June 2025). Bitget-native layers such as live weekend tape are young; the deep base rates come from native-market history, and every figure is labeled so the two are never confused.
 - Stock perp funding history covers roughly the perp listing window (NVDA perp: since June 2026). Where the carry model leans on thin funding data, it is labeled estimated, never invented.
@@ -171,7 +185,7 @@ Human decides. The desk researches, computes, and grades itself. That is the who
 - Regime taxonomies are product settings, not empirical optima. Sensitivity is shown rather than hidden.
 - Descriptive, not predictive: past distributions condition expectations. They are not guarantees, and the desk says so in every dossier.
 
-## 11. Build plan (submission closes Sep 27, UTC+8)
+## 12. Build plan (submission closes Sep 27, UTC+8)
 
 - **Day 1 (Sep 22, done):** data probes completed and verified: candle enum families (spot plain, futures UTC-style), funding endpoints mapped via plain-ticker stock perps, history source decided (Yahoo, keyless, multi-decade), external classifier decision closed (deterministic in-house engine; research archived in docs). Dossier schema next.
 - **Day 2 (Sep 23):** golden path. rNVDA weekend hold, end-to-end ugly-but-real pipeline.
@@ -179,7 +193,7 @@ Human decides. The desk researches, computes, and grades itself. That is the who
 - **Day 4 (Sep 25):** UI polish, preset stress buttons, crash-replay fixture, README in judge order, first build-in-public post.
 - **Day 5 (Sep 26 to 27):** cold demo rehearsal, replay-mode scorecard generation, final form answers, final post, submit.
 
-## 12. The judge's 60 seconds
+## 13. The judge's 60 seconds
 
 1. Type: "long rNVDA over the weekend at 3x, 5,000 USDT margin."
 2. Dossier lands: Friday-freeze liquidation line, weekend funding carry, gap table, and the full regime distribution with dates.
@@ -187,11 +201,11 @@ Human decides. The desk researches, computes, and grades itself. That is the who
 4. Open the Scorecard: 30 replayed weekends, hit rate per regime, two labeled misses, one adjusted band with its reason.
 5. Close on the thesis: every stress report is a claim about the future. BaseRate is the desk that shows its score on Monday.
 
-## 13. Thesis (submission form answer, drafted)
+## 14. Thesis (submission form answer, drafted)
 
 rTokens made US stocks trade 24/7, but every risk tool still sleeps at 4pm New York time. The collateral calculation freezes on Friday while the market that protects the trader keeps moving. BaseRate gives the weekend trader the base rate for their exact trade before they place it: every historical twin, the full outcome distribution, and the collateral math on a frozen index. Then it keeps score on itself every Monday and publishes its own miss rate. A desk that grades itself in public is the trust step agentic trading needs next.
 
-## 14. Submission checklist
+## 15. Submission checklist
 
 - [ ] Track and sub-theme confirmed: Track 3, Decision Stress Testing
 - [ ] Live demo URL (login-free)
@@ -204,7 +218,7 @@ rTokens made US stocks trade 24/7, but every risk tool still sleeps at 4pm New Y
 - [ ] Build-in-public posts for Fan Favorite and Best Spread lanes
 - [ ] Read-only verified: no keys, no orders, no account connections
 
-## 15. Glossary
+## 16. Glossary
 
 - **Base rate:** how often something happened across all of history, not a prediction.
 - **Regime:** a typed market situation (trend, chop, squeeze, capitulation) used to bucket historical episodes.

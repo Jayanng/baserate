@@ -1,0 +1,322 @@
+/**
+ * BaseRate Global Styles & Tokens
+ * Next.js App Router root stylesheet
+ */
+
+/* ==========================================================================
+   Font Faces (Local Approved WOFF2 Binaries in public/fonts/)
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  src: url('/fonts/PlusJakartaSans.woff2') format('woff2-variations'),
+       url('/fonts/PlusJakartaSans.woff2') format('woff2');
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Jakarta';
+  src: url('/fonts/PlusJakartaSans.woff2') format('woff2-variations'),
+       url('/fonts/PlusJakartaSans.woff2') format('woff2');
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter.woff2') format('woff2-variations'),
+       url('/fonts/Inter.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ==========================================================================
+   Design Tokens (copied verbatim from design/tokens.css)
+   ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------------------
+     1. Surface & Canvas Colors
+     ------------------------------------------------------------------------ */
+  --br-surface-canvas: #e9eaf0;       /* Backdrop outside application frame */
+  --br-surface-shell: #f8f9fc;        /* Primary container / card background */
+  --br-surface-paper: #ffffff;        /* Crisp white frame & card surfaces */
+  --br-surface-card: #f8f9fc;         /* Standard card background */
+  --br-surface-card-white: #ffffff;   /* Elevated white card surface */
+  --br-surface-well: #efeff5;         /* Track background, recessed containers */
+  --br-surface-subtle: #f0f1f5;       /* Neutral chips, secondary wells */
+  --br-surface-dark: #17182d;         /* High-contrast footer, dark badge */
+
+  /* Surface Aliases */
+  --canvas: var(--br-surface-canvas);
+  --shell: var(--br-surface-shell);
+  --paper: var(--br-surface-paper);
+  --card: var(--br-surface-card);
+
+  /* ------------------------------------------------------------------------
+     2. Hairline Lines & Borders
+     ------------------------------------------------------------------------ */
+  --br-border-hairline: rgba(23, 24, 45, 0.04);
+  --br-border-subtle: rgba(23, 24, 45, 0.06);
+  --br-border-medium: rgba(23, 24, 45, 0.08);
+  --br-border-strong: rgba(23, 24, 45, 0.12);
+  --br-border-focus: rgba(58, 30, 200, 0.35);
+
+  --br-line: var(--br-border-medium);
+  --line: var(--br-border-medium);
+
+  /* ------------------------------------------------------------------------
+     3. Typography Text Colors
+     ------------------------------------------------------------------------ */
+  --br-text-ink: #17182d;             /* Primary high-contrast ink */
+  --br-text-muted: #77798b;           /* Body subtext, secondary labels */
+  --br-text-faint: #999bab;           /* Captions, keyboard shortcuts, subtle */
+  --br-text-placeholder: #b0b3c1;     /* Input placeholder text */
+  --br-text-inverse: #ffffff;         /* Inverted text on dark/primary surfaces */
+  --br-text-inverse-muted: #b8bac8;   /* Inverted secondary text */
+
+  /* Text Aliases */
+  --ink: var(--br-text-ink);
+  --muted: var(--br-text-muted);
+  --faint: var(--br-text-faint);
+
+  /* ------------------------------------------------------------------------
+     4. Primary Accent: Indigo / Violet
+     ------------------------------------------------------------------------ */
+  --br-primary: #3a1ec8;              /* BaseRate signature violet */
+  --br-primary-hover: #28138d;        /* Darkened state for interactions */
+  --br-primary-deep: #2c169c;         /* Deep tone for high-contrast text */
+  --br-primary-soft: #ece9ff;         /* Soft lavender tint for badges & icons */
+  --br-primary-subtle: rgba(58, 30, 200, 0.08); /* Selection & focus wash */
+  --br-primary-border: rgba(58, 30, 200, 0.20); /* Outlined / ghost borders */
+
+  /* Primary Aliases */
+  --indigo: var(--br-primary);
+  --violet: var(--br-primary);
+  --violet-dark: var(--br-primary-hover);
+  --lav-soft: var(--br-primary-soft);
+
+  /* ------------------------------------------------------------------------
+     5. Semantic Accents
+     ------------------------------------------------------------------------ */
+  /* Lime: Positive / Observed / Inside Band / Desk Live / Up */
+  --br-lime: #d9f884;
+  --br-lime-soft: #edfbd2;
+  --br-lime-ink: #3f5b00;
+  --br-lime-border: rgba(63, 91, 0, 0.12);
+
+  /* Lavender: Neutral / Regime / Category / Chips */
+  --br-lavender: #ddd8fb;
+  --br-lavender-soft: #ece9ff;
+  --br-lavender-subtle: #f4f2fe;
+  --br-lavender-ink: #3a1ec8;
+  --br-lavender-border: rgba(58, 30, 200, 0.10);
+
+  /* Peach: Pending / Warning / Replay / Estimated */
+  --br-peach: #ffe2d7;
+  --br-peach-soft: #fff1eb;
+  --br-peach-ink: #a9462b;
+  --br-peach-border: rgba(169, 70, 43, 0.12);
+
+  /* Coral: Risk / Miss / Liquidation Line / Severe Gap */
+  --br-coral: #ffb4a2;
+  --br-coral-bright: #e8603c;
+  --br-coral-soft: #fecdd3;
+  --br-coral-ink: #991b1b;
+  --br-coral-deep: #c0392b;
+  --br-coral-border: rgba(232, 96, 60, 0.15);
+
+  /* Semantic Aliases */
+  --lime: var(--br-lime);
+  --lime-soft: var(--br-lime-soft);
+  --lime-ink: var(--br-lime-ink);
+  --lav: var(--br-lavender-soft);
+  --lav-mid: var(--br-lavender);
+  --peach: var(--br-peach);
+  --peach-ink: var(--br-peach-ink);
+  --coral: var(--br-coral);
+  --coral-deep: var(--br-coral-bright);
+
+  /* ------------------------------------------------------------------------
+     6. Radii System
+     ------------------------------------------------------------------------ */
+  --br-radius-shell: 36px;            /* Application frame container */
+  --br-radius-card: 24px;             /* Bento cards, intake block */
+  --br-radius-inner: 16px;            /* Risk metric tiles, inputs, wells */
+  --br-radius-compact: 12px;          /* Action icons, keyboard tags */
+  --br-radius-sm: 8px;                /* Distribution bars, status tags */
+  --br-radius-xs: 4px;                /* Minor badges, mini indicators */
+  --br-radius-pill: 9999px;           /* Buttons, chips, navigation tabs */
+  --br-radius-round: 50%;             /* Dot indicators, avatars */
+
+  /* ------------------------------------------------------------------------
+     7. Layered Elevation & Shadows
+     ------------------------------------------------------------------------ */
+  --br-shadow-shell: 0 28px 70px -22px rgba(23, 24, 45, 0.12), 0 4px 14px rgba(23, 24, 45, 0.04);
+  --br-shadow-card: 0 10px 30px -8px rgba(23, 24, 45, 0.05), 0 2px 6px rgba(23, 24, 45, 0.03);
+  --br-shadow-card-subtle: 0 4px 16px rgba(23, 24, 45, 0.03);
+  --br-shadow-float: 0 20px 48px -18px rgba(23, 24, 45, 0.18);
+  --br-shadow-primary: 0 12px 24px -12px rgba(58, 30, 200, 0.65);
+  --br-shadow-primary-sm: 0 8px 18px -6px rgba(58, 30, 200, 0.45);
+  --br-shadow-thumb: 0 2px 8px rgba(58, 30, 200, 0.30);
+  --br-shadow-focus: 0 0 0 3px rgba(58, 30, 200, 0.08);
+
+  --shadow: var(--br-shadow-shell);
+
+  /* ------------------------------------------------------------------------
+     8. Spacing Scale (4px / 8px Grid)
+     ------------------------------------------------------------------------ */
+  --br-space-1: 4px;
+  --br-space-2: 8px;
+  --br-space-3: 12px;
+  --br-space-4: 16px;
+  --br-space-5: 20px;
+  --br-space-6: 24px;
+  --br-space-7: 28px;
+  --br-space-8: 32px;
+  --br-space-9: 36px;
+  --br-space-10: 40px;
+  --br-space-11: 44px;
+  --br-space-12: 48px;
+  --br-space-16: 64px;
+  --br-space-18: 72px;
+  --br-space-20: 80px;
+
+  /* ------------------------------------------------------------------------
+     9. Typography Families, Sizes, Weights, Line Heights & Tracking
+     ------------------------------------------------------------------------ */
+  --br-font-sans: 'Plus Jakarta Sans', Jakarta, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --br-font-mono: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', monospace;
+
+  /* Font Weights */
+  --br-font-weight-regular: 400;
+  --br-font-weight-medium: 500;
+  --br-font-weight-semibold: 600;
+  --br-font-weight-bold: 700;
+  --br-font-weight-extrabold: 800;
+
+  /* Font Sizes */
+  --br-font-size-2xs: 9px;
+  --br-font-size-xs: 10px;
+  --br-font-size-sm: 11px;
+  --br-font-size-base: 12px;
+  --br-font-size-md: 13px;
+  --br-font-size-body: 14px;
+  --br-font-size-lg: 15px;
+  --br-font-size-xl: 16px;
+  --br-font-size-2xl: 18px;
+  --br-font-size-3xl: 20px;
+  --br-font-size-4xl: 22px;
+  --br-font-size-5xl: 24px;
+  --br-font-size-6xl: 26px;
+  --br-font-size-7xl: 33px;
+  --br-font-size-8xl: 52px;
+  --br-font-size-9xl: 67px;
+  --br-font-size-hero: 72px;
+
+  /* Line Heights */
+  --br-line-height-tight: 1.02;
+  --br-line-height-snug: 1.25;
+  --br-line-height-base: 1.45;
+  --br-line-height-relaxed: 1.65;
+
+  /* Letter Spacing */
+  --br-letter-spacing-tighter: -0.055em;
+  --br-letter-spacing-tight: -0.03em;
+  --br-letter-spacing-snug: -0.01em;
+  --br-letter-spacing-normal: 0em;
+  --br-letter-spacing-wide: 0.06em;
+  --br-letter-spacing-wider: 0.08em;
+  --br-letter-spacing-caps: 0.1em;
+
+  /* ------------------------------------------------------------------------
+     10. Transitions
+     ------------------------------------------------------------------------ */
+  --br-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --br-transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --br-transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   Minimal Resets & Global Styles
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100%;
+  background-color: var(--br-surface-canvas);
+  color: var(--br-text-ink);
+  font-family: var(--br-font-sans);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button, input, select, textarea {
+  font: inherit;
+}
+
+/* ==========================================================================
+   BaseRate Shell & Framework Classes
+   ========================================================================== */
+
+.br-canvas {
+  background-color: var(--br-surface-canvas);
+  min-height: 100vh;
+}
+
+.br-frame {
+  max-width: 1420px;
+  margin: var(--br-space-6) auto;
+  background: var(--br-surface-paper);
+  border-radius: var(--br-radius-shell);
+  box-shadow: var(--br-shadow-shell);
+  overflow: hidden;
+}
+
+@media (max-width: 1460px) {
+  .br-frame {
+    margin: var(--br-space-4);
+    border-radius: var(--br-radius-card);
+  }
+}
+
+@media (max-width: 768px) {
+  .br-frame {
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+/* ==========================================================================
+   Numeric / Data Contexts
+   ========================================================================== */
+
+.tabular-nums,
+[data-numeric="true"],
+.num,
+var,
+code,
+kbd,
+pre {
+  font-family: var(--br-font-mono);
+  font-variant-numeric: tabular-nums;
+}

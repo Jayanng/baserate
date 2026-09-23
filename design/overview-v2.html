@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>BaseRate — Overview</title>
+<style>
+@font-face{font-family:Jakarta;src:url('fonts/PlusJakartaSans.woff2') format('woff2-variations');font-weight:200 800;font-display:block}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#e9eaf0;color:#17182d}
+body{font-family:Jakarta,Inter,sans-serif;padding:32px;font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
+
+.frame{width:1420px;margin:auto;background:#fff;border-radius:36px;box-shadow:0 28px 70px -22px rgba(23,24,45,.12),0 4px 14px rgba(23,24,45,.04);overflow:hidden}
+
+/* top nav */
+.topnav{display:flex;align-items:center;height:72px;padding:0 36px;border-bottom:1px solid rgba(23,24,45,.06)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:16px;color:#17182d}
+.mark{width:32px;height:32px;border-radius:10px;background:#3a1ec8;display:grid;place-items:center;color:#fff;font-size:13px;font-weight:800}
+.navlinks{display:flex;gap:6px;margin-left:48px}
+.navlinks a{text-decoration:none;font-size:13px;font-weight:600;color:#77798b;padding:8px 16px;border-radius:999px;transition:all .15s}
+.navlinks a.on{background:#3a1ec8;color:#fff}
+.navlinks a:hover:not(.on){background:#f4f2fe;color:#3a1ec8}
+.spacer{flex:1}
+.search{background:#f8f9fc;border:1px solid rgba(23,24,45,.06);border-radius:999px;padding:9px 16px;font-size:12px;color:#999bab;width:200px;display:flex;align-items:center;gap:8px}
+.search kbd{background:#fff;border:1px solid rgba(23,24,45,.08);border-radius:5px;padding:1px 6px;font-size:10px;color:#77798b;font-family:inherit}
+.avatar{width:34px;height:34px;border-radius:50%;background:#ece9ff;color:#3a1ec8;display:grid;place-items:center;font-size:11px;font-weight:800;margin-left:16px}
+
+/* content */
+.content{padding:32px 36px 40px}
+.header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:28px}
+.header h1{font-size:26px;font-weight:800;letter-spacing:-.03em}
+.header p{font-size:13px;color:#77798b;margin-top:4px}
+.livepill{background:#d9f884;color:#3f5b00;font-size:11px;font-weight:700;padding:7px 14px;border-radius:999px}
+
+/* bento grid */
+.bento{display:grid;grid-template-columns:1.6fr 1fr;grid-template-rows:auto auto;gap:16px}
+
+.card{background:#f8f9fc;border-radius:24px;padding:24px;border:1px solid rgba(23,24,45,.04)}
+.card.white{background:#fff;border:1px solid rgba(23,24,45,.06);box-shadow:0 4px 16px rgba(23,24,45,.03)}
+
+/* hero card */
+.hero{grid-column:1/2;grid-row:1/2;display:flex;gap:24px;align-items:stretch}
+.heroleft{flex:1;display:flex;flex-direction:column}
+.tag{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:#3a1ec8;font-weight:800;margin-bottom:12px}
+.trade{font-size:18px;font-weight:800;letter-spacing:-.02em}
+.trade small{display:block;font-size:12px;color:#77798b;font-weight:500;margin-top:4px}
+.bigstat{margin-top:auto;display:flex;align-items:baseline;gap:10px}
+.bigstat b{font-size:52px;font-weight:800;letter-spacing:-.04em;color:#17182d}
+.bigstat span{font-size:12px;color:#77798b;font-weight:500}
+.badge{display:inline-flex;align-items:center;gap:5px;background:#edfbd2;color:#3f5b00;font-size:11px;font-weight:700;padding:5px 11px;border-radius:999px;margin-top:10px}
+.badge i{width:6px;height:6px;border-radius:50%;background:#3f5b00}
+
+.heroright{width:220px;display:flex;flex-direction:column;gap:10px}
+.metric{background:#fff;border-radius:16px;padding:14px 16px;border:1px solid rgba(23,24,45,.05)}
+.metric .k{font-size:10px;color:#77798b;text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+.metric .v{font-size:20px;font-weight:800;letter-spacing:-.03em;margin-top:4px}
+.metric .v.red{color:#c0392b}
+.metric .v.indigo{color:#3a1ec8}
+
+/* weekend strip */
+.strip{grid-column:2/3;grid-row:1/2}
+.strip h3{font-size:13px;font-weight:700;margin-bottom:16px}
+.days{display:flex;gap:8px;margin-bottom:20px}
+.day{flex:1;background:#fff;border-radius:14px;padding:12px 10px;text-align:center;border:1px solid rgba(23,24,45,.05)}
+.day .n{font-size:18px;font-weight:800}
+.day .l{font-size:9px;color:#77798b;text-transform:uppercase;letter-spacing:.08em;margin-top:2px}
+.day.now{background:#3a1ec8;color:#fff;border-color:#3a1ec8}
+.day.now .l{color:rgba(255,255,255,.7)}
+.day.future{background:repeating-linear-gradient(135deg,#f8f9fc,#f8f9fc 4px,#efeff5 4px,#efeff5 8px);border:1px dashed rgba(23,24,45,.12)}
+.events{display:flex;flex-direction:column;gap:8px}
+.ev{display:flex;align-items:center;gap:10px;font-size:11px;color:#17182d;font-weight:600}
+.ev .dot{width:8px;height:8px;border-radius:50%}
+.ev .dot.lime{background:#d9f884}
+.ev .dot.peach{background:#ffe2d7}
+.ev time{margin-left:auto;font-size:10px;color:#999bab;font-weight:500}
+
+/* bottom row */
+.actions{grid-column:1/2;grid-row:2/3}
+.actions h3{font-size:13px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.actions h3 span{background:#ffe2d7;color:#a9462b;font-size:10px;font-weight:700;padding:3px 8px;border-radius:999px}
+.actrow{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(23,24,45,.05)}
+.actrow:last-of-type{border:none}
+.acticon{width:36px;height:36px;border-radius:12px;background:#ece9ff;display:grid;place-items:center}
+.acticon svg{width:16px;height:16px;stroke:#3a1ec8;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.acttext{flex:1}
+.acttext b{font-size:12px;font-weight:700;display:block}
+.acttext small{font-size:10px;color:#77798b}
+.btn{border:none;border-radius:999px;padding:8px 16px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit}
+.btn.pri{background:#3a1ec8;color:#fff}
+.btn.ghost{background:#fff;color:#3a1ec8;border:1px solid rgba(58,30,200,.2)}
+.prompt{margin-top:14px;background:#fff;border:1px solid rgba(23,24,45,.08);border-radius:14px;padding:12px 16px;font-size:12px;color:#999bab;display:flex;align-items:center;gap:8px}
+.prompt svg{width:14px;height:14px;stroke:#3a1ec8;fill:none;stroke-width:2}
+
+.score{grid-column:2/3;grid-row:2/3;display:flex;flex-direction:column}
+.score h3{font-size:13px;font-weight:700;margin-bottom:14px}
+.donutwrap{display:flex;align-items:center;gap:20px;flex:1}
+.donut{width:100px;height:100px;border-radius:50%;background:conic-gradient(#d9f884 0% 60%,#3a1ec8 60% 80%,#ffe2d7 80% 100%);display:grid;place-items:center;position:relative}
+.donut::after{content:'83%';position:absolute;width:68px;height:68px;background:#f8f9fc;border-radius:50%;display:grid;place-items:center;font-size:16px;font-weight:800;color:#17182d}
+.legend{display:flex;flex-direction:column;gap:8px}
+.legend span{display:flex;align-items:center;gap:6px;font-size:11px;color:#17182d;font-weight:600}
+.legend i{width:8px;height:8px;border-radius:3px}
+.legend .l1{background:#d9f884}
+.legend .l2{background:#3a1ec8}
+.legend .l3{background:#ffe2d7}
+.scorenote{margin-top:auto;font-size:10px;color:#77798b;line-height:1.5;background:#fff;padding:10px 12px;border-radius:10px;border:1px solid rgba(23,24,45,.05)}
+</style></head><body><div class="frame">
+
+<nav class="topnav">
+  <div class="brand"><div class="mark">B</div>BaseRate</div>
+  <div class="navlinks">
+    <a href="#" class="on">Overview</a>
+    <a href="#">Dossier</a>
+    <a href="#">Scorecard</a>
+  </div>
+  <div class="spacer"></div>
+  <div class="search">Search your desk <kbd>⌘K</kbd></div>
+  <div class="avatar">JE</div>
+</nav>
+
+<div class="content">
+  <div class="header">
+    <div>
+      <h1>Weekend Exposure</h1>
+      <p>Saturday, 26 September · Cash market closed</p>
+    </div>
+    <div class="livepill">● Desk is live · grading Monday</div>
+  </div>
+
+  <div class="bento">
+
+    <!-- Hero -->
+    <div class="card hero">
+      <div class="heroleft">
+        <div class="tag">Active position</div>
+        <div class="trade">rNVDA · Long · 3x<small>5,000 USDT margin · held from Friday close</small></div>
+        <div class="bigstat">
+          <b>93%</b>
+          <span>survival rate<br>across 231 comparable weekends</span>
+        </div>
+        <div class="badge"><i></i> Within historical range</div>
+      </div>
+      <div class="heroright">
+        <div class="metric"><div class="k">Liquidation line</div><div class="v red">−11.8%</div></div>
+        <div class="metric"><div class="k">Funding carry</div><div class="v indigo">−0.31%</div></div>
+        <div class="metric"><div class="k">Worst gap (10y)</div><div class="v">−13.7%</div></div>
+      </div>
+    </div>
+
+    <!-- Weekend Strip -->
+    <div class="card white strip">
+      <h3>Weekend timeline</h3>
+      <div class="days">
+        <div class="day"><div class="n">Fri</div><div class="l">Closed</div></div>
+        <div class="day now"><div class="n">Sat</div><div class="l">Hour 14</div></div>
+        <div class="day future"><div class="n">Sun</div><div class="l">Pending</div></div>
+        <div class="day future"><div class="n">Mon</div><div class="l">Reopen</div></div>
+      </div>
+      <div class="events">
+        <div class="ev"><div class="dot lime"></div>Desk grades itself<time>Mon 09:30</time></div>
+        <div class="ev"><div class="dot peach"></div>Cash market reopens<time>Mon 21:30</time></div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="card actions">
+      <h3>Before you size up <span>2 open</span></h3>
+      <div class="actrow">
+        <div class="acticon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
+        <div class="acttext"><b>Cap size at 3,400 USDT</b><small>Keeps liquidation line outside worst historical gap</small></div>
+        <button class="btn pri">Apply</button>
+      </div>
+      <div class="actrow">
+        <div class="acticon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+        <div class="acttext"><b>Shift entry to Monday</b><small>Skips 42 thin-book hours over the weekend</small></div>
+        <button class="btn ghost">Preview</button>
+      </div>
+      <div class="prompt">
+        <svg viewBox="0 0 24 24"><path d="M12 3l1.5 4.5H18l-3.5 2.7 1.3 4.3L12 12l-3.8 2.5 1.3-4.3L6 7.5h4.5z"/></svg>
+        Ask why the trend-down band widened…
+      </div>
+    </div>
+
+    <!-- Score -->
+    <div class="card score">
+      <h3>Forecast record</h3>
+      <div class="donutwrap">
+        <div class="donut"></div>
+        <div class="legend">
+          <span><i class="l1"></i>Inside band · 83%</span>
+          <span><i class="l2"></i>Missed · 2</span>
+          <span><i class="l3"></i>Pending grade · 2</span>
+        </div>
+      </div>
+      <div class="scorenote">Two squeeze-regime bands were widened on Monday after missing. Misses stay visible.</div>
+    </div>
+
+  </div>
+</div>
+
+</div></body></html>
