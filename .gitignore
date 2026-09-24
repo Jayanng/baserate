@@ -26,3 +26,8 @@ dist/
 
 # in-house private material (never publish)
 /internal/
+# in-house private material (never publish)
+/internal/
+# next-dev regenerated agent files (toolchain noise, never commit)
+web/AGENTS.md
+web/CLAUDE.md

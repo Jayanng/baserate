@@ -141,6 +141,7 @@ A newly initialized desk has no multi-year operational track record. BaseRate de
 | **Historical regime matching** | Decades of native market history categorized into typed regimes with complete outcome distributions and "Why these weekends" matching disclosures. |
 | **Bitget-native stress math** | Friday-freeze collateral modeling, 60-hour funding carry math, historical weekend gap tables, and live market snapshot strips. |
 | **Weekend depth stress** | Deterministic VWAP walk of public Bitget spot order books estimating slippage and consumed levels (with fail-closed `INSUFFICIENT_DEPTH` handling). |
+| **Event context** | Next scheduled earnings date for the active asset from the official Bitget data MCP server, flagged when it falls within 7 days of the Monday reopen. |
 | **Deterministic risk interpretation** | Three-state mathematical classification (within buffer with tail risk warning, breached liquidation, or incomplete evidence) with complete `HOW` disclosures. |
 | **Interactive counterfactuals** | Dynamic controls for position size, leverage, and timing, paired with a Decision Transformation Panel tracking liquidation distance deltas in percentage points. |
 | **Self-scoring forecast loop** | Append-only ledger secured by a deterministic hash chain (FNV-1a), scoring replayed dossiers against Monday cash reopen prints. |
@@ -163,12 +164,12 @@ baserate/
   web/
     app/                 # Demo UI: landing, overview, dossier, scorecard, narrate API
     components/
-      dossier/           # Risk tiles, depth card, snapshot strip, why weekends, transformation panel
+      dossier/           # Risk tiles, market context panel, why weekends, transformation panel
       landing/           # Landing page with hero tape chart, FAQ, workflow overview
       scorecard/         # Calibration table, replay ledger, regime accuracy
       shell/             # App shell, navigation, global styling tokens
     src/
-      data/              # bitget-client, yahoo-client, live-market-snapshot, replay-fixtures
+      data/              # bitget-client, yahoo-client, live-market-snapshot, mcp-client, replay-fixtures
       domain/            # types, trade-parser, validation, provenance
       engine/            # risk-engine, depth-stress, risk-interpretation, base-rate, classifier
       scorekeeper/       # grader, calibration, ledger, registry
@@ -190,7 +191,7 @@ BaseRate uses DeepSeek-V4-Flash, served via GMI Cloud:
 |---|---|---|
 | **Bitget public REST (spot)** | rToken tickers, live spot price snapshot, order book depth stress, daily candles | Verified live. Fetched on dossier load with 4s timeout and fail-closed fallback. |
 | **Bitget public REST (futures)** | Stock perp funding (live funding rate snapshot + history), perp candles | Verified live. Fetched on dossier load; perp funding history used as overnight carry proxy. |
-| **bitget-mcp-server (`agent.bitget.com/mcp`)** | Guide queries, analyst targets, cross-checks | Verified live endpoint (67 documented entries); optional enhancer outside critical path. |
+| **bitget-mcp-server (`agent.bitget.com/mcp`)** | Event context (next scheduled equity earnings calendar) | Integrated live. Earnings calendar context fetched on dossier load (5s timeout, session-based MCP protocol, fail-closed). |
 | **Public native-market daily history** | Decades of stock and index history for regime tables | Verified public data (Yahoo Finance chart API / Stooq fallback) spanning multi-decade daily bars. |
 | **Bitget published rules pages** | Friday-freeze and margin-index behavior | Documented basis for UTA margin index and collateral liquidation rules. |
 

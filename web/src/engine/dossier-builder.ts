@@ -35,6 +35,8 @@ export interface BuildDossierParams {
   fundingRate: number | null;
   gaps: WeekendGapObservation[];
   nativeCandles: Array<{ close: number; tsMs: number }>;
+  timestamp?: string;
+  timestampUtc?: string;
 }
 
 /**
@@ -49,14 +51,12 @@ export interface BuildDossierParams {
  * 6. Computes historical outcome distribution from weekend gaps
  * 7. Assembles complete provenance chain with observed and computed evidence labels
  */
-export function buildDossier(params: {
-  parsed: ParsedTrade;
-  spotPrice: number;
-  fundingRate: number | null;
-  gaps: WeekendGapObservation[];
-  nativeCandles: Array<{ close: number; tsMs: number }>;
-}): Dossier {
+export function buildDossier(
+  params: BuildDossierParams,
+  timestamp: string = params.timestampUtc ?? params.timestamp ?? utcNowIso()
+): Dossier {
   const { parsed, spotPrice, fundingRate, gaps, nativeCandles } = params;
+  const timestampUtc = timestamp;
   const provenance: EvidenceItem[] = [];
 
   // Determine refusal state for missing critical inputs
@@ -84,7 +84,7 @@ export function buildDossier(params: {
       makeEvidence(
         'observed',
         'bitget_spot',
-        utcNowIso(),
+        timestampUtc,
         `Bitget spot tape entry price: ${spotPrice}`
       )
     );
@@ -107,7 +107,7 @@ export function buildDossier(params: {
       const liqEvidence = makeEvidence(
         'computed',
         'engine_risk',
-        utcNowIso(),
+        timestampUtc,
         `Liquidation distance for ${parsed.direction} at ${parsed.leverage}x leverage`
       );
       liquidationDistancePct = {
@@ -141,7 +141,7 @@ export function buildDossier(params: {
     const carryEvidence = makeEvidence(
       'computed',
       'engine_risk',
-      utcNowIso(),
+      timestampUtc,
       `Funding carry over ${DEFAULT_WEEKEND_HOLDING_HOURS}h hold at interval rate ${fundingRate}`
     );
     fundingCarryPct = {
@@ -158,7 +158,7 @@ export function buildDossier(params: {
     const worstEvidence = makeEvidence(
       'computed',
       'engine_risk',
-      utcNowIso(),
+      timestampUtc,
       `Worst historical weekend gap from ${gaps.length} observed episodes`
     );
     worstGapPct = {
@@ -173,7 +173,7 @@ export function buildDossier(params: {
   const regimeEvidence = makeEvidence(
     'computed',
     'engine_regime',
-    utcNowIso(),
+    timestampUtc,
     `Deterministic regime classified as ${regime}`
   );
   provenance.push(regimeEvidence);
@@ -184,7 +184,7 @@ export function buildDossier(params: {
     const distEvidence = makeEvidence(
       'computed',
       'engine_base_rate',
-      utcNowIso(),
+      timestampUtc,
       `Base-rate distribution calculated across ${distribution.sampleSize} episodes`
     );
     provenance.push(distEvidence);
@@ -203,7 +203,7 @@ export function buildDossier(params: {
   const interpEvidence = makeEvidence(
     'computed',
     'engine_risk_interpretation',
-    utcNowIso(),
+    timestampUtc,
     `Deterministic risk interpretation: ${interpretation.code}`
   );
   provenance.push(interpEvidence);

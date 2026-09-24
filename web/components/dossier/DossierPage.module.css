@@ -275,6 +275,194 @@
 }
 
 /* --------------------------------------------------------------------------
+   3.6. Market Context Panel (Phase 4.5)
+   -------------------------------------------------------------------------- */
+
+.marketContextPanel {
+  background: var(--br-surface-card);
+  border-radius: var(--br-radius-card);
+  padding: var(--br-space-5) var(--br-space-6);
+  border: 1px solid var(--br-border-hairline);
+  box-shadow: var(--br-shadow-card-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: var(--br-space-4);
+  font-family: var(--br-font-sans);
+}
+
+.marketContextHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--br-space-3);
+  flex-wrap: wrap;
+}
+
+.marketContextTitleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--br-space-1);
+}
+
+.marketContextTitle {
+  font-size: var(--br-font-size-md);
+  font-weight: var(--br-font-weight-extrabold);
+  color: var(--br-text-ink);
+  letter-spacing: var(--br-letter-spacing-wide);
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.marketContextSubtitle {
+  font-size: var(--br-font-size-xs);
+  color: var(--br-text-muted);
+  margin: 0;
+}
+
+.marketContextObserved {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--br-space-1);
+  font-size: var(--br-font-size-xs);
+  color: var(--br-text-muted);
+}
+
+.marketContextObservedLabel {
+  text-transform: uppercase;
+  font-weight: var(--br-font-weight-bold);
+  letter-spacing: var(--br-letter-spacing-wide);
+  font-size: var(--br-font-size-2xs);
+}
+
+.marketContextObservedVal {
+  font-family: var(--br-font-mono);
+  font-weight: var(--br-font-weight-semibold);
+  color: var(--br-text-ink);
+}
+
+.marketContextRows {
+  display: flex;
+  flex-direction: column;
+}
+
+.marketContextRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--br-space-3);
+  padding: var(--br-space-3) 0;
+  border-top: 1px solid var(--br-border-hairline);
+}
+
+.marketContextRowHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--br-space-2);
+  flex-shrink: 0;
+}
+
+.marketContextRowLabel {
+  font-size: var(--br-font-size-xs);
+  font-weight: var(--br-font-weight-extrabold);
+  text-transform: uppercase;
+  letter-spacing: var(--br-letter-spacing-wide);
+  color: var(--br-primary);
+}
+
+.marketContextBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--br-space-1);
+  font-size: var(--br-font-size-2xs);
+  font-weight: var(--br-font-weight-bold);
+  letter-spacing: var(--br-letter-spacing-wide);
+  text-transform: uppercase;
+  padding: var(--br-space-1) var(--br-space-2);
+  border-radius: var(--br-radius-xs);
+  font-family: var(--br-font-sans);
+}
+
+.marketContextBadgeLive {
+  background: var(--br-lime-soft);
+  color: var(--br-lime-ink);
+}
+
+.marketContextBadgeInsufficient {
+  background: var(--br-coral-soft);
+  color: var(--br-coral-ink);
+}
+
+.marketContextBadgeUnavailable {
+  background: var(--br-peach-soft);
+  color: var(--br-peach-ink);
+}
+
+.marketContextBadgeNeutral {
+  background: var(--br-surface-subtle);
+  color: var(--br-text-muted);
+}
+
+.marketContextDot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--br-radius-round);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.marketContextDotLive {
+  background: var(--br-lime);
+}
+
+.marketContextDotInsufficient {
+  background: var(--br-coral);
+}
+
+.marketContextDotUnavailable {
+  background: var(--br-peach);
+}
+
+.marketContextDotNeutral {
+  background: var(--br-text-faint);
+}
+
+.marketContextRowContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  gap: var(--br-space-1);
+  font-size: var(--br-font-size-xs);
+  color: var(--br-text-ink);
+  line-height: var(--br-line-height-base);
+}
+
+.marketContextRowMain {
+  display: inline-flex;
+  align-items: center;
+  color: var(--br-text-ink);
+  font-size: var(--br-font-size-xs);
+  font-family: var(--br-font-sans);
+}
+
+.marketContextNotice {
+  font-size: var(--br-font-size-xs);
+  color: var(--br-lavender-ink);
+  background: var(--br-lavender-soft);
+  padding: var(--br-space-1) var(--br-space-2);
+  border-radius: var(--br-radius-xs);
+  display: inline-block;
+  font-weight: var(--br-font-weight-medium);
+}
+
+.marketContextPending {
+  font-size: var(--br-font-size-xs);
+  color: var(--br-text-faint);
+  font-style: italic;
+  font-family: var(--br-font-sans);
+}
+
+/* --------------------------------------------------------------------------
    3.6. Live Evidence Strip (Phase 3)
    -------------------------------------------------------------------------- */
 
@@ -1364,5 +1552,16 @@ details[open] .metricHowSummary svg {
   .evidenceHeaderRow,
   .evidenceRow {
     grid-template-columns: 100px 140px 150px 1fr;
+  }
+
+  .marketContextRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--br-space-1);
+  }
+
+  .marketContextRowContent {
+    align-items: flex-start;
+    text-align: left;
   }
 }

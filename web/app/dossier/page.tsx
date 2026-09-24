@@ -7,7 +7,7 @@ import RiskMetrics from '@/components/dossier/RiskMetrics';
 import DistributionChart from '@/components/dossier/DistributionChart';
 import CounterfactualControls from '@/components/dossier/CounterfactualControls';
 import EvidenceTable from '@/components/dossier/EvidenceTable';
-import { isSameTrade } from '@/components/dossier/press-feedback';
+import { isSameTrade, shouldResetLiveContext } from '@/components/dossier/press-feedback';
 import { parseTradeIntent } from '@/src/domain/trade-parser';
 import {
   buildDossier,
@@ -32,8 +32,7 @@ import {
   buildMatchExplanation,
   deriveDateRangeFromGaps,
 } from '@/components/dossier/match-explanation';
-import LiveMarketSnapshotStrip from '@/components/dossier/LiveMarketSnapshotStrip';
-import WeekendDepthCheckCard from '@/components/dossier/WeekendDepthCheckCard';
+import MarketContextPanel from '@/components/dossier/MarketContextPanel';
 import {
   fetchLiveMarketSnapshot,
   fetchLiveDepthStress,
@@ -41,12 +40,17 @@ import {
   type LiveMarketSnapshot,
   type DepthStressResult,
 } from '@/src/data/live-market-snapshot';
+import {
+  computeMondayReopen,
+  type McpEventContext,
+} from '@/src/data/mcp-client';
 import { ASSET_MAP } from '@/src/domain/trade-parser';
 import type { EvidenceItem } from '@/src/domain/types';
 import styles from '@/components/dossier/DossierPage.module.css';
 
 const DEFAULT_TRADE_INTENT =
   'I want to long rNVDA over the weekend at 3x with 5,000 USDT margin.';
+export const INITIAL_EVIDENCE_TS = '2026-09-18T21:00:00.000Z';
 
 export default function DossierPage() {
   const initialParse = parseTradeIntent(DEFAULT_TRADE_INTENT);
@@ -54,13 +58,17 @@ export default function DossierPage() {
   const initialAsset = initialTrade ? asReplayAsset(initialTrade.asset) : 'rNVDA';
   const initialBundle = getFixtureBundle(initialAsset);
   const initialDossier = initialTrade
-    ? buildDossier({
-        parsed: initialTrade,
-        spotPrice: initialBundle.spotPrice,
-        fundingRate: initialBundle.fundingRate,
-        gaps: initialBundle.gaps,
-        nativeCandles: initialBundle.candles,
-      })
+    ? buildDossier(
+        {
+          parsed: initialTrade,
+          spotPrice: initialBundle.spotPrice,
+          fundingRate: initialBundle.fundingRate,
+          gaps: initialBundle.gaps,
+          nativeCandles: initialBundle.candles,
+          timestampUtc: INITIAL_EVIDENCE_TS,
+        },
+        INITIAL_EVIDENCE_TS
+      )
     : null;
 
   const [inputValue] = useState(DEFAULT_TRADE_INTENT);
@@ -68,6 +76,7 @@ export default function DossierPage() {
   const [dossier, setDossier] = useState<Dossier | null>(initialDossier);
   const [snapshot, setSnapshot] = useState<LiveMarketSnapshot | null>(null);
   const [depthStress, setDepthStress] = useState<DepthStressResult | null>(null);
+  const [eventContext, setEventContext] = useState<McpEventContext | null>(null);
   const [loading, setLoading] = useState(false);
   const [narration, setNarration] = useState<string | null>(null);
   const [narrationLoading, setNarrationLoading] = useState<boolean>(false);
@@ -79,6 +88,8 @@ export default function DossierPage() {
   );
   const activeLeverage = leverageOverride;
   const activeSize = sizeOverride;
+  const activeAsset = dossier ? asReplayAsset(dossier.parsed.asset) : currentAsset;
+  const bundle = getFixtureBundle(activeAsset);
   const [flashConfirm, setFlashConfirm] = useState(false);
   const flashTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const rafIdRef = useRef<number | null>(null);
@@ -220,6 +231,84 @@ export default function DossierPage() {
   ]);
 
   useEffect(() => {
+    let active = true;
+
+    const rawAsset = dossier?.parsed.asset ?? currentAsset;
+    if (!isReplayAllowlistAsset(rawAsset)) {
+      setEventContext({
+        state: 'unavailable',
+        retrievedAtUtc: null,
+        symbol: null,
+        nextEarningsDate: null,
+        daysUntilEarnings: null,
+        withinSevenDaysOfReopen: null,
+        reason: 'asset not in replay allowlist',
+      });
+      return;
+    }
+
+    const cleanSymbol = rawAsset
+      .replace(/^[$#]/, '')
+      .replace(/^r/i, '')
+      .replace(/USDT$/i, '')
+      .trim()
+      .toUpperCase();
+
+    const fridayRef =
+      bundle.gaps.length > 0
+        ? bundle.gaps[bundle.gaps.length - 1]?.episodeDate
+        : null;
+    const mondayReopenDate = computeMondayReopen(fridayRef);
+    void mondayReopenDate;
+
+    fetch('/api/event-context', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ symbol: cleanSymbol }),
+    })
+      .then((res) => res.json())
+      .then(
+        (data: { ok?: boolean; event?: McpEventContext; reason?: string }) => {
+          if (active) {
+            if (data?.ok && data.event) {
+              setEventContext(data.event);
+            } else {
+              setEventContext({
+                state: 'unavailable',
+                retrievedAtUtc: null,
+                symbol: cleanSymbol,
+                nextEarningsDate: null,
+                daysUntilEarnings: null,
+                withinSevenDaysOfReopen: null,
+                reason: data?.reason ?? 'Live event context fetch failed',
+              });
+            }
+          }
+        }
+      )
+      .catch((err) => {
+        if (active) {
+          setEventContext({
+            state: 'unavailable',
+            retrievedAtUtc: null,
+            symbol: cleanSymbol,
+            nextEarningsDate: null,
+            daysUntilEarnings: null,
+            withinSevenDaysOfReopen: null,
+            reason:
+              err instanceof Error
+                ? err.message
+                : 'Live event context fetch failed',
+          });
+        }
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [dossier?.parsed.asset, currentAsset, bundle.gaps]);
+
+  useEffect(() => {
     return () => {
       if (flashTimeoutRef.current) {
         clearTimeout(flashTimeoutRef.current);
@@ -292,9 +381,13 @@ export default function DossierPage() {
     setLeverageOverride(parsed.leverage);
 
     const asset = asReplayAsset(parsed.asset);
+    const resetLive = shouldResetLiveContext(currentAsset, asset);
     setCurrentAsset(asset);
-    setSnapshot(null);
-    setDepthStress(null);
+    if (resetLive) {
+      setSnapshot(null);
+      setDepthStress(null);
+      setEventContext(null);
+    }
 
     const executeRecompute = () => {
       const bundle = getFixtureBundle(asset);
@@ -351,9 +444,6 @@ export default function DossierPage() {
   };
 
   // Recompute liquidation distance and funding carry locally based on overrides
-  const activeAsset = dossier ? asReplayAsset(dossier.parsed.asset) : currentAsset;
-  const bundle = getFixtureBundle(activeAsset);
-
   let recomputedLiq: number | null = null;
   if (dossier && activeLeverage > 1 && activeLeverage <= 25) {
     try {
@@ -392,7 +482,9 @@ export default function DossierPage() {
                 evidence: {
                   label: 'computed',
                   source: 'engine_risk',
-                  timestampUtc: new Date().toISOString(),
+                  timestampUtc:
+                    dossier.risks.liquidationDistancePct?.evidence.timestampUtc ??
+                    INITIAL_EVIDENCE_TS,
                   note: `Liquidation distance for ${dossier.parsed.direction} at ${activeLeverage}x leverage`,
                 },
               }
@@ -404,7 +496,9 @@ export default function DossierPage() {
                 evidence: {
                   label: 'computed',
                   source: 'engine_risk',
-                  timestampUtc: new Date().toISOString(),
+                  timestampUtc:
+                    dossier.risks.fundingCarryPct?.evidence.timestampUtc ??
+                    INITIAL_EVIDENCE_TS,
                   note: `Funding carry over ${DEFAULT_WEEKEND_HOLDING_HOURS}h hold at interval rate ${bundle.fundingRate}`,
                 },
               }
@@ -467,10 +561,36 @@ export default function DossierPage() {
         }
     : null;
 
+  const eventEvidence: EvidenceItem | null = eventContext
+    ? eventContext.state === 'live'
+      ? eventContext.nextEarningsDate !== null
+        ? {
+            label: 'observed',
+            source: 'mcp_earnings',
+            timestampUtc: eventContext.retrievedAtUtc,
+            note: `Next earnings ${eventContext.nextEarningsDate} (in ${eventContext.daysUntilEarnings} days), source bitget-mcp-server equity_calendar`,
+          }
+        : {
+            label: 'estimated',
+            source: 'mcp_earnings',
+            timestampUtc: eventContext.retrievedAtUtc,
+            note: 'no scheduled earnings found',
+          }
+      : {
+          label: 'estimated',
+          source: 'mcp_earnings',
+          timestampUtc: null,
+          note: `bitget-mcp-server event context unavailable (${
+            eventContext.reason ?? 'unavailable'
+          }); pinned replay values in use below.`,
+        }
+    : null;
+
   const allEvidence: EvidenceItem[] = dossier
     ? [
         ...(snapshotEvidence ? [snapshotEvidence] : []),
         ...(depthEvidence ? [depthEvidence] : []),
+        ...(eventEvidence ? [eventEvidence] : []),
         ...dossier.provenance,
         ...bundle.evidence,
       ]
@@ -527,6 +647,15 @@ export default function DossierPage() {
           </div>
         )}
 
+        {/* 3.6. Market Context Panel (Phase 4.5) */}
+        {dossier && !dossier.refusal && (
+          <MarketContextPanel
+            snapshot={snapshot}
+            depth={depthStress}
+            event={eventContext}
+          />
+        )}
+
         {/* Narration Desk Summary */}
         {narration ? (
           <div
@@ -551,16 +680,6 @@ export default function DossierPage() {
             <div className={styles.skeletonFootnote} />
           </div>
         ) : null}
-
-        {/* 3.6. Live Evidence Strip */}
-        {dossier && !dossier.refusal && (
-          <LiveMarketSnapshotStrip snapshot={snapshot} />
-        )}
-
-        {/* 3.7. Weekend Depth Check Card (Phase 4) */}
-        {dossier && !dossier.refusal && (
-          <WeekendDepthCheckCard result={depthStress} />
-        )}
 
         {/* 4. Bento Grid: RiskMetrics left, DistributionChart right */}
         {dossier && !dossier.refusal && displayedRisks && (

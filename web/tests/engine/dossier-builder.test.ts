@@ -144,4 +144,26 @@ describe('dossier-builder', () => {
     expect(dossier.refusal?.code).toBe('UNAVAILABLE');
     expect(dossier.risks.liquidationDistancePct).toBeNull();
   });
+
+  it('accepts an optional deterministic timestamp parameter for stable provenance', () => {
+    const fixedTs = '2026-09-18T21:00:00.000Z';
+    const dossier = buildDossier(
+      {
+        parsed: goldenTrade,
+        spotPrice: 228,
+        fundingRate: 0.000219,
+        gaps: syntheticGaps,
+        nativeCandles: syntheticCandles,
+        timestampUtc: fixedTs,
+      },
+      fixedTs
+    );
+
+    expect(dossier.risks.liquidationDistancePct?.evidence.timestampUtc).toBe(fixedTs);
+    expect(dossier.risks.fundingCarryPct?.evidence.timestampUtc).toBe(fixedTs);
+    expect(dossier.risks.worstGapPct?.evidence.timestampUtc).toBe(fixedTs);
+    expect(dossier.provenance.length).toBeGreaterThan(0);
+    expect(dossier.provenance.every((p) => p.timestampUtc === fixedTs)).toBe(true);
+  });
 });
+
