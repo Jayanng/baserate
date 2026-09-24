@@ -255,4 +255,57 @@ describe('POST /api/event-context', () => {
       expect(typeof data.reason).toBe('string');
     });
   });
+
+  describe('queryType: sentiment dispatch', () => {
+    const mockSentiment: mcpClient.MarketSentimentResult = {
+      state: 'live',
+      retrievedAtUtc: '2026-09-24T06:00:00.000Z',
+      score: 34.7,
+      rating: 'fear',
+      previousClose: 35.2,
+      previous1Month: 54.7,
+      reason: null,
+    };
+
+    it('returns sentiment when queryType is sentiment without requiring symbol', async () => {
+      const spy = vi
+        .spyOn(mcpClient, 'fetchMarketSentiment')
+        .mockResolvedValueOnce(mockSentiment);
+
+      const req = new Request('http://localhost:3000/api/event-context', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ queryType: 'sentiment' }),
+      });
+
+      const res = await POST(req);
+      expect(res.status).toBe(200);
+      const data = await res.json();
+      expect(data).toEqual({
+        ok: true,
+        sentiment: mockSentiment,
+      });
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+
+    it('returns HTTP 200 with ok: false when fetchMarketSentiment throws an Error', async () => {
+      vi.spyOn(mcpClient, 'fetchMarketSentiment').mockRejectedValueOnce(
+        new Error('Upstream sentiment signal failed')
+      );
+
+      const req = new Request('http://localhost:3000/api/event-context', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ queryType: 'sentiment' }),
+      });
+
+      const res = await POST(req);
+      expect(res.status).toBe(200);
+      const data = await res.json();
+      expect(data).toEqual({
+        ok: false,
+        reason: 'Upstream sentiment signal failed',
+      });
+    });
+  });
 });

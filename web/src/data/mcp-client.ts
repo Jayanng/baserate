@@ -31,6 +31,16 @@ export interface McpEventContext {
   reason: string | null;
 }
 
+export interface MarketSentimentResult {
+  state: 'live' | 'unavailable';
+  retrievedAtUtc: string | null;
+  score: number | null;
+  rating: string | null;
+  previousClose: number | null;
+  previous1Month: number | null;
+  reason: string | null;
+}
+
 export const MCP_ALLOWLIST_SYMBOLS = [
   'NVDA',
   'TSLA',
@@ -197,9 +207,14 @@ interface RawMcpResponseEnvelope {
   };
 }
 
-function extractResultsArray(envelope: RawMcpResponseEnvelope): unknown[] {
+function extractResultsArray(envelope: RawMcpResponseEnvelope | unknown): unknown[] {
+  if (!envelope || typeof envelope !== 'object') {
+    return [];
+  }
+  const env = envelope as RawMcpResponseEnvelope & { data?: unknown; results?: unknown };
+
   // Option 1: structuredContent.data.results or structuredContent.data === ""
-  const structured = envelope.result?.structuredContent;
+  const structured = env.result?.structuredContent;
   if (structured) {
     if (typeof structured.data === 'string' && structured.data === '') {
       return [];
@@ -215,11 +230,12 @@ function extractResultsArray(envelope: RawMcpResponseEnvelope): unknown[] {
   }
 
   // Option 2: content[0].text parsed as JSON
-  const contentText = envelope.result?.content?.[0]?.text;
+  const contentText = env.result?.content?.[0]?.text;
   if (contentText && typeof contentText === 'string') {
     try {
       const parsed = JSON.parse(contentText) as {
         data?: { results?: unknown[] } | string;
+        results?: unknown[];
       };
       if (typeof parsed.data === 'string' && parsed.data === '') {
         return [];
@@ -232,9 +248,27 @@ function extractResultsArray(envelope: RawMcpResponseEnvelope): unknown[] {
       ) {
         return (parsed.data as { results: unknown[] }).results;
       }
+      if (Array.isArray(parsed.results)) {
+        return parsed.results;
+      }
     } catch {
       // Content text is not JSON, ignore
     }
+  }
+
+  // Option 3: direct envelope.data.results
+  if (
+    env.data &&
+    typeof env.data === 'object' &&
+    'results' in env.data &&
+    Array.isArray((env.data as { results: unknown[] }).results)
+  ) {
+    return (env.data as { results: unknown[] }).results;
+  }
+
+  // Option 4: direct envelope.results
+  if (Array.isArray(env.results)) {
+    return env.results;
   }
 
   return [];
@@ -558,6 +592,296 @@ export async function fetchEventContext(
       nextEarningsDate: null,
       daysUntilEarnings: null,
       withinSevenDaysOfReopen: null,
+      reason,
+    };
+  }
+}
+
+export function roundOneDecimal(val: unknown): number | null {
+  if (typeof val === 'number' && !Number.isNaN(val)) {
+    return Math.round((val + Number.EPSILON) * 10) / 10;
+  }
+  return null;
+}
+
+export interface RawSentimentEntry {
+  score?: unknown;
+  rating?: unknown;
+  timestamp?: unknown;
+  previous_close?: unknown;
+  previousClose?: unknown;
+  previous_1_week?: unknown;
+  previous_1_month?: unknown;
+  previous1Month?: unknown;
+  [key: string]: unknown;
+}
+
+/**
+ * Fetches market sentiment (Fear & Greed Index) from bitget-signal MCP.
+ *
+ * Rules:
+ * - Public Bitget MCP endpoint: https://agent.bitget.com/mcp
+ * - Entry ID: sentiment_market_fear_greed, empty params {}
+ * - Global signal: no symbol allowlist required
+ * - 5s bounded timeout with AbortController
+ * - Fails closed: never throws, never fabricates
+ * - Score and previous values rounded to 1 decimal place
+ */
+export async function fetchMarketSentiment(
+  timeoutMs: number = 5000
+): Promise<MarketSentimentResult> {
+  const controller = new AbortController();
+  let timerId: ReturnType<typeof setTimeout> | undefined;
+
+  const timeoutPromise = new Promise<never>((_, reject) => {
+    timerId = setTimeout(() => {
+      controller.abort(
+        new DOMException(
+          `Bitget MCP request timed out after ${timeoutMs}ms`,
+          'AbortError'
+        )
+      );
+      reject(
+        new DOMException(
+          `Bitget MCP request timed out after ${timeoutMs}ms`,
+          'AbortError'
+        )
+      );
+    }, timeoutMs);
+  });
+
+  try {
+    const doFetchFlow = async (): Promise<MarketSentimentResult> => {
+      // 1. POST initialize
+      const initRes = await fetch(BITGET_MCP_ENDPOINT, {
+        method: 'POST',
+        signal: controller.signal,
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json, text/event-stream',
+        },
+        body: JSON.stringify({
+          jsonrpc: '2.0',
+          id: 1,
+          method: 'initialize',
+          params: {
+            protocolVersion: '2024-11-05',
+            capabilities: {},
+            clientInfo: { name: 'baserate', version: '1.0' },
+          },
+        }),
+      });
+
+      if (!initRes.ok) {
+        return {
+          state: 'unavailable',
+          retrievedAtUtc: null,
+          score: null,
+          rating: null,
+          previousClose: null,
+          previous1Month: null,
+          reason: `Bitget MCP initialize returned HTTP ${initRes.status}`,
+        };
+      }
+
+      const sessionId = initRes.headers.get('mcp-session-id');
+      if (!sessionId || !sessionId.trim()) {
+        return {
+          state: 'unavailable',
+          retrievedAtUtc: null,
+          score: null,
+          rating: null,
+          previousClose: null,
+          previous1Month: null,
+          reason:
+            'Missing mcp-session-id response header from Bitget MCP initialize',
+        };
+      }
+
+      // 2. POST notifications/initialized
+      await fetch(BITGET_MCP_ENDPOINT, {
+        method: 'POST',
+        signal: controller.signal,
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json, text/event-stream',
+          'mcp-session-id': sessionId.trim(),
+        },
+        body: JSON.stringify({
+          jsonrpc: '2.0',
+          method: 'notifications/initialized',
+        }),
+      });
+
+      // 3. POST tools/call for sentiment_market_fear_greed
+      const queryRes = await fetch(BITGET_MCP_ENDPOINT, {
+        method: 'POST',
+        signal: controller.signal,
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json, text/event-stream',
+          'mcp-session-id': sessionId.trim(),
+        },
+        body: JSON.stringify({
+          jsonrpc: '2.0',
+          id: 2,
+          method: 'tools/call',
+          params: {
+            name: 'do_query',
+            arguments: {
+              entry_id: 'sentiment_market_fear_greed',
+              params: {},
+            },
+          },
+        }),
+      });
+
+      if (!queryRes.ok) {
+        return {
+          state: 'unavailable',
+          retrievedAtUtc: null,
+          score: null,
+          rating: null,
+          previousClose: null,
+          previous1Month: null,
+          reason: `Bitget MCP do_query returned HTTP ${queryRes.status}`,
+        };
+      }
+
+      const rawText = await queryRes.text();
+      let parsedEnvelope: unknown;
+      try {
+        parsedEnvelope = parseSseResponse(rawText);
+      } catch (parseErr) {
+        const msg =
+          parseErr instanceof Error
+            ? parseErr.message
+            : 'Failed to parse MCP response as SSE JSON';
+        return {
+          state: 'unavailable',
+          retrievedAtUtc: null,
+          score: null,
+          rating: null,
+          previousClose: null,
+          previous1Month: null,
+          reason: `Malformed MCP response: ${msg}`,
+        };
+      }
+
+      if (parsedEnvelope && typeof parsedEnvelope === 'object') {
+        const env = parsedEnvelope as RawMcpResponseEnvelope;
+        if (env.error) {
+          return {
+            state: 'unavailable',
+            retrievedAtUtc: null,
+            score: null,
+            rating: null,
+            previousClose: null,
+            previous1Month: null,
+            reason: env.error.message ?? 'Bitget MCP returned JSON-RPC error',
+          };
+        }
+
+        if (env.result?.isError === true) {
+          return {
+            state: 'unavailable',
+            retrievedAtUtc: null,
+            score: null,
+            rating: null,
+            previousClose: null,
+            previous1Month: null,
+            reason: 'Bitget MCP tools/call reported execution error',
+          };
+        }
+      }
+
+      const results = extractResultsArray(parsedEnvelope);
+      if (results.length === 0) {
+        return {
+          state: 'unavailable',
+          retrievedAtUtc: null,
+          score: null,
+          rating: null,
+          previousClose: null,
+          previous1Month: null,
+          reason: 'Empty sentiment results from Bitget MCP',
+        };
+      }
+
+      const first = results[0];
+      if (!first || typeof first !== 'object') {
+        return {
+          state: 'unavailable',
+          retrievedAtUtc: null,
+          score: null,
+          rating: null,
+          previousClose: null,
+          previous1Month: null,
+          reason: 'Malformed sentiment entry in Bitget MCP response',
+        };
+      }
+
+      const entry = first as RawSentimentEntry;
+      const score = roundOneDecimal(entry.score);
+      const rating =
+        typeof entry.rating === 'string' && entry.rating.trim()
+          ? entry.rating.trim()
+          : null;
+      const previousClose = roundOneDecimal(
+        entry.previous_close ?? entry.previousClose
+      );
+      const previous1Month = roundOneDecimal(
+        entry.previous_1_month ?? entry.previous1Month
+      );
+
+      if (score === null || rating === null) {
+        return {
+          state: 'unavailable',
+          retrievedAtUtc: null,
+          score: null,
+          rating: null,
+          previousClose: null,
+          previous1Month: null,
+          reason: 'Missing score or rating in Bitget MCP sentiment response',
+        };
+      }
+
+      return {
+        state: 'live',
+        retrievedAtUtc: new Date().toISOString(),
+        score,
+        rating,
+        previousClose,
+        previous1Month,
+        reason: null,
+      };
+    };
+
+    const res = await Promise.race([doFetchFlow(), timeoutPromise]);
+    if (timerId !== undefined) {
+      clearTimeout(timerId);
+    }
+    return res;
+  } catch (err: unknown) {
+    if (timerId !== undefined) {
+      clearTimeout(timerId);
+    }
+    const isTimeout =
+      (err instanceof Error &&
+        (err.name === 'TimeoutError' || err.name === 'AbortError')) ||
+      controller.signal.aborted;
+    const reason = isTimeout
+      ? `Bitget MCP request timed out after ${timeoutMs}ms`
+      : err instanceof Error
+      ? err.message
+      : 'Unknown Bitget MCP fetch error';
+    return {
+      state: 'unavailable',
+      retrievedAtUtc: null,
+      score: null,
+      rating: null,
+      previousClose: null,
+      previous1Month: null,
       reason,
     };
   }

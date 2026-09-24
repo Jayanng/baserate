@@ -142,6 +142,7 @@ A newly initialized desk has no multi-year operational track record. BaseRate de
 | **Bitget-native stress math** | Friday-freeze collateral modeling, 60-hour funding carry math, historical weekend gap tables, and live market snapshot strips. |
 | **Weekend depth stress** | Deterministic VWAP walk of public Bitget spot order books estimating slippage and consumed levels (with fail-closed `INSUFFICIENT_DEPTH` handling). |
 | **Event context** | Next scheduled earnings date for the active asset from the official Bitget data MCP server, flagged when it falls within 7 days of the Monday reopen. |
+| **Market sentiment context** | Global crypto Fear & Greed Index via Bitget Signal MCP (`sentiment_market_fear_greed`) providing macro sentiment context alongside 1-month trend comparison. |
 | **Deterministic risk interpretation** | Three-state mathematical classification (within buffer with tail risk warning, breached liquidation, or incomplete evidence) with complete `HOW` disclosures. |
 | **Interactive counterfactuals** | Dynamic controls for position size, leverage, and timing, paired with a Decision Transformation Panel tracking liquidation distance deltas in percentage points. |
 | **Self-scoring forecast loop** | Append-only ledger secured by a deterministic hash chain (FNV-1a), scoring replayed dossiers against Monday cash reopen prints. |
@@ -192,6 +193,7 @@ BaseRate uses DeepSeek-V4-Flash, served via GMI Cloud:
 | **Bitget public REST (spot)** | rToken tickers, live spot price snapshot, order book depth stress, daily candles | Verified live. Fetched on dossier load with 4s timeout and fail-closed fallback. |
 | **Bitget public REST (futures)** | Stock perp funding (live funding rate snapshot + history), perp candles | Verified live. Fetched on dossier load; perp funding history used as overnight carry proxy. |
 | **bitget-mcp-server (`agent.bitget.com/mcp`)** | Event context (next scheduled equity earnings calendar) | Integrated live. Earnings calendar context fetched on dossier load (5s timeout, session-based MCP protocol, fail-closed). |
+| **bitget-signal (`agent.bitget.com/mcp`)** | Market sentiment context (global Fear & Greed Index) | Integrated live. Global market Fear & Greed Index fetched via Bitget Signal MCP on dossier load (5s timeout, fail-closed). |
 | **Public native-market daily history** | Decades of stock and index history for regime tables | Verified public data (Yahoo Finance chart API / Stooq fallback) spanning multi-decade daily bars. |
 | **Bitget published rules pages** | Friday-freeze and margin-index behavior | Documented basis for UTA margin index and collateral liquidation rules. |
 

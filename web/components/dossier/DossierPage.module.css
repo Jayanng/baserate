@@ -462,6 +462,11 @@
   font-family: var(--br-font-sans);
 }
 
+.marketContextHow {
+  text-align: left;
+  align-self: flex-end;
+}
+
 /* --------------------------------------------------------------------------
    3.6. Live Evidence Strip (Phase 3)
    -------------------------------------------------------------------------- */
@@ -1563,5 +1568,9 @@ details[open] .metricHowSummary svg {
   .marketContextRowContent {
     align-items: flex-start;
     text-align: left;
+  }
+
+  .marketContextHow {
+    align-self: flex-start;
   }
 }

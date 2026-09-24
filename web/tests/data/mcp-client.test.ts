@@ -1,6 +1,8 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import {
   fetchEventContext,
+  fetchMarketSentiment,
+  roundOneDecimal,
   isMcpAllowlistedSymbol,
   normalizeMcpSymbol,
   computeMondayReopen,
@@ -468,6 +470,286 @@ describe('mcp-client module', () => {
 
       expect(res.state).toBe('unavailable');
       expect(res.reason).toContain('Internal server error in equity query');
+    });
+  });
+
+  describe('fetchMarketSentiment', () => {
+    describe('roundOneDecimal helper', () => {
+      it('rounds floating point numbers to 1 decimal place', () => {
+        expect(roundOneDecimal(34.68)).toBe(34.7);
+        expect(roundOneDecimal(35.22)).toBe(35.2);
+        expect(roundOneDecimal(54.65)).toBe(54.7);
+        expect(roundOneDecimal(27.31)).toBe(27.3);
+        expect(roundOneDecimal(10)).toBe(10);
+        expect(roundOneDecimal(null)).toBeNull();
+        expect(roundOneDecimal(undefined)).toBeNull();
+        expect(roundOneDecimal('not-a-num')).toBeNull();
+        expect(roundOneDecimal(Number.NaN)).toBeNull();
+      });
+    });
+
+    describe('success path', () => {
+      it('completes 3-step MCP flow and parses live market sentiment matching Hermes probe', async () => {
+        const mockInitHeaders = new Headers({
+          'content-type': 'text/event-stream',
+          'mcp-session-id': 'sess-sentiment-12345',
+        });
+
+        const mockInitBody =
+          'event: message\ndata: {"jsonrpc":"2.0","id":1,"result":{"protocolVersion":"2024-11-05","capabilities":{},"serverInfo":{"name":"bitget-mcp-server","version":"4.0.5"}}}\n\n';
+
+        const mockSentimentResults = [
+          {
+            score: 34.68,
+            rating: 'fear',
+            timestamp: '2026-09-23T23:59:43Z',
+            previous_close: 35.22,
+            previous_1_week: 27.31,
+            previous_1_month: 54.65,
+          },
+        ];
+
+        const mockCallBody = `event: message\ndata: ${JSON.stringify({
+          jsonrpc: '2.0',
+          id: 2,
+          result: {
+            content: [
+              {
+                type: 'text',
+                text: JSON.stringify({
+                  success: true,
+                  status_code: 200,
+                  data: { results: mockSentimentResults },
+                }),
+              },
+            ],
+            isError: false,
+            structuredContent: {
+              success: true,
+              status_code: 200,
+              data: { results: mockSentimentResults },
+            },
+          },
+        })}\n\n`;
+
+        const fetchMock = vi.fn().mockImplementation((url: string, init?: RequestInit) => {
+          expect(url).toBe(BITGET_MCP_ENDPOINT);
+          const bodyStr = String(init?.body ?? '');
+
+          if (bodyStr.includes('"method":"initialize"')) {
+            return Promise.resolve({
+              ok: true,
+              status: 200,
+              headers: mockInitHeaders,
+              text: async () => mockInitBody,
+            });
+          }
+          if (bodyStr.includes('"method":"notifications/initialized"')) {
+            expect(
+              (init?.headers as Record<string, string>)?.['mcp-session-id']
+            ).toBe('sess-sentiment-12345');
+            return Promise.resolve({
+              ok: true,
+              status: 200,
+              text: async () => '',
+            });
+          }
+          if (bodyStr.includes('"method":"tools/call"')) {
+            expect(
+              (init?.headers as Record<string, string>)?.['mcp-session-id']
+            ).toBe('sess-sentiment-12345');
+            expect(bodyStr).toContain('sentiment_market_fear_greed');
+            return Promise.resolve({
+              ok: true,
+              status: 200,
+              headers: new Headers({ 'content-type': 'text/event-stream' }),
+              text: async () => mockCallBody,
+            });
+          }
+          return Promise.reject(new Error(`Unexpected call: ${bodyStr}`));
+        });
+
+        vi.stubGlobal('fetch', fetchMock);
+
+        const res = await fetchMarketSentiment(5000);
+
+        expect(res.state).toBe('live');
+        expect(res.score).toBe(34.7);
+        expect(res.rating).toBe('fear');
+        expect(res.previousClose).toBe(35.2);
+        expect(res.previous1Month).toBe(54.7);
+        expect(res.reason).toBeNull();
+        expect(res.retrievedAtUtc).not.toBeNull();
+      });
+    });
+
+    describe('degraded and failure paths (never throws)', () => {
+      it('returns unavailable on timeout via AbortError without throwing', async () => {
+        const abortError = new DOMException('The operation was aborted', 'AbortError');
+        vi.stubGlobal('fetch', vi.fn().mockRejectedValue(abortError));
+
+        const res = await fetchMarketSentiment(100);
+
+        expect(res.state).toBe('unavailable');
+        expect(res.score).toBeNull();
+        expect(res.rating).toBeNull();
+        expect(res.previousClose).toBeNull();
+        expect(res.previous1Month).toBeNull();
+        expect(res.reason).toContain('timed out');
+      });
+
+      it('returns unavailable on malformed SSE response without throwing', async () => {
+        const mockInitHeaders = new Headers({
+          'mcp-session-id': 'sess-malformed-sentiment',
+        });
+
+        vi.stubGlobal(
+          'fetch',
+          vi.fn().mockImplementation((_url: string, init?: RequestInit) => {
+            const bodyStr = String(init?.body ?? '');
+            if (bodyStr.includes('"method":"initialize"')) {
+              return Promise.resolve({
+                ok: true,
+                status: 200,
+                headers: mockInitHeaders,
+                text: async () => 'event: message\ndata: {"result":{}}\n\n',
+              });
+            }
+            if (bodyStr.includes('"method":"notifications/initialized"')) {
+              return Promise.resolve({ ok: true, status: 200, text: async () => '' });
+            }
+            return Promise.resolve({
+              ok: true,
+              status: 200,
+              text: async () => 'data: { invalid-sse-json',
+            });
+          })
+        );
+
+        const res = await fetchMarketSentiment();
+
+        expect(res.state).toBe('unavailable');
+        expect(res.reason).toContain('Malformed MCP response');
+      });
+
+      it('returns unavailable when mcp-session-id header is missing from initialize response', async () => {
+        vi.stubGlobal(
+          'fetch',
+          vi.fn().mockResolvedValue({
+            ok: true,
+            status: 200,
+            headers: new Headers(), // no mcp-session-id
+            text: async () => 'event: message\ndata: {"result":{}}\n\n',
+          })
+        );
+
+        const res = await fetchMarketSentiment();
+
+        expect(res.state).toBe('unavailable');
+        expect(res.reason).toContain('Missing mcp-session-id response header');
+      });
+
+      it('returns unavailable when initialize returns non-200 HTTP status', async () => {
+        vi.stubGlobal(
+          'fetch',
+          vi.fn().mockResolvedValue({
+            ok: false,
+            status: 502,
+            statusText: 'Bad Gateway',
+          })
+        );
+
+        const res = await fetchMarketSentiment();
+
+        expect(res.state).toBe('unavailable');
+        expect(res.reason).toContain('HTTP 502');
+      });
+
+      it('returns unavailable on JSON-RPC error in tools/call response', async () => {
+        const mockInitHeaders = new Headers({
+          'mcp-session-id': 'sess-rpc-err-sentiment',
+        });
+
+        const mockCallBody = `event: message\ndata: ${JSON.stringify({
+          jsonrpc: '2.0',
+          id: 2,
+          error: { code: -32603, message: 'Upstream rate limit on sentiment signal' },
+        })}\n\n`;
+
+        vi.stubGlobal(
+          'fetch',
+          vi.fn().mockImplementation((_url: string, init?: RequestInit) => {
+            const bodyStr = String(init?.body ?? '');
+            if (bodyStr.includes('"method":"initialize"')) {
+              return Promise.resolve({
+                ok: true,
+                status: 200,
+                headers: mockInitHeaders,
+                text: async () => 'event: message\ndata: {"result":{}}\n\n',
+              });
+            }
+            if (bodyStr.includes('"method":"notifications/initialized"')) {
+              return Promise.resolve({ ok: true, status: 200, text: async () => '' });
+            }
+            return Promise.resolve({
+              ok: true,
+              status: 200,
+              text: async () => mockCallBody,
+            });
+          })
+        );
+
+        const res = await fetchMarketSentiment();
+
+        expect(res.state).toBe('unavailable');
+        expect(res.reason).toContain('Upstream rate limit on sentiment signal');
+      });
+
+      it('returns unavailable when MCP results array is empty', async () => {
+        const mockInitHeaders = new Headers({
+          'mcp-session-id': 'sess-empty-sentiment',
+        });
+
+        const mockCallBody = `event: message\ndata: ${JSON.stringify({
+          jsonrpc: '2.0',
+          id: 2,
+          result: {
+            structuredContent: {
+              success: true,
+              status_code: 200,
+              data: { results: [] },
+            },
+          },
+        })}\n\n`;
+
+        vi.stubGlobal(
+          'fetch',
+          vi.fn().mockImplementation((_url: string, init?: RequestInit) => {
+            const bodyStr = String(init?.body ?? '');
+            if (bodyStr.includes('"method":"initialize"')) {
+              return Promise.resolve({
+                ok: true,
+                status: 200,
+                headers: mockInitHeaders,
+                text: async () => 'event: message\ndata: {"result":{}}\n\n',
+              });
+            }
+            if (bodyStr.includes('"method":"notifications/initialized"')) {
+              return Promise.resolve({ ok: true, status: 200, text: async () => '' });
+            }
+            return Promise.resolve({
+              ok: true,
+              status: 200,
+              text: async () => mockCallBody,
+            });
+          })
+        );
+
+        const res = await fetchMarketSentiment();
+
+        expect(res.state).toBe('unavailable');
+        expect(res.reason).toContain('Empty sentiment results');
+      });
     });
   });
 });

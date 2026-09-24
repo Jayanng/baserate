@@ -43,6 +43,7 @@ import {
 import {
   computeMondayReopen,
   type McpEventContext,
+  type MarketSentimentResult,
 } from '@/src/data/mcp-client';
 import { ASSET_MAP } from '@/src/domain/trade-parser';
 import type { EvidenceItem } from '@/src/domain/types';
@@ -77,6 +78,7 @@ export default function DossierPage() {
   const [snapshot, setSnapshot] = useState<LiveMarketSnapshot | null>(null);
   const [depthStress, setDepthStress] = useState<DepthStressResult | null>(null);
   const [eventContext, setEventContext] = useState<McpEventContext | null>(null);
+  const [sentiment, setSentiment] = useState<MarketSentimentResult | null>(null);
   const [loading, setLoading] = useState(false);
   const [narration, setNarration] = useState<string | null>(null);
   const [narrationLoading, setNarrationLoading] = useState<boolean>(false);
@@ -307,6 +309,60 @@ export default function DossierPage() {
       active = false;
     };
   }, [dossier?.parsed.asset, currentAsset, bundle.gaps]);
+
+  useEffect(() => {
+    let active = true;
+
+    fetch('/api/event-context', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ queryType: 'sentiment' }),
+    })
+      .then((res) => res.json())
+      .then(
+        (data: {
+          ok?: boolean;
+          sentiment?: MarketSentimentResult;
+          reason?: string;
+        }) => {
+          if (active) {
+            if (data?.ok && data.sentiment) {
+              setSentiment(data.sentiment);
+            } else {
+              setSentiment({
+                state: 'unavailable',
+                retrievedAtUtc: null,
+                score: null,
+                rating: null,
+                previousClose: null,
+                previous1Month: null,
+                reason: data?.reason ?? 'Live market sentiment fetch failed',
+              });
+            }
+          }
+        }
+      )
+      .catch((err) => {
+        if (active) {
+          setSentiment({
+            state: 'unavailable',
+            retrievedAtUtc: null,
+            score: null,
+            rating: null,
+            previousClose: null,
+            previous1Month: null,
+            reason:
+              err instanceof Error
+                ? err.message
+                : 'Live market sentiment fetch failed',
+          });
+        }
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
 
   useEffect(() => {
     return () => {
@@ -586,11 +642,22 @@ export default function DossierPage() {
         }
     : null;
 
+  const sentimentEvidence: EvidenceItem | null =
+    sentiment && sentiment.state === 'live' && sentiment.score !== null
+      ? {
+          label: 'observed',
+          source: 'bitget_signal',
+          timestampUtc: sentiment.retrievedAtUtc,
+          note: `Market sentiment: Fear & Greed Index ${sentiment.score} (${sentiment.rating ?? 'neutral'})`,
+        }
+      : null;
+
   const allEvidence: EvidenceItem[] = dossier
     ? [
         ...(snapshotEvidence ? [snapshotEvidence] : []),
         ...(depthEvidence ? [depthEvidence] : []),
         ...(eventEvidence ? [eventEvidence] : []),
+        ...(sentimentEvidence ? [sentimentEvidence] : []),
         ...dossier.provenance,
         ...bundle.evidence,
       ]
@@ -647,12 +714,13 @@ export default function DossierPage() {
           </div>
         )}
 
-        {/* 3.6. Market Context Panel (Phase 4.5) */}
+        {/* 3.6. Market Context Panel (Phase 4.5/4.6) */}
         {dossier && !dossier.refusal && (
           <MarketContextPanel
             snapshot={snapshot}
             depth={depthStress}
             event={eventContext}
+            sentiment={sentiment}
           />
         )}
 

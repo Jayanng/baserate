@@ -1,13 +1,14 @@
 import React from 'react';
 import type { LiveMarketSnapshot } from '@/src/data/live-market-snapshot';
 import type { DepthStressResult } from '@/src/engine/depth-stress';
-import type { McpEventContext } from '@/src/data/mcp-client';
+import type { McpEventContext, MarketSentimentResult } from '@/src/data/mcp-client';
 import styles from './DossierPage.module.css';
 
 export interface MarketContextPanelProps {
   snapshot: LiveMarketSnapshot | null;
   depth: DepthStressResult | null;
   event: McpEventContext | null;
+  sentiment?: MarketSentimentResult | null;
 }
 
 export function formatSnapshotTime(iso: string | null): string {
@@ -21,10 +22,27 @@ export function formatSnapshotTime(iso: string | null): string {
   }
 }
 
+export function formatSentimentText(sentiment: MarketSentimentResult): string {
+  const base = `Fear & Greed Index: ${sentiment.score} (${sentiment.rating ?? 'neutral'})`;
+  if (
+    sentiment.previous1Month !== null &&
+    sentiment.score !== null &&
+    sentiment.score !== sentiment.previous1Month
+  ) {
+    const diff =
+      sentiment.score < sentiment.previous1Month
+        ? ` down from ${sentiment.previous1Month} one month ago`
+        : ` up from ${sentiment.previous1Month} one month ago`;
+    return `${base}${diff}`;
+  }
+  return base;
+}
+
 export function getLatestObservedTime(
   snapshot: LiveMarketSnapshot | null,
   depth: DepthStressResult | null,
-  event: McpEventContext | null
+  event: McpEventContext | null,
+  sentiment?: MarketSentimentResult | null
 ): string {
   const timestamps: number[] = [];
   if (snapshot?.retrievedAtUtc) {
@@ -37,6 +55,10 @@ export function getLatestObservedTime(
   }
   if (event?.retrievedAtUtc) {
     const t = new Date(event.retrievedAtUtc).getTime();
+    if (!Number.isNaN(t)) timestamps.push(t);
+  }
+  if (sentiment?.retrievedAtUtc) {
+    const t = new Date(sentiment.retrievedAtUtc).getTime();
     if (!Number.isNaN(t)) timestamps.push(t);
   }
   if (timestamps.length === 0) {
@@ -75,8 +97,9 @@ export default function MarketContextPanel({
   snapshot,
   depth,
   event,
+  sentiment = null,
 }: MarketContextPanelProps) {
-  const latestTime = getLatestObservedTime(snapshot, depth, event);
+  const latestTime = getLatestObservedTime(snapshot, depth, event, sentiment);
 
   return (
     <section
@@ -198,6 +221,80 @@ export default function MarketContextPanel({
                 {`unavailable · ${event.reason ?? 'event context unavailable'}`}
               </span>
             )}
+          </div>
+        </div>
+
+        {/* Row 4: Market Sentiment */}
+        <div
+          className={styles.marketContextRow}
+          role="group"
+          aria-label="Market sentiment"
+          data-label="MARKET SENTIMENT"
+        >
+          <div className={styles.marketContextRowHeader}>
+            <span
+              className={styles.marketContextRowLabel}
+              aria-label="MARKET SENTIMENT"
+            >
+              Market sentiment
+            </span>
+            {sentiment &&
+              renderBadge(sentiment.state === 'live' ? 'live' : 'unavailable')}
+          </div>
+          <div className={styles.marketContextRowContent}>
+            {!sentiment ? (
+              <span className={styles.marketContextPending}>
+                waiting on market signal
+              </span>
+            ) : sentiment.state === 'live' && sentiment.score !== null ? (
+              <span className={styles.marketContextRowMain}>
+                {formatSentimentText(sentiment)}
+              </span>
+            ) : (
+              <span className={styles.marketContextRowMain}>
+                {`unavailable · ${sentiment.reason ?? 'market sentiment unavailable'}`}
+              </span>
+            )}
+            <details className={`${styles.metricHow} ${styles.marketContextHow}`}>
+              <summary className={styles.metricHowSummary}>
+                <span>HOW</span>
+                <svg
+                  className={styles.metricHowIcon}
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M6 2v8M2 6h8"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </summary>
+              <div className={styles.metricHowBody}>
+                <div className={styles.metricHowRow}>
+                  <span className={styles.metricHowKey}>source:</span>{' '}
+                  <span className={styles.metricHowVal}>
+                    bitget-signal sentiment_market_fear_greed
+                  </span>
+                </div>
+                <div className={styles.metricHowRow}>
+                  <span className={styles.metricHowKey}>observed:</span>{' '}
+                  <span className={styles.metricHowVal}>
+                    {sentiment?.retrievedAtUtc
+                      ? formatSnapshotTime(sentiment.retrievedAtUtc)
+                      : 'waiting'}
+                  </span>
+                </div>
+                <div className={styles.metricHowRow}>
+                  <span className={styles.metricHowKey}>scope:</span>{' '}
+                  <span className={styles.metricHowVal}>
+                    Global crypto market sentiment index
+                  </span>
+                </div>
+              </div>
+            </details>
           </div>
         </div>
       </div>

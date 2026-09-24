@@ -1,8 +1,15 @@
+/**
+ * BaseRate Bitget MCP Context Route
+ * Proxies event calendar (equity_calendar) and market sentiment (sentiment_market_fear_greed)
+ * queries to agent.bitget.com/mcp via server-side session flow.
+ */
 import { NextResponse } from 'next/server';
 import {
   fetchEventContext,
+  fetchMarketSentiment,
   computeMondayReopen,
   type McpEventContext,
+  type MarketSentimentResult,
 } from '@/src/data/mcp-client';
 import { isReplayAllowlistedSymbol } from '@/src/data/live-market-snapshot';
 
@@ -18,6 +25,22 @@ export async function POST(req: Request) {
         { ok: false, reason: 'unsupported_symbol' },
         { status: 400 }
       );
+    }
+
+    const queryType =
+      body &&
+      typeof body === 'object' &&
+      'queryType' in body &&
+      typeof (body as { queryType: unknown }).queryType === 'string'
+        ? (body as { queryType: string }).queryType
+        : 'earnings';
+
+    if (queryType === 'sentiment') {
+      const sentiment: MarketSentimentResult = await fetchMarketSentiment();
+      return NextResponse.json({
+        ok: true,
+        sentiment,
+      });
     }
 
     const rawSymbol =

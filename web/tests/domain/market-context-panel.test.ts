@@ -7,7 +7,7 @@ import MarketContextPanel, {
 } from '@/components/dossier/MarketContextPanel';
 import type { LiveMarketSnapshot } from '@/src/data/live-market-snapshot';
 import type { DepthStressResult } from '@/src/engine/depth-stress';
-import type { McpEventContext } from '@/src/data/mcp-client';
+import type { McpEventContext, MarketSentimentResult } from '@/src/data/mcp-client';
 import { sourceLinkKind, buildSourceHref } from '@/components/dossier/source-links';
 import type { EvidenceItem, ParsedTrade } from '@/src/domain/types';
 
@@ -105,6 +105,36 @@ describe('MarketContextPanel component & evidence flow', () => {
     reason: 'Bitget MCP request timed out after 5000ms',
   };
 
+  const mockLiveSentimentDown: MarketSentimentResult = {
+    state: 'live',
+    retrievedAtUtc: '2026-09-23T15:20:33.000Z',
+    score: 34.7,
+    rating: 'fear',
+    previousClose: 35.2,
+    previous1Month: 54.7,
+    reason: null,
+  };
+
+  const mockLiveSentimentUp: MarketSentimentResult = {
+    state: 'live',
+    retrievedAtUtc: '2026-09-23T15:20:33.000Z',
+    score: 62.4,
+    rating: 'greed',
+    previousClose: 58.1,
+    previous1Month: 45.0,
+    reason: null,
+  };
+
+  const mockUnavailableSentiment: MarketSentimentResult = {
+    state: 'unavailable',
+    retrievedAtUtc: null,
+    score: null,
+    rating: null,
+    previousClose: null,
+    previous1Month: null,
+    reason: 'Bitget MCP request timed out after 5000ms',
+  };
+
   describe('formatSnapshotTime & getLatestObservedTime', () => {
     it('formats ISO string to HH:MM:SS UTC', () => {
       const formatted = formatSnapshotTime('2026-09-23T14:32:05.123Z');
@@ -127,23 +157,36 @@ describe('MarketContextPanel component & evidence flow', () => {
       expect(latest).toBe('15:20:32 UTC');
     });
 
+    it('getLatestObservedTime includes sentiment timestamp and picks latest', () => {
+      const latest = getLatestObservedTime(
+        mockLiveSnapshot,
+        mockLiveDepth,
+        mockLiveEventWithDate,
+        mockLiveSentimentDown
+      );
+      // 15:20:33 is latest from sentiment
+      expect(latest).toBe('15:20:33 UTC');
+    });
+
     it('getLatestObservedTime returns "waiting" when all timestamps are null', () => {
       const latest = getLatestObservedTime(
         mockUnavailableSnapshot,
         mockUnavailableDepth,
-        mockUnavailableEvent
+        mockUnavailableEvent,
+        mockUnavailableSentiment
       );
       expect(latest).toBe('waiting');
     });
   });
 
   describe('loading neutrality & waiting copy', () => {
-    it('renders the panel and three waiting lines when all three props are null', () => {
+    it('renders the panel and four waiting lines when all props are null', () => {
       const html = renderToStaticMarkup(
         React.createElement(MarketContextPanel, {
           snapshot: null,
           depth: null,
           event: null,
+          sentiment: null,
         })
       );
       expect(html).toContain('MARKET CONTEXT');
@@ -156,6 +199,8 @@ describe('MarketContextPanel component & evidence flow', () => {
       expect(html).toContain('waiting on the public book');
       expect(html).toContain('Event calendar');
       expect(html).toContain('checking the next earnings date');
+      expect(html).toContain('Market sentiment');
+      expect(html).toContain('waiting on market signal');
       expect(html).not.toContain('Loading price and funding');
       expect(html).not.toContain('Loading depth');
       expect(html).not.toContain('Loading earnings calendar');
@@ -361,6 +406,136 @@ describe('MarketContextPanel component & evidence flow', () => {
     });
   });
 
+  describe('Row 4: Market sentiment row behaviors', () => {
+    it('renders live state with down-from comparison and HOW disclosure', () => {
+      const html = renderToStaticMarkup(
+        React.createElement(MarketContextPanel, {
+          snapshot: mockLiveSnapshot,
+          depth: mockLiveDepth,
+          event: mockLiveEventWithDate,
+          sentiment: mockLiveSentimentDown,
+        })
+      );
+
+      // Label and live badge
+      expect(html).toContain('Market sentiment');
+      expect(html).toContain('LIVE OBSERVED');
+
+      // Value text: 34.7 (fear) down from 54.7 one month ago
+      expect(html).toContain(
+        'Fear &amp; Greed Index: 34.7 (fear) down from 54.7 one month ago'
+      );
+
+      // HOW disclosure contents
+      expect(html).toContain('bitget-signal sentiment_market_fear_greed');
+      expect(html).toContain('Global crypto market sentiment index');
+      expect(html).toContain('15:20:33 UTC');
+
+      // No em dash, no forbidden advice words
+      expect(html).not.toContain('—');
+      expect(html).not.toMatch(FORBIDDEN_WORDS_REGEX);
+    });
+
+    it('renders live state with up-from comparison', () => {
+      const html = renderToStaticMarkup(
+        React.createElement(MarketContextPanel, {
+          snapshot: mockLiveSnapshot,
+          depth: mockLiveDepth,
+          event: mockLiveEventWithDate,
+          sentiment: mockLiveSentimentUp,
+        })
+      );
+
+      expect(html).toContain('LIVE OBSERVED');
+      expect(html).toContain(
+        'Fear &amp; Greed Index: 62.4 (greed) up from 45 one month ago'
+      );
+      expect(html).not.toContain('—');
+      expect(html).not.toMatch(FORBIDDEN_WORDS_REGEX);
+    });
+
+    it('renders unavailable state with peach badge and reason', () => {
+      const html = renderToStaticMarkup(
+        React.createElement(MarketContextPanel, {
+          snapshot: mockLiveSnapshot,
+          depth: mockLiveDepth,
+          event: mockLiveEventWithDate,
+          sentiment: mockUnavailableSentiment,
+        })
+      );
+
+      expect(html).toContain('Market sentiment');
+      expect(html).toContain('UNAVAILABLE');
+      expect(html).toContain(
+        'unavailable · Bitget MCP request timed out after 5000ms'
+      );
+      expect(html).not.toContain('—');
+      expect(html).not.toMatch(FORBIDDEN_WORDS_REGEX);
+    });
+
+    it('renders null state with waiting on market signal', () => {
+      const html = renderToStaticMarkup(
+        React.createElement(MarketContextPanel, {
+          snapshot: mockLiveSnapshot,
+          depth: mockLiveDepth,
+          event: mockLiveEventWithDate,
+          sentiment: null,
+        })
+      );
+
+      expect(html).toContain('Market sentiment');
+      expect(html).toContain('waiting on market signal');
+      expect(html).not.toContain('—');
+      expect(html).not.toMatch(FORBIDDEN_WORDS_REGEX);
+    });
+
+    it('isolates Row 4 failure when other rows are live', () => {
+      const html = renderToStaticMarkup(
+        React.createElement(MarketContextPanel, {
+          snapshot: mockLiveSnapshot,
+          depth: mockLiveDepth,
+          event: mockLiveEventWithDate,
+          sentiment: mockUnavailableSentiment,
+        })
+      );
+
+      // Rows 1, 2, 3 remain LIVE OBSERVED
+      expect(html).toContain('spot 228.2 · funding 0.000219');
+      expect(html).toContain(
+        'estimated slippage 0.45% · 3 levels · estimate only'
+      );
+      expect(html).toContain('next earnings 2026-11-19 · in 27 days');
+
+      // Row 4 is UNAVAILABLE
+      expect(html).toContain(
+        'unavailable · Bitget MCP request timed out after 5000ms'
+      );
+    });
+
+    it('isolates Row 4 live when other rows are unavailable', () => {
+      const html = renderToStaticMarkup(
+        React.createElement(MarketContextPanel, {
+          snapshot: mockUnavailableSnapshot,
+          depth: mockUnavailableDepth,
+          event: mockUnavailableEvent,
+          sentiment: mockLiveSentimentDown,
+        })
+      );
+
+      // Header observed timestamp reflects sentiment
+      expect(html).toContain('15:20:33 UTC');
+
+      // Row 4 is LIVE OBSERVED
+      expect(html).toContain('LIVE OBSERVED');
+      expect(html).toContain(
+        'Fear &amp; Greed Index: 34.7 (fear) down from 54.7 one month ago'
+      );
+
+      // Rows 1, 2, 3 are UNAVAILABLE
+      expect(html).toContain('UNAVAILABLE');
+    });
+  });
+
   describe('evidence table integration & source-links contracts', () => {
     const trade: ParsedTrade = {
       asset: 'rNVDA',
@@ -375,8 +550,9 @@ describe('MarketContextPanel component & evidence flow', () => {
       evidence: 'parsed',
     };
 
-    it('sourceLinkKind returns null for mcp_earnings, bitget_live, and bitget_orderbook (plain text)', () => {
+    it('sourceLinkKind returns null for mcp_earnings, bitget_signal, bitget_live, and bitget_orderbook (plain text)', () => {
       expect(sourceLinkKind('mcp_earnings')).toBeNull();
+      expect(sourceLinkKind('bitget_signal')).toBeNull();
       expect(sourceLinkKind('bitget_live')).toBeNull();
       expect(sourceLinkKind('bitget_orderbook')).toBeNull();
 
