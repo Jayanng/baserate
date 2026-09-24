@@ -106,6 +106,8 @@ export default function DossierPage() {
         retrievedAtUtc: null,
         spotPrice: null,
         fundingRate: null,
+        rTokenSymbol: null,
+        perpSymbol: null,
         sourceLabel: {
           spotPrice: 'bitget_spot',
           fundingRate: 'bitget_mix',
@@ -138,6 +140,8 @@ export default function DossierPage() {
             retrievedAtUtc: null,
             spotPrice: null,
             fundingRate: null,
+            rTokenSymbol,
+            perpSymbol,
             sourceLabel: {
               spotPrice: 'bitget_spot',
               fundingRate: 'bitget_mix',
@@ -721,6 +725,18 @@ export default function DossierPage() {
             depth={depthStress}
             event={eventContext}
             sentiment={sentiment}
+            rTokenSymbol={
+              snapshot?.rTokenSymbol ??
+              dossier.parsed.rTokenSymbol ??
+              ASSET_MAP[activeAsset.toLowerCase()]?.rTokenSymbol ??
+              'RNVDAUSDT'
+            }
+            perpSymbol={
+              snapshot?.perpSymbol ??
+              dossier.parsed.perpSymbol ??
+              ASSET_MAP[activeAsset.toLowerCase()]?.perpSymbol ??
+              'NVDAUSDT'
+            }
           />
         )}
 

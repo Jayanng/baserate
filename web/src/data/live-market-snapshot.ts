@@ -32,6 +32,8 @@ export interface LiveMarketSnapshot {
   retrievedAtUtc: string | null;
   spotPrice: number | null;
   fundingRate: number | null;
+  rTokenSymbol?: string | null;
+  perpSymbol?: string | null;
   sourceLabel: {
     spotPrice: string;
     fundingRate: string;
@@ -90,15 +92,28 @@ export async function fetchLiveMarketSnapshot(
   perpSymbol: string,
   timeoutMs: number = 4000
 ): Promise<LiveMarketSnapshot> {
+  const normRToken =
+    typeof rTokenSymbol === 'string' && rTokenSymbol.trim().length > 0
+      ? rTokenSymbol.replace(/^[$#]/, '').trim().toUpperCase()
+      : null;
+  const normPerp =
+    typeof perpSymbol === 'string' && perpSymbol.trim().length > 0
+      ? perpSymbol.replace(/^[$#]/, '').trim().toUpperCase()
+      : null;
+
   if (
-    !isReplayAllowlistedSymbol(rTokenSymbol) ||
-    !isReplayAllowlistedSymbol(perpSymbol)
+    !normRToken ||
+    !normPerp ||
+    !isReplayAllowlistedSymbol(normRToken) ||
+    !isReplayAllowlistedSymbol(normPerp)
   ) {
     return {
       state: 'unavailable',
       retrievedAtUtc: null,
       spotPrice: null,
       fundingRate: null,
+      rTokenSymbol: normRToken,
+      perpSymbol: normPerp,
       sourceLabel: {
         spotPrice: 'bitget_spot',
         fundingRate: 'bitget_mix',
@@ -130,8 +145,8 @@ export async function fetchLiveMarketSnapshot(
   try {
     const [ticker, funding] = await Promise.race([
       Promise.all([
-        fetchSpotTicker(rTokenSymbol),
-        fetchCurrentFunding(perpSymbol),
+        fetchSpotTicker(normRToken),
+        fetchCurrentFunding(normPerp),
       ]),
       timeoutPromise,
     ]);
@@ -146,6 +161,8 @@ export async function fetchLiveMarketSnapshot(
         retrievedAtUtc: null,
         spotPrice: null,
         fundingRate: null,
+        rTokenSymbol: normRToken,
+        perpSymbol: normPerp,
         sourceLabel: {
           spotPrice: 'bitget_spot',
           fundingRate: 'bitget_mix',
@@ -160,6 +177,8 @@ export async function fetchLiveMarketSnapshot(
         retrievedAtUtc: null,
         spotPrice: null,
         fundingRate: null,
+        rTokenSymbol: normRToken,
+        perpSymbol: normPerp,
         sourceLabel: {
           spotPrice: 'bitget_spot',
           fundingRate: 'bitget_mix',
@@ -173,6 +192,8 @@ export async function fetchLiveMarketSnapshot(
       retrievedAtUtc: new Date().toISOString(),
       spotPrice: ticker.lastPr,
       fundingRate: funding.fundingRate,
+      rTokenSymbol: normRToken,
+      perpSymbol: normPerp,
       sourceLabel: {
         spotPrice: 'bitget_spot',
         fundingRate: 'bitget_mix',
@@ -190,6 +211,8 @@ export async function fetchLiveMarketSnapshot(
       retrievedAtUtc: null,
       spotPrice: null,
       fundingRate: null,
+      rTokenSymbol: normRToken,
+      perpSymbol: normPerp,
       sourceLabel: {
         spotPrice: 'bitget_spot',
         fundingRate: 'bitget_mix',

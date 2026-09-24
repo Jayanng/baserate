@@ -57,10 +57,25 @@ describe('live-market-snapshot module', () => {
       expect(result.retrievedAtUtc).toBeNull();
       expect(result.spotPrice).toBeNull();
       expect(result.fundingRate).toBeNull();
+      expect(result.rTokenSymbol).toBe('RDOGEUSDT');
+      expect(result.perpSymbol).toBe('DOGEUSDT');
       expect(result.sourceLabel).toEqual({
         spotPrice: 'bitget_spot',
         fundingRate: 'bitget_mix',
       });
+      expect(result.reason).toBe('asset not in replay allowlist');
+    });
+
+    it('preserves null for empty or invalid symbol inputs without fabricating', async () => {
+      const mockFetch = vi.fn();
+      vi.stubGlobal('fetch', mockFetch);
+
+      const result = await fetchLiveMarketSnapshot('', '');
+
+      expect(mockFetch).not.toHaveBeenCalled();
+      expect(result.state).toBe('unavailable');
+      expect(result.rTokenSymbol).toBeNull();
+      expect(result.perpSymbol).toBeNull();
       expect(result.reason).toBe('asset not in replay allowlist');
     });
   });
@@ -123,6 +138,8 @@ describe('live-market-snapshot module', () => {
       expect(snapshot.state).toBe('live');
       expect(snapshot.spotPrice).toBe(228.2);
       expect(snapshot.fundingRate).toBe(0.000217);
+      expect(snapshot.rTokenSymbol).toBe('RNVDAUSDT');
+      expect(snapshot.perpSymbol).toBe('NVDAUSDT');
       expect(snapshot.sourceLabel).toEqual({
         spotPrice: 'bitget_spot',
         fundingRate: 'bitget_mix',
@@ -181,6 +198,8 @@ describe('live-market-snapshot module', () => {
       expect(snapshot.retrievedAtUtc).toBeNull();
       expect(snapshot.spotPrice).toBeNull();
       expect(snapshot.fundingRate).toBeNull();
+      expect(snapshot.rTokenSymbol).toBe('RNVDAUSDT');
+      expect(snapshot.perpSymbol).toBe('NVDAUSDT');
       expect(snapshot.sourceLabel).toEqual({
         spotPrice: 'bitget_spot',
         fundingRate: 'bitget_mix',
@@ -200,6 +219,8 @@ describe('live-market-snapshot module', () => {
       expect(snapshot.retrievedAtUtc).toBeNull();
       expect(snapshot.spotPrice).toBeNull();
       expect(snapshot.fundingRate).toBeNull();
+      expect(snapshot.rTokenSymbol).toBe('RNVDAUSDT');
+      expect(snapshot.perpSymbol).toBe('NVDAUSDT');
       expect(typeof snapshot.reason).toBe('string');
       expect(snapshot.reason).toContain('timed out');
     });

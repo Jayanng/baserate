@@ -20,6 +20,8 @@ describe('MarketContextPanel component & evidence flow', () => {
     retrievedAtUtc: '2026-09-23T15:20:30.000Z',
     spotPrice: 228.2,
     fundingRate: 0.000219,
+    rTokenSymbol: 'RNVDAUSDT',
+    perpSymbol: 'NVDAUSDT',
     sourceLabel: {
       spotPrice: 'bitget_spot',
       fundingRate: 'bitget_mix',
@@ -32,6 +34,8 @@ describe('MarketContextPanel component & evidence flow', () => {
     retrievedAtUtc: null,
     spotPrice: null,
     fundingRate: null,
+    rTokenSymbol: 'RNVDAUSDT',
+    perpSymbol: 'NVDAUSDT',
     sourceLabel: {
       spotPrice: 'bitget_spot',
       fundingRate: 'bitget_mix',
@@ -228,7 +232,7 @@ describe('MarketContextPanel component & evidence flow', () => {
       // Row 1: Price & Funding
       expect(html).toContain('Price &amp; funding');
       expect(html).toContain('LIVE OBSERVED');
-      expect(html).toContain('spot 228.2 · funding 0.000219');
+      expect(html).toContain('RNVDAUSDT spot 228.2 · NVDAUSDT funding 0.000219');
 
       // Row 2: Weekend Depth
       expect(html).toContain('Weekend depth');
@@ -292,7 +296,7 @@ describe('MarketContextPanel component & evidence flow', () => {
       );
       // Rows 1 and 3 are live
       expect(html).toContain('LIVE OBSERVED');
-      expect(html).toContain('spot 228.2 · funding 0.000219');
+      expect(html).toContain('RNVDAUSDT spot 228.2 · NVDAUSDT funding 0.000219');
       expect(html).toContain('next earnings 2026-11-19 · in 27 days');
       expect(html).not.toContain('—');
       expect(html).not.toMatch(FORBIDDEN_WORDS_REGEX);
@@ -312,7 +316,7 @@ describe('MarketContextPanel component & evidence flow', () => {
         'unavailable · Bitget request timed out after 4000ms'
       );
       expect(html).toContain('LIVE OBSERVED');
-      expect(html).toContain('spot 228.2 · funding 0.000219');
+      expect(html).toContain('RNVDAUSDT spot 228.2 · NVDAUSDT funding 0.000219');
       expect(html).toContain('next earnings 2026-11-19 · in 27 days');
       expect(html).not.toContain('—');
       expect(html).not.toMatch(FORBIDDEN_WORDS_REGEX);
@@ -334,7 +338,7 @@ describe('MarketContextPanel component & evidence flow', () => {
 
       // Rows 1 and 2 remain live
       expect(html).toContain('LIVE OBSERVED');
-      expect(html).toContain('spot 228.2 · funding 0.000219');
+      expect(html).toContain('RNVDAUSDT spot 228.2 · NVDAUSDT funding 0.000219');
       expect(html).toContain(
         'estimated slippage 0.45% · 3 levels · estimate only'
       );
@@ -500,7 +504,7 @@ describe('MarketContextPanel component & evidence flow', () => {
       );
 
       // Rows 1, 2, 3 remain LIVE OBSERVED
-      expect(html).toContain('spot 228.2 · funding 0.000219');
+      expect(html).toContain('RNVDAUSDT spot 228.2 · NVDAUSDT funding 0.000219');
       expect(html).toContain(
         'estimated slippage 0.45% · 3 levels · estimate only'
       );
@@ -585,6 +589,113 @@ describe('MarketContextPanel component & evidence flow', () => {
         note: 'bitget-mcp-server event context unavailable; pinned replay values in use below.',
       };
       expect(buildSourceHref(unavailEvidence, trade)).toBeNull();
+    });
+  });
+
+  describe('instrument identification in Row 1 (Price & funding)', () => {
+    it('defaults to RNVDAUSDT spot ... · NVDAUSDT funding ... when symbols are not specified in snapshot', () => {
+      const snapshotWithoutSymbols: LiveMarketSnapshot = {
+        state: 'live',
+        retrievedAtUtc: '2026-09-23T15:20:30.000Z',
+        spotPrice: 228.2,
+        fundingRate: 0.000219,
+        sourceLabel: {
+          spotPrice: 'bitget_spot',
+          fundingRate: 'bitget_mix',
+        },
+        reason: null,
+      };
+
+      const html = renderToStaticMarkup(
+        React.createElement(MarketContextPanel, {
+          snapshot: snapshotWithoutSymbols,
+          depth: mockLiveDepth,
+          event: mockLiveEventWithDate,
+        })
+      );
+
+      expect(html).toContain('RNVDAUSDT spot 228.2 · NVDAUSDT funding 0.000219');
+    });
+
+    it('renders exact instruments from snapshot for non-default assets (e.g. RTSLAUSDT and TSLAUSDT)', () => {
+      const tslaSnapshot: LiveMarketSnapshot = {
+        state: 'live',
+        retrievedAtUtc: '2026-09-23T15:20:30.000Z',
+        spotPrice: 410.5,
+        fundingRate: 0.00015,
+        rTokenSymbol: 'RTSLAUSDT',
+        perpSymbol: 'TSLAUSDT',
+        sourceLabel: {
+          spotPrice: 'bitget_spot',
+          fundingRate: 'bitget_mix',
+        },
+        reason: null,
+      };
+
+      const html = renderToStaticMarkup(
+        React.createElement(MarketContextPanel, {
+          snapshot: tslaSnapshot,
+          depth: mockLiveDepth,
+          event: mockLiveEventWithDate,
+        })
+      );
+
+      expect(html).toContain('RTSLAUSDT spot 410.5 · TSLAUSDT funding 0.00015');
+      expect(html).not.toContain('RNVDAUSDT');
+    });
+
+    it('renders exact instruments from props when snapshot does not carry them', () => {
+      const bareSnapshot: LiveMarketSnapshot = {
+        state: 'live',
+        retrievedAtUtc: '2026-09-23T15:20:30.000Z',
+        spotPrice: 180.25,
+        fundingRate: 0.00008,
+        sourceLabel: {
+          spotPrice: 'bitget_spot',
+          fundingRate: 'bitget_mix',
+        },
+        reason: null,
+      };
+
+      const html = renderToStaticMarkup(
+        React.createElement(MarketContextPanel, {
+          snapshot: bareSnapshot,
+          depth: mockLiveDepth,
+          event: mockLiveEventWithDate,
+          rTokenSymbol: 'RAAPLUSDT',
+          perpSymbol: 'AAPLUSDT',
+        })
+      );
+
+      expect(html).toContain('RAAPLUSDT spot 180.25 · AAPLUSDT funding 0.00008');
+    });
+
+    it('preserves unavailable state and reason without crashing when snapshot is unavailable', () => {
+      const unavailSnapshot: LiveMarketSnapshot = {
+        state: 'unavailable',
+        retrievedAtUtc: null,
+        spotPrice: null,
+        fundingRate: null,
+        rTokenSymbol: 'RNVDAUSDT',
+        perpSymbol: 'NVDAUSDT',
+        sourceLabel: {
+          spotPrice: 'bitget_spot',
+          fundingRate: 'bitget_mix',
+        },
+        reason: 'asset not in replay allowlist',
+      };
+
+      const html = renderToStaticMarkup(
+        React.createElement(MarketContextPanel, {
+          snapshot: unavailSnapshot,
+          depth: mockLiveDepth,
+          event: mockLiveEventWithDate,
+        })
+      );
+
+      expect(html).toContain('UNAVAILABLE');
+      expect(html).toContain('unavailable · asset not in replay allowlist');
+      expect(html).not.toContain('spot null');
     });
   });
 });

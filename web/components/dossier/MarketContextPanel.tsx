@@ -9,6 +9,8 @@ export interface MarketContextPanelProps {
   depth: DepthStressResult | null;
   event: McpEventContext | null;
   sentiment?: MarketSentimentResult | null;
+  rTokenSymbol?: string | null;
+  perpSymbol?: string | null;
 }
 
 export function formatSnapshotTime(iso: string | null): string {
@@ -98,8 +100,14 @@ export default function MarketContextPanel({
   depth,
   event,
   sentiment = null,
+  rTokenSymbol: propRTokenSymbol,
+  perpSymbol: propPerpSymbol,
 }: MarketContextPanelProps) {
   const latestTime = getLatestObservedTime(snapshot, depth, event, sentiment);
+  const rTokenSymbol =
+    snapshot?.rTokenSymbol ?? propRTokenSymbol ?? 'RNVDAUSDT';
+  const perpSymbol =
+    snapshot?.perpSymbol ?? propPerpSymbol ?? 'NVDAUSDT';
 
   return (
     <section
@@ -137,7 +145,7 @@ export default function MarketContextPanel({
               <span className={styles.marketContextPending}>waiting on Bitget</span>
             ) : snapshot.state === 'live' ? (
               <span className={styles.marketContextRowMain}>
-                {`spot ${snapshot.spotPrice} · funding ${snapshot.fundingRate}`}
+                {`${rTokenSymbol} spot ${snapshot.spotPrice} · ${perpSymbol} funding ${snapshot.fundingRate}`}
               </span>
             ) : (
               <span className={styles.marketContextRowMain}>
